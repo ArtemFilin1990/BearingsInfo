@@ -221,6 +221,8 @@ Baza/
 │   │   └── bearing_units.md                     # Подшипниковые узлы
 │   ├── brands/                                  # Производители
 │   │   ├── international_brands.md              # Классификация брендов
+│   │   ├── supplier_directory.md                # Каталог брендов и поставщиков
+│   │   ├── aprom_brands.md                      # Бренды с aprom.by
 │   │   └── skf_overview.md                      # Обзор SKF
 │   ├── standards/
 │   │   └── gost_standards.md                    # Стандарты ГОСТ
@@ -231,9 +233,11 @@ Baza/
 │   └── faq/                                     # Часто задаваемые вопросы
 │       ├── README.md
 │       └── imported_bearings.md
-├── sources/                                     # Исходные материалы
-│   ├── literature.md
-│   └── RAW_INDEX.md
+├── sources/                                     # Исходные материалы и скрипты
+│   ├── literature.md                            # Список литературы
+│   ├── RAW_INDEX.md                             # Сырой индекс
+│   ├── aprom_table_scraper.py                   # Скрипт для загрузки данных
+│   └── aprom_brands.json                        # JSON с брендами
 └── CONTRIBUTING.md                              # Руководство по участию
 ```
 

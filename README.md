@@ -11,6 +11,7 @@
 3. [Таблицы аналогов ГОСТ↔ISO](docs/bearings/analogues/README.md)
 4. [Каталог подшипников](docs/bearings/catalog/README.md)
 5. [Часто задаваемые вопросы (FAQ)](docs/bearings/faq/README.md)
+6. [Подшипники ГОСТ (учебное пособие)](docs/bearings/gost/README.md)
 
 ## Источники
 

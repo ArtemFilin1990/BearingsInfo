@@ -82,10 +82,26 @@
 На основе вышеперечисленных источников в репозитории созданы следующие файлы с данными:
 
 ### JSON файлы с техническими характеристиками
+
+**Радиальные шариковые подшипники (37 шт.):**
 - **bearing_dimensions_6000_series.json** - серия 6000 (11 подшипников) - источники: SKF, NSK, podshipnik.info
 - **bearing_dimensions_6200_series.json** - серия 6200 (13 подшипников) - источники: SKF, NSK, IRBIS
+- **bearing_dimensions_6300_series.json** - серия 6300 (13 подшипников) - источники: SKF, NSK, каталог
+
+**Роликовые подшипники (41 шт.):**
+- **bearing_dimensions_cylindrical_rollers.json** - цилиндрические NU 200/300 (14 подшипников) - источники: SKF, NSK, каталог
+- **bearing_dimensions_tapered_rollers.json** - конические 30200/30300/32000 (16 подшипников) - источники: Timken, SKF, каталог
+- **bearing_dimensions_spherical.json** - сферические 1200/22200/22300 (11 подшипников) - источники: SKF, NSK, каталог
+
+**Специальные подшипники (13 шт.):**
+- **bearing_dimensions_angular_contact.json** - радиально-упорные 7200 (5 подшипников) - источники: SKF, NSK, каталог
+- **bearing_dimensions_thrust.json** - упорные 51100/51200 (8 подшипников) - источники: SKF, NSK, каталог
+
+**Справочные данные:**
 - **gost_iso_correspondence.json** - соответствия ГОСТ ↔ ISO (26 записей) - источники: planetapodshipnik.ru, podshipnik.info, Timken
 - **aprom_brands.json** - база брендов производителей - источник: aprom.by
+
+**Всего: 91 подшипник с полными техническими характеристиками**
 
 Подробное описание структуры данных см. в [README.md](README.md)
 

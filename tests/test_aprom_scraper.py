@@ -16,30 +16,23 @@ import sys
 import unittest
 from pathlib import Path
 
-# Only modify sys.path when running as standalone script (not imported as module)
-if __name__ == "__main__" and __package__ is None:
-    sys.path.insert(0, str(Path(__file__).parent.parent / "sources"))
 
-try:
+def _import_aprom_scraper():
+    """Import aprom_table_scraper module with proper path handling."""
+    # Add sources directory to path if not already there
+    sources_path = str(Path(__file__).parent.parent / "sources")
+    if sources_path not in sys.path:
+        sys.path.insert(0, sources_path)
+    
     from aprom_table_scraper import (
-        TableCell,
-        extract_tables,
-        derive_headers,
-        table_to_records,
-        clean_text,
-        normalize_url,
+        TableCell, extract_tables, derive_headers,
+        table_to_records, clean_text, normalize_url,
     )
-except ImportError:
-    # Fallback for different execution contexts
-    sys.path.insert(0, str(Path(__file__).parent.parent / "sources"))
-    from aprom_table_scraper import (
-        TableCell,
-        extract_tables,
-        derive_headers,
-        table_to_records,
-        clean_text,
-        normalize_url,
-    )
+    return TableCell, extract_tables, derive_headers, table_to_records, clean_text, normalize_url
+
+
+# Import the module components
+TableCell, extract_tables, derive_headers, table_to_records, clean_text, normalize_url = _import_aprom_scraper()
 
 
 class TestCleanText(unittest.TestCase):

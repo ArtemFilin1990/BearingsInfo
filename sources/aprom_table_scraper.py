@@ -223,9 +223,13 @@ def fetch_html(url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, r
     Raises:
         HTTPError: If HTTP request fails after all retries
         URLError: If network connection fails after all retries
+        ValueError: If max_retries is less than 1
     """
+    if max_retries < 1:
+        raise ValueError("max_retries must be at least 1")
+    
     request = Request(url, headers={"User-Agent": DEFAULT_USER_AGENT})
-    last_error = URLError("No retry attempts made")
+    last_error: Optional[Exception] = None
     
     for attempt in range(max_retries):
         try:
@@ -239,6 +243,10 @@ def fetch_html(url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, r
                 time.sleep(retry_delay)
             else:
                 logging.error("All %d attempts failed for %s: %s", max_retries, url, error)
+    
+    # This should never happen since we always set last_error in the loop, but for type safety
+    if last_error is None:
+        raise RuntimeError(f"Unexpected error: fetch failed but no error was captured for {url}")
     
     raise last_error
 
@@ -285,7 +293,10 @@ def crawl_all_pages(
         time.sleep(delay_seconds)
 
     if failed_urls:
-        logging.warning("Failed to fetch %d URLs: %s", len(failed_urls), failed_urls[:5])
+        if len(failed_urls) <= 5:
+            logging.warning("Failed to fetch %d URLs: %s", len(failed_urls), failed_urls)
+        else:
+            logging.warning("Failed to fetch %d URLs (showing first 5): %s", len(failed_urls), failed_urls[:5])
 
     return aggregated_rows
 

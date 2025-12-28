@@ -9,3 +9,4 @@ This directory contains raw reference materials used to compile the knowledge ba
 - **Подшипники SKF.docx** – Руководство по продукции SKF; содержит классификацию, обозначения и примеры применения.
 - **Таблица аналагов.docx** – Дополнительные таблицы аналогов подшипников с примерами соответствия.
 - **Суффиксы ISO.docx** – Таблица распространённых суффиксов и префиксов ISO с пояснениями.
+- **aprom_brands.json** – JSON-выгрузка (284 записи) с брендами подшипников и сопутствующих товаров с [aprom.by/brands.php](https://aprom.by/brands.php).

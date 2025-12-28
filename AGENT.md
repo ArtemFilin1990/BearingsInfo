@@ -17,16 +17,22 @@ Maintain strict engineering knowledge base standards.
 ├── LICENSE
 ├── CONTRIBUTING.md
 ├── .gitignore
-├── gost/
-├── iso/
-├── analogs/
-└── sources/
+├── docs/bearings/
+│   ├── designations/       # GOST and ISO designation systems
+│   ├── analogues/          # GOST ↔ ISO correspondence tables
+│   ├── brands/             # Manufacturer information
+│   ├── standards/          # Standards and norms
+│   ├── classification/     # Bearing classification
+│   ├── catalog/            # Bearing catalog
+│   ├── faq/                # Frequently asked questions
+│   └── training/           # Training materials
+└── sources/                # Literature, catalogs, standards
 ```
 
 ### Actions: 
 - Verify structure exists
 - Create missing directories
-- Enforce separation:  GOST ≠ ISO ≠ analogs
+- Enforce separation:  GOST ≠ ISO (within designations folder)
 
 ---
 

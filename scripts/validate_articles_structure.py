@@ -306,13 +306,13 @@ def main() -> None:
                 fail(f"template marker '{marker}' missing in {rel}")
 
     # Validate SITEMAP: must be plain paths, one per line (no bullets)
-    sitemap_lines = [ln.rstrip("\n") for ln in SITEMAP.read_text(encoding="utf-8").splitlines()]
+    sitemap_lines = SITEMAP.read_text(encoding="utf-8").splitlines()
     if any(ln.startswith("- ") or ln.startswith("#") for ln in sitemap_lines if ln.strip()):
         fail("SITEMAP.md must contain only paths, no bullets and no headings")
 
     # Validate SITEMAP contains at least all expected files
     # SITEMAP paths are relative to docs/articles/, so we need to strip that prefix
-    sitemap_set = set(ln.strip() for ln in sitemap_lines if ln.strip())
+    sitemap_set = {ln.strip() for ln in sitemap_lines if ln.strip()}
     for rel, _ in EXPECTED:
         # Convert "docs/articles/path" to "path" for comparison
         rel_without_prefix = rel.replace("docs/articles/", "")

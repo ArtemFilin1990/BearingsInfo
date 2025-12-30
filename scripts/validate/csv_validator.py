@@ -27,7 +27,7 @@ class TableSchema:
 
 
 def _load_schema_file(path: Path) -> List[TableSchema]:
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload = yaml.safe_load(path.read_text(encoding="utf-8"))
     tables: List[TableSchema] = []
     for table in payload.get("tables", []):
         tables.append(

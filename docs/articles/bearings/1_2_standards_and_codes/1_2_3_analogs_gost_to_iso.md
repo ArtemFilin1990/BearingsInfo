@@ -72,6 +72,10 @@
 
 ## Связанные статьи
 
-- [1.2.4 Аналоги подшипников ISO → ГОСТ](1_2_4_analogs_iso_to_gost.md)
-- [1.2.5 Аналоги дополнительных знаков условных обозначений](1_2_5_additional_marks_analogs.md)
 - [Таблицы аналогов в docs/bearings/analogues/](../../../bearings/analogues/README.md)
+- [Расширенная таблица соответствий](../../../bearings/analogues/complete_analogues_table.md)
+
+## См. также
+
+- [Навигация по базе знаний](../../../articles/INDEX.md)
+- [Справочник подбора подшипников](../../../bearings/selection_guide.md)

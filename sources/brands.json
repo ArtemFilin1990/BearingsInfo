@@ -1,0 +1,1422 @@
+[
+  {
+    "name": "10-гпз",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "AAA",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ABBA",
+    "country": "Тайвань",
+    "description": "Системы и подшипники линейного перемещения"
+  },
+  {
+    "name": "ABC",
+    "country": "Индия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "AKE",
+    "country": "Словакия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ALWAYSE",
+    "country": "Великобритания",
+    "description": "Шариковые и роликовые опоры"
+  },
+  {
+    "name": "American roller bearings",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "APB",
+    "country": "Австрия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "APP-GROUP",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "APROM",
+    "country": "Беларусь",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ARB",
+    "country": "Индия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ART",
+    "country": "Турция",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ARTNC",
+    "country": "",
+    "description": "Подшипники, рейки, шестерни, винты, гайки, муфты"
+  },
+  {
+    "name": "ASAHI",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ASKUBAL",
+    "country": "Германия",
+    "description": "Подшипники, шарнирные головки, обгонные муфты, подшипниковые узлы."
+  },
+  {
+    "name": "AURORA",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "BAO POWER",
+    "country": "Китай",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "BARDEN",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "BBC-R",
+    "country": "Латвия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "BCR",
+    "country": "Чехия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "BBS",
+    "country": "Нидерланды",
+    "description": "Подшипники, тормозные системы"
+  },
+  {
+    "name": "BECO",
+    "country": "Италия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "BETEX",
+    "country": "Нидерланды",
+    "description": "Инструмент для обслуживания подшипников"
+  },
+  {
+    "name": "BOSCH",
+    "country": "Германия",
+    "description": "Автокомпоненты, потребительские товары, промышленные технологии, строительные технологии, энергетика, системы линейного перемещения"
+  },
+  {
+    "name": "BROWNING",
+    "country": "США",
+    "description": "Подшипники, ремни, трансмиссии"
+  },
+  {
+    "name": "CARTER",
+    "country": "США",
+    "description": "Подшипники, опорные ролики"
+  },
+  {
+    "name": "CASE",
+    "country": "Италия",
+    "description": "Сельхозтехника и запчасти"
+  },
+  {
+    "name": "CFW",
+    "country": "Германия",
+    "description": "Уплотнения, манжеты и сальники"
+  },
+  {
+    "name": "CHALLENGE",
+    "country": "Великобритания",
+    "description": "Подшипники, приводные ремни, цепи, муфты, редуктора, гидравлика, шкивы"
+  },
+  {
+    "name": "CHIARAVALLI",
+    "country": "Италия",
+    "description": "Приводные цепи, звенья, муфты"
+  },
+  {
+    "name": "CLAAS",
+    "country": "Германия",
+    "description": "Сельхозтехника и запчасти"
+  },
+  {
+    "name": "CODEX",
+    "country": "Словения",
+    "description": "Подшипники, приводные ремни, уплотнения, сальники"
+  },
+  {
+    "name": "COMBELT",
+    "country": "Россия",
+    "description": "Конвейерные ленты"
+  },
+  {
+    "name": "CONCAR",
+    "country": "Германия",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "CONTINENTAL",
+    "country": "Германия",
+    "description": "Приводные ремни, шины, автокомпоненты"
+  },
+  {
+    "name": "CONTITECH",
+    "country": "Германия",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "COOPER",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "CORTECO",
+    "country": "Германия",
+    "description": "Манжеты, сальники"
+  },
+  {
+    "name": "CRAFT",
+    "country": "Литва",
+    "description": "Подшипники"
+  },
+  {
+    "name": "CTS",
+    "country": "Италия",
+    "description": "Обгонные муфты"
+  },
+  {
+    "name": "CX",
+    "country": "Польша",
+    "description": "Подшипники"
+  },
+  {
+    "name": "DAS LAGER",
+    "country": "Турция",
+    "description": "Подшипники"
+  },
+  {
+    "name": "DAYCO",
+    "country": "США",
+    "description": "Приводные ремни, натяжные ролики"
+  },
+  {
+    "name": "DICHTA",
+    "country": "Швейцария",
+    "description": "Сальники"
+  },
+  {
+    "name": "DIXON",
+    "country": "Великобритания",
+    "description": "Шланги, соединения"
+  },
+  {
+    "name": "DKF",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "DKFL",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "DODGE",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "DPI",
+    "country": "Индия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "D-TEC",
+    "country": "Индия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "DURBAL",
+    "country": "Германия",
+    "description": "Подшипники, шарнирные головки, обгонные муфты, подшипниковые узлы."
+  },
+  {
+    "name": "DYZV",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ELGES",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "EMS",
+    "country": "Италия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "EPK",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ETK",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "EUROSNODI",
+    "country": "Италия",
+    "description": "Подшипники скольжения, шарнирные подшипники"
+  },
+  {
+    "name": "EVOLMEC",
+    "country": "Италия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "EZO",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FAFNIR",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FAG",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FBC",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FBJ",
+    "country": "Сингапур",
+    "description": "Подшипники"
+  },
+  {
+    "name": "Fersa",
+    "country": "Испания",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FKD",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FKL",
+    "country": "Сербия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FLI",
+    "country": "Франция",
+    "description": "Системы и подшипники линейного перемещения"
+  },
+  {
+    "name": "FLT",
+    "country": "Польша",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FLURO",
+    "country": "Германия",
+    "description": "Подшипники шарнирные"
+  },
+  {
+    "name": "FRANKE",
+    "country": "Германия",
+    "description": "Подшипники, системы линейного перемещения, ОПУ"
+  },
+  {
+    "name": "FREUDENBERG",
+    "country": "Германия",
+    "description": "Уплотнения, манжеты, виброизоляция, фильтры, смазочные материалы"
+  },
+  {
+    "name": "FS",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FSB",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FUDA",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "FYH",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "GAMET",
+    "country": "Великобритания",
+    "description": "Подшипники"
+  },
+  {
+    "name": "GATES",
+    "country": "США",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "GGB",
+    "country": "США",
+    "description": "Подшипники скольжения, втулки скольжения"
+  },
+  {
+    "name": "GMB",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "GMN",
+    "country": "Германия",
+    "description": "Подшипники, обгонные муфты"
+  },
+  {
+    "name": "GOODYEAR",
+    "country": "США",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "HABASIT",
+    "country": "Швейцария",
+    "description": "Конвейерные ленты, приводные ремни"
+  },
+  {
+    "name": "HARP",
+    "country": "Украина",
+    "description": "Подшипники"
+  },
+  {
+    "name": "HB",
+    "country": "Великобритания",
+    "description": "Подшипники"
+  },
+  {
+    "name": "HCH",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "HEPCO",
+    "country": "Великобритания",
+    "description": "Системы линейного перемещения"
+  },
+  {
+    "name": "HFB",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "HGF",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "HIMPT",
+    "country": "Китай",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "HIRSCHMANN",
+    "country": "Германия",
+    "description": "Подшипники скольжения, шарнирные подшипники"
+  },
+  {
+    "name": "HIWIN",
+    "country": "Германия / Тайвань",
+    "description": "Системы линейного перемещения"
+  },
+  {
+    "name": "HRB",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "HRT",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "HUTCHINSON",
+    "country": "Франция",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "HXD",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "HY-PRO",
+    "country": "США",
+    "description": "Фильтра"
+  },
+  {
+    "name": "IBB",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "IBC",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "IBU",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "IDC",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "IGUS",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "IKL",
+    "country": "",
+    "description": "Подшипники"
+  },
+  {
+    "name": "IKO",
+    "country": "Япония",
+    "description": "Подшипники, системы линейного перемещения"
+  },
+  {
+    "name": "INA",
+    "country": "Германия",
+    "description": "Подшипники, системы линейного перемещения"
+  },
+  {
+    "name": "ISB",
+    "country": "Италия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ISKRA",
+    "country": "",
+    "description": "Подшипники, системы линейного перемещения, опорные ролики, муфты, звездочки, зажимные втулки и втулки тапербуш"
+  },
+  {
+    "name": "ITJ",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "JNS",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "JOHN DEERE",
+    "country": "США",
+    "description": "Сельхозтехника и запчасти"
+  },
+  {
+    "name": "KABAT",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "KBC",
+    "country": "Корея",
+    "description": "Подшипники"
+  },
+  {
+    "name": "KDF",
+    "country": "Италия",
+    "description": "Подшипники, обгонные муфты"
+  },
+  {
+    "name": "KG",
+    "country": "Индия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "KHS-LG",
+    "country": "Индия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "KINEX",
+    "country": "Словакия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "KINZE",
+    "country": "США",
+    "description": "Сельхозтехника и запчасти"
+  },
+  {
+    "name": "KMR",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "KOYO",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "KRW",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "KTR",
+    "country": "Германия",
+    "description": "Муфты"
+  },
+  {
+    "name": "KYK",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "LBP",
+    "country": "Украина",
+    "description": "Подшипники"
+  },
+  {
+    "name": "LCB",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "LEMKEN",
+    "country": "Гемания",
+    "description": "Сельхозтехника и запчасти"
+  },
+  {
+    "name": "LIMING",
+    "country": "Тайвань",
+    "description": "Редуктора"
+  },
+  {
+    "name": "LINK-BELT",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "LPZ",
+    "country": "Сингапур",
+    "description": "Подшипники"
+  },
+  {
+    "name": "LSA",
+    "country": "Словакия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "LSK",
+    "country": "Италия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "LUK",
+    "country": "Германия",
+    "description": "Подшипники, компоненты систем сцепления"
+  },
+  {
+    "name": "LYC",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "LYJW",
+    "country": "Китай",
+    "description": "Опорно-поворотные устройства, подшипники"
+  },
+  {
+    "name": "LYSN",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "MARKES",
+    "country": "Германия",
+    "description": "Ролики конвейерные"
+  },
+  {
+    "name": "MBF",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "MBY",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "McGill",
+    "country": "США",
+    "description": "Опорные ролики"
+  },
+  {
+    "name": "MEGADYNE",
+    "country": "Италия",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "MERSEN",
+    "country": "Франция",
+    "description": "Щетки и щеткодержатели"
+  },
+  {
+    "name": "Metal Work",
+    "country": "Италия",
+    "description": "Пневматика"
+  },
+  {
+    "name": "MFO",
+    "country": "Германия",
+    "description": "Закрепительные и стяжные втулки, стопорные гайки, шайбы"
+  },
+  {
+    "name": "MGM",
+    "country": "Венгрия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "MOLI",
+    "country": "Китай",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "MONTON",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "MPZ",
+    "country": "Беларусь",
+    "description": "Подшипники"
+  },
+  {
+    "name": "MRC",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "MTK",
+    "country": "Бельгия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "MTM",
+    "country": "Польша",
+    "description": "Подшипники"
+  },
+  {
+    "name": "MYONIC",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NACHI",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NADELLA",
+    "country": "Италия / Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NB",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NBI",
+    "country": "Испания",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NBS",
+    "country": "Италия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NECTECH",
+    "country": "Польша",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NETRAL",
+    "country": "",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NEUTRAL",
+    "country": "",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NIS",
+    "country": "Сингапур",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NKE",
+    "country": "Австрия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NMB",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NOK",
+    "country": "Япония",
+    "description": "Уплотнения, манжеты и сальники"
+  },
+  {
+    "name": "NQK",
+    "country": "Китай",
+    "description": "Уплотнения, манжеты, сальники"
+  },
+  {
+    "name": "NRB",
+    "country": "Индия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NSK",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NTL",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NTN",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NTN-SNR",
+    "country": "Япония-Франция",
+    "description": "Подшипники"
+  },
+  {
+    "name": "NXZ",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "OKS",
+    "country": "Германия",
+    "description": "Смазочные материалы"
+  },
+  {
+    "name": "Optibelt",
+    "country": "Германия",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "OPTIMAL",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ORS",
+    "country": "Турция",
+    "description": "Подшипники"
+  },
+  {
+    "name": "PBF",
+    "country": "Польша",
+    "description": "Подшипники"
+  },
+  {
+    "name": "PEER",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "PERMAGLIDE",
+    "country": "Германия",
+    "description": "Подшипники скольжения, втулки скольжения"
+  },
+  {
+    "name": "PFI",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "PIBELT",
+    "country": "Италия",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "PIPULLEY",
+    "country": "Италия",
+    "description": "Шкивы"
+  },
+  {
+    "name": "PIX",
+    "country": "Индия",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "PIZZIRANI",
+    "country": "Италия",
+    "description": "Приводные ремни, шкивы, втулки, цепи"
+  },
+  {
+    "name": "PMI",
+    "country": "Китай",
+    "description": "Системы линейного перемещения"
+  },
+  {
+    "name": "POWERSTRAND-MP",
+    "country": "Китай",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "PSL",
+    "country": "Словакия",
+    "description": "Опорно-поворотные устройства, крупногабаритные подшипники"
+  },
+  {
+    "name": "PTI",
+    "country": "Дания",
+    "description": "Подшипники"
+  },
+  {
+    "name": "RANDX",
+    "country": "Малайзия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "RBC",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "RBP",
+    "country": "",
+    "description": "Подшипники"
+  },
+  {
+    "name": "REVOLVO",
+    "country": "Великобритания",
+    "description": "Подшипники"
+  },
+  {
+    "name": "REXNORD",
+    "country": "США",
+    "description": "Подшипники, цепи, соединительные муфты, редуктора"
+  },
+  {
+    "name": "REXROTH",
+    "country": "Германия",
+    "description": "Системы линейного перемещения"
+  },
+  {
+    "name": "RGP",
+    "country": "Италия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "RHP",
+    "country": "Япония",
+    "description": "Подшипники"
+  },
+  {
+    "name": "RINGSPANN",
+    "country": "Германия",
+    "description": "Обгонные муфты, валы, ступицы, тормозные системы"
+  },
+  {
+    "name": "ROLLIX",
+    "country": "Франция",
+    "description": "Опорно-поворотные устройства, подшипники"
+  },
+  {
+    "name": "ROLLON",
+    "country": "Италия",
+    "description": "Системы линейного перемещения"
+  },
+  {
+    "name": "Rollway",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "RUBENA",
+    "country": "Чехия",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "RUBYCON",
+    "country": "Россия",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "SAMICK",
+    "country": "Корея",
+    "description": "Подшипники линейного перемещения"
+  },
+  {
+    "name": "Sandvik",
+    "country": "Швеция",
+    "description": "Инструмент"
+  },
+  {
+    "name": "SATI",
+    "country": "Италия",
+    "description": "Приводная техника, приводные цепи, ремни, муфты, звездочки"
+  },
+  {
+    "name": "SAWA",
+    "country": "Беларусь",
+    "description": "Приводные ремни"
+  },
+  {
+    "name": "SBC",
+    "country": "Корея",
+    "description": "Подшипники, системы линейного перемещения"
+  },
+  {
+    "name": "SCHAEFFLER",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SCHNEEBERGER",
+    "country": "Швейцария",
+    "description": "Системы линейного перемещения"
+  },
+  {
+    "name": "SEALMASTER",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SFERAX",
+    "country": "Швейцария",
+    "description": "Системы линейного перемещения"
+  },
+  {
+    "name": "SHTURMAN",
+    "country": "Россия",
+    "description": "Подшипники для автомобилей"
+  },
+  {
+    "name": "SILVERTHIN",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SIMRIT",
+    "country": "Германия",
+    "description": "Уплотнения, манжеты, виброизоляция"
+  },
+  {
+    "name": "SKF",
+    "country": "Швеция",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SLB",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SLF",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SMB",
+    "country": "Великобритания",
+    "description": "Миниатюрные подшипники"
+  },
+  {
+    "name": "SMITH",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SNFA",
+    "country": "Франция",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SNH",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SNR",
+    "country": "Франция",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SPZ",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "SPZ-BEARINGS",
+    "country": "Узбекистан",
+    "description": "Подшипники"
+  },
+  {
+    "name": "STC",
+    "country": "",
+    "description": "Подшипники"
+  },
+  {
+    "name": "STEYR",
+    "country": "Австрия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "STIEBER",
+    "country": "Германия",
+    "description": "Обгонные муфты"
+  },
+  {
+    "name": "SZPK",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "TECHNIX",
+    "country": "Россия",
+    "description": "Подшипники, системы линейного перемещения, опорные ролики, муфты, звездочки, зажимные втулки и втулки тапербуш"
+  },
+  {
+    "name": "THK",
+    "country": "США",
+    "description": "Системы линейного перемещения"
+  },
+  {
+    "name": "THOMSON",
+    "country": "Великобритания",
+    "description": "Системы линейного перемещения"
+  },
+  {
+    "name": "TIMCO",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "TIMKEN",
+    "country": "США",
+    "description": "Подшипники"
+  },
+  {
+    "name": "TITAN LOCK",
+    "country": "Россия",
+    "description": "Камлоки, брс, рукава, запорная арматура, хомуты"
+  },
+  {
+    "name": "TMB",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "TSC",
+    "country": "Италия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "TSUBAKI",
+    "country": "Япония",
+    "description": "Приводные цепи, обгонные муфты"
+  },
+  {
+    "name": "TTO",
+    "country": "Тайвань",
+    "description": "Сальники"
+  },
+  {
+    "name": "TWB",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "UBC",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "UBP",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "URB",
+    "country": "Румыния",
+    "description": "Подшипники"
+  },
+  {
+    "name": "USN",
+    "country": "Индия / Малайзия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "VBC",
+    "country": "Украина",
+    "description": "Подшипники"
+  },
+  {
+    "name": "VBF",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "VOLTA",
+    "country": "Израиль",
+    "description": "Приводные ремни, Конвейерные ленты"
+  },
+  {
+    "name": "VPZ",
+    "country": "Украина",
+    "description": "Подшипники"
+  },
+  {
+    "name": "WEISHI RUBBER FACTORY",
+    "country": "",
+    "description": "Сальники"
+  },
+  {
+    "name": "WIB",
+    "country": "Швейцария",
+    "description": "Подшипники"
+  },
+  {
+    "name": "WINKEL",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ZEN",
+    "country": "Германия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ZKL",
+    "country": "Чехия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ZVL",
+    "country": "Словакия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ZWZ",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ZYS",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ZZC",
+    "country": "Китай",
+    "description": "Подшипники"
+  },
+  {
+    "name": "АПЗ-20",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "АПП",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ВЗСП",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ВНИПП",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ВОЛЖСКИЙ СТАНДАРТ",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ГПЗ",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ГПЗ-2",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ГПЗ-34",
+    "country": "",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ЕПК",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ЗАП №1",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ЗМП",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ЗМС",
+    "country": "Россия",
+    "description": "Шарики"
+  },
+  {
+    "name": "ЗПП",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ЗПС",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ИПЗ",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ИПК",
+    "country": "Малайзия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "КЗУП",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "КПК",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ЛИВНЫ",
+    "country": "Россия",
+    "description": "Фильтра"
+  },
+  {
+    "name": "МИКРОН",
+    "country": "Украина",
+    "description": "Шариковые винтовые передачи"
+  },
+  {
+    "name": "МПЗ",
+    "country": "Беларусь",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ОК-ЛОЗА",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ПВ-GROUP",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ППЗ",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "РВЗ",
+    "country": "Малайзия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "САМАРСКИЙ ПОДШИПНИК",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "СВПЗ",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "СКФ Украина",
+    "country": "Украина",
+    "description": "Подшипники"
+  },
+  {
+    "name": "СПЗ",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "СПЗ-4",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ШЗПИ",
+    "country": "Россия",
+    "description": "Подшипники"
+  },
+  {
+    "name": "ЯРТ",
+    "country": "Россия",
+    "description": "Приводные ремни"
+  }
+]

@@ -1,6 +1,6 @@
 # Обозначение подшипников NTN SNR
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=ntn_snr
+Источник: /cgi-bin/article.pl?words=ntn_snr
 
 ---
 

@@ -4,7 +4,7 @@
 
 **Size:** 41,6Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-hiwin.pdf)
+**Source:** [PDF](/catalog/catalog-hiwin.pdf)
 
 ---
 

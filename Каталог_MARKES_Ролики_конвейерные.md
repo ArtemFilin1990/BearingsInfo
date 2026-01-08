@@ -4,7 +4,7 @@
 
 **Size:** 24Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-markes.pdf)
+**Source:** [PDF](/catalog/catalog-markes.pdf)
 
 ---
 

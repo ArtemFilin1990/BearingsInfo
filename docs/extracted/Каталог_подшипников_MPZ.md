@@ -4,7 +4,7 @@
 
 **Size:** 2,6Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-mpz.pdf)
+**Source:** [PDF](/catalog/catalog-mpz.pdf)
 
 ---
 

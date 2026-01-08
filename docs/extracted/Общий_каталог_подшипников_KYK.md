@@ -4,7 +4,7 @@
 
 **Size:** 18,3Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-kyk.pdf)
+**Source:** [PDF](/catalog/catalog-kyk.pdf)
 
 ---
 

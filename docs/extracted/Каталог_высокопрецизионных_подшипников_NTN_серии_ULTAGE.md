@@ -4,7 +4,7 @@
 
 **Size:** 42.2Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-ntn-2.pdf)
+**Source:** [PDF](/catalog/catalog-ntn-2.pdf)
 
 ---
 

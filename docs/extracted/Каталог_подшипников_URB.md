@@ -4,7 +4,7 @@
 
 **Size:** 20,3Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-urb.pdf)
+**Source:** [PDF](/catalog/catalog-urb.pdf)
 
 ---
 

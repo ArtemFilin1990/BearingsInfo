@@ -4,7 +4,7 @@
 
 **Size:** 30Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-thk.pdf)
+**Source:** [PDF](/catalog/catalog-thk.pdf)
 
 ---
 

@@ -4,7 +4,7 @@
 
 **Size:** 7,6Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-lsk.pdf)
+**Source:** [PDF](/catalog/catalog-lsk.pdf)
 
 ---
 

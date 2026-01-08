@@ -4,7 +4,7 @@
 
 **Size:** 40,1Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-iko.pdf)
+**Source:** [PDF](/catalog/catalog-iko.pdf)
 
 ---
 

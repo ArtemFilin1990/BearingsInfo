@@ -4,7 +4,7 @@
 
 **Size:** 7Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-craft-2.pdf)
+**Source:** [PDF](/catalog/catalog-craft-2.pdf)
 
 ---
 

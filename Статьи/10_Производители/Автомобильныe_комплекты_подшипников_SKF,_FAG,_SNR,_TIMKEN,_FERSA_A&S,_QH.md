@@ -1,6 +1,6 @@
 # Автомобильныe комплекты подшипников SKF, FAG, SNR, TIMKEN, FERSA A&S, QH
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=skf_vkba
+Источник: /cgi-bin/article.pl?words=skf_vkba
 
 ---
 

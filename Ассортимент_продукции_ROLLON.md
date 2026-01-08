@@ -4,7 +4,7 @@
 
 **Size:** 1,5Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-rollon.pdf)
+**Source:** [PDF](/catalog/catalog-rollon.pdf)
 
 ---
 

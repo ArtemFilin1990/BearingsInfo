@@ -1,6 +1,6 @@
 # Шкивы SKF для узких клиновых ремней
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=skf_pulley
+Источник: /cgi-bin/article.pl?words=skf_pulley
 
 # Шкивы SKF для узких клиновых ремней.
 

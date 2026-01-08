@@ -4,7 +4,7 @@
 
 **Size:** 6,6Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-contitech.pdf)
+**Source:** [PDF](/catalog/catalog-contitech.pdf)
 
 ---
 

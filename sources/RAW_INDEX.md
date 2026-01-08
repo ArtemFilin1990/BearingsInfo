@@ -9,5 +9,5 @@ This directory contains raw reference materials used to compile the knowledge ba
 - **Подшипники SKF.docx** – Руководство по продукции SKF; содержит классификацию, обозначения и примеры применения.
 - **Таблица аналагов.docx** – Дополнительные таблицы аналогов подшипников с примерами соответствия.
 - **Суффиксы ISO.docx** – Таблица распространённых суффиксов и префиксов ISO с пояснениями.
-- **aprom_brands.json** – JSON-выгрузка (284 записи) с брендами подшипников и сопутствующих товаров с [aprom.by/brands.php](https://aprom.by/brands.php).
-- **aprom_table_scraper.py** – CLI-скрипт для выгрузки всех страниц из [aprom.by/table.php](https://aprom.by/table.php) с поддержкой пагинации и таймаутов; используется для построения сырых таблиц (выходной JSON сохраняется в `sources/aprom_table_data.json`).
+- **brands.json** – JSON-выгрузка (284 записи) с брендами подшипников и сопутствующих товаров с [/brands.php](/brands.php).
+- **table_scraper.py** – CLI-скрипт для выгрузки всех страниц из [/table.php](/table.php) с поддержкой пагинации и таймаутов; используется для построения сырых таблиц (выходной JSON сохраняется в `sources/table_data.json`).

@@ -4,7 +4,7 @@
 
 **Size:** 0,7Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-brl.pdf)
+**Source:** [PDF](/catalog/catalog-brl.pdf)
 
 ---
 

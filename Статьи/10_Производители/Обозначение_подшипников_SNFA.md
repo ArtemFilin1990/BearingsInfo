@@ -1,6 +1,6 @@
 # Обозначение подшипников SNFA
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=snfa
+Источник: /cgi-bin/article.pl?words=snfa
 
 ---
 

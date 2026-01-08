@@ -4,7 +4,7 @@
 
 **Size:** 5,5Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-fbj.pdf)
+**Source:** [PDF](/catalog/catalog-fbj.pdf)
 
 ---
 

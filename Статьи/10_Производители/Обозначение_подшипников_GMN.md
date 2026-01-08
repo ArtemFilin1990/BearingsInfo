@@ -1,6 +1,6 @@
 # Обозначение подшипников GMN
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=gmn
+Источник: /cgi-bin/article.pl?words=gmn
 
 ---
 

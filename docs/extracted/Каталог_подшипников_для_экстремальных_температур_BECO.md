@@ -4,7 +4,7 @@
 
 **Size:** 4,7Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-beco.pdf)
+**Source:** [PDF](/catalog/catalog-beco.pdf)
 
 ---
 

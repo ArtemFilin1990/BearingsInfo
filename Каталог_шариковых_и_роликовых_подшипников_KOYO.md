@@ -4,7 +4,7 @@
 
 **Size:** 5Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-koyo-2.pdf)
+**Source:** [PDF](/catalog/catalog-koyo-2.pdf)
 
 ---
 

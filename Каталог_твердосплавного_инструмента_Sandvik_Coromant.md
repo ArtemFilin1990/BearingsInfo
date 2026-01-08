@@ -4,7 +4,7 @@
 
 **Size:** 39,6Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-sandvik.pdf)
+**Source:** [PDF](/catalog/catalog-sandvik.pdf)
 
 ---
 

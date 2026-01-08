@@ -4,7 +4,7 @@
 
 **Size:** 13Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-abba.pdf)
+**Source:** [PDF](/catalog/catalog-abba.pdf)
 
 ---
 

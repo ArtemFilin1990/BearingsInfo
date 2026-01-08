@@ -4,7 +4,7 @@
 
 **Size:** 1,4Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-megadyne.pdf)
+**Source:** [PDF](/catalog/catalog-megadyne.pdf)
 
 ---
 

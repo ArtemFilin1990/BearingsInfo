@@ -4,7 +4,7 @@
 
 **Size:** 5,3Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-epk-2.pdf)
+**Source:** [PDF](/catalog/catalog-epk-2.pdf)
 
 ---
 

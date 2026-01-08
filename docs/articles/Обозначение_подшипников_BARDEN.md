@@ -1,6 +1,6 @@
 # Обозначение подшипников BARDEN
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=barden
+Источник: /cgi-bin/article.pl?words=barden
 
 # Обозначение подшипников BARDEN.
 

@@ -4,7 +4,7 @@
 
 **Size:** 5,6Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-lsa-3.pdf)
+**Source:** [PDF](/catalog/catalog-lsa-3.pdf)
 
 ---
 

@@ -1,6 +1,6 @@
 # Советы SKF в выборе ступичного подшипника
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=skf_advice
+Источник: /cgi-bin/article.pl?words=skf_advice
 
 ---
 

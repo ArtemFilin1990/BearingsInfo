@@ -1,6 +1,6 @@
 # Втулки тапербуш - TAPER BUSH
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=vtulki_taper_bush
+Источник: /cgi-bin/article.pl?words=vtulki_taper_bush
 
 ---
 

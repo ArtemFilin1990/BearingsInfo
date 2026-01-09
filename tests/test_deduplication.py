@@ -1,7 +1,6 @@
 """Tests for the deduplicate_nomenclature script."""
 
 import csv
-from pathlib import Path
 import pytest
 from scripts.deduplicate_nomenclature import deduplicate_nomenclature
 

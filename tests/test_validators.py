@@ -31,7 +31,7 @@ def test_valid_csv_has_required_columns(sample_valid_csv):
     with open(sample_valid_csv, encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         header = reader.fieldnames
-    
+
     assert "Brand" in header
     assert "Product Name" in header
 
@@ -41,7 +41,7 @@ def test_invalid_csv_missing_columns(sample_invalid_csv):
     with open(sample_invalid_csv, encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         header = reader.fieldnames
-    
+
     assert "Brand" in header
     assert "Product Name" not in header
 
@@ -51,7 +51,7 @@ def test_csv_row_count(sample_valid_csv):
     with open(sample_valid_csv, encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         rows = list(reader)
-    
+
     assert len(rows) == 2
 
 
@@ -60,7 +60,7 @@ def test_csv_field_validation(sample_valid_csv):
     with open(sample_valid_csv, encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         first_row = next(reader)
-    
+
     assert first_row["Brand"] == "Brand1"
     assert first_row["Product Name"] == "Product1"
     assert first_row["Price"] == "100"
@@ -71,9 +71,9 @@ def test_empty_csv(tmp_path):
     empty_csv = tmp_path / "empty.csv"
     with open(empty_csv, "w", encoding="utf-8", newline="") as f:
         f.write("Brand,Product Name,Price\n")
-    
+
     with open(empty_csv, encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         rows = list(reader)
-    
+
     assert len(rows) == 0

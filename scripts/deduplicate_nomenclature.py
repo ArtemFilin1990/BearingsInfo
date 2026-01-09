@@ -14,40 +14,40 @@ NOMENCLATURE_FILE = REPO_ROOT / "data" / "nomenclature.csv"
 
 def deduplicate_nomenclature(input_file: Path, output_file: Path) -> int:
     """Remove duplicates, keeping first occurrence of each unique key.
-    
+
     Returns:
         Number of duplicates removed
     """
-    with open(input_file, encoding='utf-8', newline='') as f:
+    with open(input_file, encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
         header = reader.fieldnames
-        
-        if not header or 'Brand' not in header or 'Product Name' not in header:
+
+        if not header or "Brand" not in header or "Product Name" not in header:
             print("ERROR: CSV must have 'Brand' and 'Product Name' columns", file=sys.stderr)
             sys.exit(1)
-        
+
         # Use OrderedDict to preserve first occurrence
         unique_rows = OrderedDict()
         duplicates = []
-        
+
         for line_num, row in enumerate(reader, start=2):
-            brand = row.get('Brand', '').strip()
-            product_name = row.get('Product Name', '').strip()
+            brand = row.get("Brand", "").strip()
+            product_name = row.get("Product Name", "").strip()
             key = (brand, product_name)
-            
+
             if key in unique_rows:
                 duplicates.append((line_num, key))
             else:
                 unique_rows[key] = row
-    
+
     # Write to a temporary file first, then atomically replace
-    fd, temp_path = tempfile.mkstemp(dir=output_file.parent, suffix='.csv')
+    fd, temp_path = tempfile.mkstemp(dir=output_file.parent, suffix=".csv")
     try:
-        with os.fdopen(fd, 'w', encoding='utf-8', newline='') as f:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=header)
             writer.writeheader()
             writer.writerows(unique_rows.values())
-        
+
         # Atomically replace the original file
         os.replace(temp_path, output_file)
     except Exception:
@@ -55,21 +55,21 @@ def deduplicate_nomenclature(input_file: Path, output_file: Path) -> int:
         if os.path.exists(temp_path):
             os.unlink(temp_path)
         raise
-    
+
     # Report
     total_original = len(unique_rows) + len(duplicates)
     print(f"📊 Статистика дедупликации {input_file.name}:")
     print(f"  Исходных записей: {total_original}")
     print(f"  Уникальных записей: {len(unique_rows)}")
     print(f"  Удалено дубликатов: {len(duplicates)}")
-    
+
     if duplicates:
         print("\n⚠️  Найдены и удалены дубликаты:")
         for line_num, key in sorted(duplicates)[:10]:  # Show first 10
             print(f"  Строка {line_num}: {key}")
         if len(duplicates) > 10:
             print(f"  ... и ещё {len(duplicates) - 10}")
-    
+
     return len(duplicates)
 
 

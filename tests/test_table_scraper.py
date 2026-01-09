@@ -4,10 +4,10 @@ Unit tests for table_scraper.py
 
 Run tests with:
     python -m pytest tests/test_table_scraper.py -v
-    
+
 Or with standard unittest:
     python -m unittest tests.test_table_scraper
-    
+
 Or from tests directory:
     cd tests && python test_table_scraper.py
 """
@@ -23,11 +23,16 @@ def _import_table_scraper():
     sources_path = str(Path(__file__).parent.parent / "sources")
     if sources_path not in sys.path:
         sys.path.insert(0, sources_path)
-    
+
     from table_scraper import (
-        TableCell, extract_tables, derive_headers,
-        table_to_records, clean_text, normalize_url,
+        TableCell,
+        clean_text,
+        derive_headers,
+        extract_tables,
+        normalize_url,
+        table_to_records,
     )
+
     return TableCell, extract_tables, derive_headers, table_to_records, clean_text, normalize_url
 
 

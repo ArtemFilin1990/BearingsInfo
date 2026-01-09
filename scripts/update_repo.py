@@ -6,23 +6,22 @@ import argparse
 import csv
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Dict, List, Tuple
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from scripts.extract.raw_datasets import RAW_DATASETS, DatasetSpec
-from scripts.validate.csv_validator import validate_all
+from scripts.extract.raw_datasets import RAW_DATASETS, DatasetSpec  # noqa: E402
+from scripts.validate.csv_validator import validate_all  # noqa: E402
 
 
-def _dedupe(rows: List[Dict[str, str]], unique_keys: List[str]) -> Tuple[List[Dict[str, str]], int]:
+def _dedupe(rows: list[dict[str, str]], unique_keys: list[str]) -> tuple[list[dict[str, str]], int]:
     if not unique_keys:
         return rows, 0
     seen = set()
-    deduped: List[Dict[str, str]] = []
+    deduped: list[dict[str, str]] = []
     removed = 0
     for row in rows:
         key = tuple(row[k] for k in unique_keys)
@@ -34,13 +33,13 @@ def _dedupe(rows: List[Dict[str, str]], unique_keys: List[str]) -> Tuple[List[Di
     return deduped, removed
 
 
-def _sort(rows: List[Dict[str, str]], keys: List[str]) -> List[Dict[str, str]]:
+def _sort(rows: list[dict[str, str]], keys: list[str]) -> list[dict[str, str]]:
     if not keys:
         return rows
     return sorted(rows, key=lambda item: tuple(item[k] for k in keys))
 
 
-def _write_csv(dataset: DatasetSpec) -> Tuple[int, int, int]:
+def _write_csv(dataset: DatasetSpec) -> tuple[int, int, int]:
     rows = [dict(row) for row in dataset["rows"]]
     deduped, removed = _dedupe(rows, dataset["unique"])
     ordered = _sort(deduped, dataset["sort_by"])
@@ -54,10 +53,9 @@ def _write_csv(dataset: DatasetSpec) -> Tuple[int, int, int]:
     return len(rows), len(ordered), removed
 
 
-def _aggregate_report() -> Dict[str, int]:
+def _aggregate_report() -> dict[str, int]:
     counts = {"rows_total": 0, "rows_added": 0, "rows_deduped": 0}
     for spec in RAW_DATASETS.values():
-        original = len(spec["rows"])
         deduped, removed = _dedupe(spec["rows"], spec["unique"])
         counts["rows_total"] += len(deduped)
         counts["rows_added"] += len(deduped)
@@ -68,8 +66,10 @@ def _aggregate_report() -> Dict[str, int]:
 def _write_report(path: Path) -> None:
     report_body = {
         "source_name": "normalized_catalog",
-        "timestamp": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "input_files": sorted({row["source"] for spec in RAW_DATASETS.values() for row in spec["rows"] if "source" in row}),
+        "timestamp": datetime.now(UTC).replace(microsecond=0).isoformat(),
+        "input_files": sorted(
+            {row["source"] for spec in RAW_DATASETS.values() for row in spec["rows"] if "source" in row}
+        ),
         "output_files": sorted(str(spec["output"]) for spec in RAW_DATASETS.values()),
     }
     report_body.update(_aggregate_report())

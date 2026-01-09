@@ -33,10 +33,10 @@ import re
 import sys
 import time
 from collections import deque
+from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from html.parser import HTMLParser
-from typing import Deque, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
 from urllib.request import Request, urlopen
@@ -80,14 +80,14 @@ class TableHTMLParser(HTMLParser):
 
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
-        self.tables: List[List[List[TableCell]]] = []
-        self._current_table: Optional[List[List[TableCell]]] = None
-        self._current_row: Optional[List[TableCell]] = None
-        self._current_cell: List[str] = []
+        self.tables: list[list[list[TableCell]]] = []
+        self._current_table: list[list[TableCell]] | None = None
+        self._current_row: list[TableCell] | None = None
+        self._current_cell: list[str] = []
         self._current_is_header = False
         self._table_depth = 0
 
-    def handle_starttag(self, tag: str, attrs: Sequence[Tuple[str, Optional[str]]]) -> None:
+    def handle_starttag(self, tag: str, attrs: Sequence[tuple[str, str | None]]) -> None:
         if tag == "table":
             self._table_depth += 1
             if self._table_depth == 1:
@@ -128,9 +128,9 @@ class AnchorParser(HTMLParser):
 
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
-        self.links: Set[str] = set()
+        self.links: set[str] = set()
 
-    def handle_starttag(self, tag: str, attrs: Sequence[Tuple[str, Optional[str]]]) -> None:
+    def handle_starttag(self, tag: str, attrs: Sequence[tuple[str, str | None]]) -> None:
         if tag != "a":
             return
         href = dict(attrs).get("href")
@@ -151,16 +151,16 @@ def is_same_resource(target_url: str, base_url: str) -> bool:
     return urlparse(target_url).path == base_path
 
 
-def extract_tables(html: str) -> List[List[List[TableCell]]]:
+def extract_tables(html: str) -> list[list[list[TableCell]]]:
     parser = TableHTMLParser()
     parser.feed(html)
     return parser.tables
 
 
-def extract_links(html: str, base_url: str) -> Set[str]:
+def extract_links(html: str, base_url: str) -> set[str]:
     parser = AnchorParser()
     parser.feed(html)
-    links: Set[str] = set()
+    links: set[str] = set()
     for raw_href in parser.links:
         absolute = urljoin(base_url, raw_href)
         if is_same_resource(absolute, base_url):
@@ -168,21 +168,18 @@ def extract_links(html: str, base_url: str) -> Set[str]:
     return links
 
 
-def select_primary_table(tables: List[List[List[TableCell]]]) -> Optional[List[List[TableCell]]]:
+def select_primary_table(tables: list[list[list[TableCell]]]) -> list[list[TableCell]] | None:
     if not tables:
         return None
     return max(tables, key=len)
 
 
-def derive_headers(table: List[List[TableCell]]) -> List[str]:
+def derive_headers(table: list[list[TableCell]]) -> list[str]:
     for row in table:
         if any(cell.is_header for cell in row):
             return [_normalize_header(cell.text, idx) for idx, cell in enumerate(row, start=1)]
     reference_width = len(table[0]) if table else 0
-    return [
-        _normalize_header(f"column_{idx}", idx)
-        for idx in range(1, reference_width + 1)
-    ]
+    return [_normalize_header(f"column_{idx}", idx) for idx in range(1, reference_width + 1)]
 
 
 def _normalize_header(text: str, position: int) -> str:
@@ -191,15 +188,15 @@ def _normalize_header(text: str, position: int) -> str:
     return normalized or f"column_{position}"
 
 
-def table_to_records(table: List[List[TableCell]]) -> List[Dict[str, str]]:
+def table_to_records(table: list[list[TableCell]]) -> list[dict[str, str]]:
     if not table:
         return []
     headers = derive_headers(table)
-    records: List[Dict[str, str]] = []
+    records: list[dict[str, str]] = []
     for row in table:
         if all(cell.is_header for cell in row):
             continue
-        record: Dict[str, str] = {}
+        record: dict[str, str] = {}
         for idx, header in enumerate(headers):
             value = row[idx].text if idx < len(row) else ""
             record[header] = value
@@ -207,19 +204,21 @@ def table_to_records(table: List[List[TableCell]]) -> List[Dict[str, str]]:
     return records
 
 
-def fetch_html(url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, retry_delay: float = DEFAULT_RETRY_DELAY) -> str:
+def fetch_html(
+    url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, retry_delay: float = DEFAULT_RETRY_DELAY
+) -> str:
     """
     Fetch HTML with retry logic for transient network errors.
-    
+
     Args:
         url: URL to fetch
         timeout: Request timeout in seconds
         max_retries: Maximum number of retry attempts (default: 3)
         retry_delay: Delay between retries in seconds (default: 2.0)
-    
+
     Returns:
         str: HTML content decoded as UTF-8
-    
+
     Raises:
         HTTPError: If HTTP request fails after all retries
         URLError: If network connection fails after all retries
@@ -227,10 +226,10 @@ def fetch_html(url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, r
     """
     if max_retries < 0:
         raise ValueError("max_retries must be at least 0")
-    
+
     request = Request(url, headers={"User-Agent": DEFAULT_USER_AGENT})
-    last_error: Optional[Exception] = None
-    
+    last_error: Exception | None = None
+
     for attempt in range(max_retries):
         try:
             with urlopen(request, timeout=timeout) as response:
@@ -238,16 +237,22 @@ def fetch_html(url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, r
         except (HTTPError, URLError) as error:
             last_error = error
             if attempt < max_retries - 1:
-                logging.warning("Attempt %d/%d failed for %s: %s. Retrying in %.1fs...", 
-                              attempt + 1, max_retries, url, error, retry_delay)
+                logging.warning(
+                    "Attempt %d/%d failed for %s: %s. Retrying in %.1fs...",
+                    attempt + 1,
+                    max_retries,
+                    url,
+                    error,
+                    retry_delay,
+                )
                 time.sleep(retry_delay)
             else:
                 logging.error("All %d attempts failed for %s: %s", max_retries, url, error)
-    
+
     # This should never happen since we always set last_error in the loop, but for type safety
     if last_error is None:
         raise RuntimeError(f"Unexpected error: fetch failed but no error was captured for {url}")
-    
+
     raise last_error
 
 
@@ -258,11 +263,11 @@ def crawl_all_pages(
     max_pages: int,
     max_retries: int = DEFAULT_MAX_RETRIES,
     retry_delay: float = DEFAULT_RETRY_DELAY,
-) -> List[Dict[str, str]]:
-    visited: Set[str] = set()
-    queue: Deque[str] = deque([normalize_url(base_url)])
-    aggregated_rows: List[Dict[str, str]] = []
-    failed_urls: List[str] = []
+) -> list[dict[str, str]]:
+    visited: set[str] = set()
+    queue: deque[str] = deque([normalize_url(base_url)])
+    aggregated_rows: list[dict[str, str]] = []
+    failed_urls: list[str] = []
 
     while queue and len(visited) < max_pages:
         url = queue.popleft()
@@ -301,10 +306,10 @@ def crawl_all_pages(
     return aggregated_rows
 
 
-def dump_results(rows: List[Dict[str, str]], output_path: str, source_url: str) -> None:
+def dump_results(rows: list[dict[str, str]], output_path: str, source_url: str) -> None:
     payload = {
         "source": source_url,
-        "retrieved_at": datetime.now(timezone.utc).isoformat(),
+        "retrieved_at": datetime.now(UTC).isoformat(),
         "row_count": len(rows),
         "rows": rows,
     }
@@ -313,9 +318,7 @@ def dump_results(rows: List[Dict[str, str]], output_path: str, source_url: str) 
 
 
 def parse_args(argv: Sequence[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Crawl table data and export into JSON."
-    )
+    parser = argparse.ArgumentParser(description="Crawl table data and export into JSON.")
     parser.add_argument(
         "--url",
         default="https://example.com/table.php",

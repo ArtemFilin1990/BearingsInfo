@@ -4,18 +4,18 @@ Each dataset lists normalized rows with explicit sort and uniqueness rules.
 """
 
 from pathlib import Path
-from typing import Dict, List, TypedDict
+from typing import TypedDict
 
 
 class DatasetSpec(TypedDict):
     output: Path
-    columns: List[str]
-    unique: List[str]
-    sort_by: List[str]
-    rows: List[Dict[str, str]]
+    columns: list[str]
+    unique: list[str]
+    sort_by: list[str]
+    rows: list[dict[str, str]]
 
 
-RAW_DATASETS: Dict[str, DatasetSpec] = {
+RAW_DATASETS: dict[str, DatasetSpec] = {
     "analogs_gost_iso": {
         "output": Path("data/analogs/gost_iso.csv"),
         "columns": ["source", "gost", "iso", "brand", "notes"],
@@ -34,7 +34,10 @@ RAW_DATASETS: Dict[str, DatasetSpec] = {
                 "gost": "2205",
                 "iso": "22205",
                 "brand": "",
-                "notes": "Сферический роликовый шире базового цилиндрического: замена не рекомендуется без перерасчёта посадок.",
+                "notes": (
+                    "Сферический роликовый шире базового цилиндрического: "
+                    "замена не рекомендуется без перерасчёта посадок."
+                ),
             },
             {
                 "source": "Аналоги/ГОСТ_ISО.md".replace("ISО", "ISO"),
@@ -643,27 +646,132 @@ RAW_DATASETS: Dict[str, DatasetSpec] = {
         "unique": ["code"],
         "sort_by": ["code"],
         "rows": [
-            {"code": "AH", "category": "mounting", "description": "Стяжная втулка стандартного исполнения", "source": "ISO/префиксы.md"},
-            {"code": "AHX", "category": "mounting", "description": "Стяжная втулка стандарта ISO", "source": "ISO/префиксы.md"},
-            {"code": "AOH", "category": "mounting", "description": "Стяжная втулка с масляными каналами", "source": "ISO/префиксы.md"},
-            {"code": "AOHX", "category": "mounting", "description": "Стяжная втулка ISO с масляными каналами", "source": "ISO/префиксы.md"},
-            {"code": "B", "category": "special", "description": "Заводской чертёж специального исполнения", "source": "ISO/префиксы.md"},
-            {"code": "F", "category": "special", "description": "Специальное обозначение производителя перед номером", "source": "ISO/префиксы.md"},
-            {"code": "G", "category": "special", "description": "Специальное обозначение производителя перед номером", "source": "ISO/префиксы.md"},
-            {"code": "H", "category": "mounting", "description": "Закрепительная втулка метрическая", "source": "ISO/префиксы.md"},
-            {"code": "HA", "category": "mounting", "description": "Закрепительная втулка для дюймовых валов 1/16''", "source": "ISO/префиксы.md"},
-            {"code": "HE", "category": "mounting", "description": "Закрепительная втулка для дюймовых валов 1/4''", "source": "ISO/префиксы.md"},
-            {"code": "HM", "category": "fastener", "description": "Гайка с трапецеидальной резьбой ISO", "source": "ISO/префиксы.md"},
-            {"code": "HML", "category": "fastener", "description": "Гайка уменьшенного сечения", "source": "ISO/префиксы.md"},
-            {"code": "HMV", "category": "fastener", "description": "Гидравлическая гайка для монтажа", "source": "ISO/префиксы.md"},
-            {"code": "HS", "category": "mounting", "description": "Закрепительная втулка для дюймовых валов 1/8''", "source": "ISO/префиксы.md"},
-            {"code": "K", "category": "special", "description": "Специальное обозначение производителя перед номером", "source": "ISO/префиксы.md"},
-            {"code": "N", "category": "cylindrical_roller", "description": "Бурты на внутреннем кольце", "source": "ISO/префиксы.md"},
-            {"code": "NF", "category": "cylindrical_roller", "description": "Два бурта на внутреннем кольце и два на наружном", "source": "ISO/префиксы.md"},
-            {"code": "NH", "category": "cylindrical_roller", "description": "Втулка вместо внутреннего кольца", "source": "ISO/префиксы.md"},
-            {"code": "NJ", "category": "cylindrical_roller", "description": "Бурты на внутреннем кольце и один на наружном", "source": "ISO/префиксы.md"},
-            {"code": "NU", "category": "cylindrical_roller", "description": "Бурты на наружном кольце", "source": "ISO/префиксы.md"},
-            {"code": "NUP", "category": "cylindrical_roller", "description": "NU с дополнительным свободным кольцом", "source": "ISO/префиксы.md"},
+            {
+                "code": "AH",
+                "category": "mounting",
+                "description": "Стяжная втулка стандартного исполнения",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "AHX",
+                "category": "mounting",
+                "description": "Стяжная втулка стандарта ISO",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "AOH",
+                "category": "mounting",
+                "description": "Стяжная втулка с масляными каналами",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "AOHX",
+                "category": "mounting",
+                "description": "Стяжная втулка ISO с масляными каналами",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "B",
+                "category": "special",
+                "description": "Заводской чертёж специального исполнения",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "F",
+                "category": "special",
+                "description": "Специальное обозначение производителя перед номером",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "G",
+                "category": "special",
+                "description": "Специальное обозначение производителя перед номером",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "H",
+                "category": "mounting",
+                "description": "Закрепительная втулка метрическая",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "HA",
+                "category": "mounting",
+                "description": "Закрепительная втулка для дюймовых валов 1/16''",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "HE",
+                "category": "mounting",
+                "description": "Закрепительная втулка для дюймовых валов 1/4''",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "HM",
+                "category": "fastener",
+                "description": "Гайка с трапецеидальной резьбой ISO",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "HML",
+                "category": "fastener",
+                "description": "Гайка уменьшенного сечения",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "HMV",
+                "category": "fastener",
+                "description": "Гидравлическая гайка для монтажа",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "HS",
+                "category": "mounting",
+                "description": "Закрепительная втулка для дюймовых валов 1/8''",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "K",
+                "category": "special",
+                "description": "Специальное обозначение производителя перед номером",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "N",
+                "category": "cylindrical_roller",
+                "description": "Бурты на внутреннем кольце",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "NF",
+                "category": "cylindrical_roller",
+                "description": "Два бурта на внутреннем кольце и два на наружном",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "NH",
+                "category": "cylindrical_roller",
+                "description": "Втулка вместо внутреннего кольца",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "NJ",
+                "category": "cylindrical_roller",
+                "description": "Бурты на внутреннем кольце и один на наружном",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "NU",
+                "category": "cylindrical_roller",
+                "description": "Бурты на наружном кольце",
+                "source": "ISO/префиксы.md",
+            },
+            {
+                "code": "NUP",
+                "category": "cylindrical_roller",
+                "description": "NU с дополнительным свободным кольцом",
+                "source": "ISO/префиксы.md",
+            },
         ],
     },
     "iso_suffixes": {

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Convert aprom_brands.json to CSV format for easier analysis and import.
+Convert brands.json to CSV format for easier analysis and import.
 
 Usage:
     python sources/brands_json_to_csv.py
-    python sources/brands_json_to_csv.py --input sources/aprom_brands.json --output sources/aprom_brands.csv
+    python sources/brands_json_to_csv.py --input sources/brands.json --output sources/brands.csv
 """
 
 import argparse
@@ -47,17 +47,17 @@ def write_brands_csv(brands: List[Dict[str, str]], filepath: Path) -> None:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Convert aprom_brands.json to CSV format"
+        description="Convert brands.json to CSV format"
     )
     parser.add_argument(
         '--input',
-        default='sources/aprom_brands.json',
-        help='Input JSON file (default: sources/aprom_brands.json)'
+        default='sources/brands.json',
+        help='Input JSON file (default: sources/brands.json)'
     )
     parser.add_argument(
         '--output',
-        default='sources/aprom_brands.csv',
-        help='Output CSV file (default: sources/aprom_brands.csv)'
+        default='sources/brands.csv',
+        help='Output CSV file (default: sources/brands.csv)'
     )
     
     args = parser.parse_args()

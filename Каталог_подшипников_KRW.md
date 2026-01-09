@@ -4,7 +4,7 @@
 
 **Size:** 8,2Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-krw.pdf)
+**Source:** [PDF](/catalog/catalog-krw.pdf)
 
 ---
 

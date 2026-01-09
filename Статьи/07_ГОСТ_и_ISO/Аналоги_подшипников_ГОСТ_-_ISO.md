@@ -1,6 +1,6 @@
 # Аналоги подшипников  ГОСТ - ISO
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=analog
+Источник: /cgi-bin/article.pl?words=analog
 
 ---
 

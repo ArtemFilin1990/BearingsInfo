@@ -4,7 +4,7 @@
 
 **Size:** 23,1Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-kdf.pdf)
+**Source:** [PDF](/catalog/catalog-kdf.pdf)
 
 ---
 

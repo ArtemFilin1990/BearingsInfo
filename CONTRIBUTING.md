@@ -172,19 +172,19 @@ Examples:
 ### Проверка Python-скриптов
 ```bash
 # Проверка синтаксиса
-python -m py_compile sources/aprom_table_scraper.py
+python -m py_compile sources/table_scraper.py
 
 # Запуск unit-тестов
-python tests/test_aprom_scraper.py
+python tests/test_table_scraper.py
 
 # Или с pytest (если установлен)
-python -m pytest tests/test_aprom_scraper.py -v
+python -m pytest tests/test_table_scraper.py -v
 ```
 
 ### Проверка JSON-файлов
 ```bash
 # Валидация JSON синтаксиса
-python -m json.tool sources/aprom_brands.json > /dev/null
+python -m json.tool sources/brands.json > /dev/null
 
 # Или для всех JSON файлов
 find . -name "*.json" -exec python -m json.tool {} \; > /dev/null

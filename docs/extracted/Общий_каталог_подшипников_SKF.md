@@ -4,7 +4,7 @@
 
 **Size:** 54Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-skf.pdf)
+**Source:** [PDF](/catalog/catalog-skf.pdf)
 
 ---
 

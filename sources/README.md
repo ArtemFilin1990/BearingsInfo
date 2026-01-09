@@ -5,19 +5,19 @@
 ## Содержание
 
 ### Скрипты
-- **aprom_table_scraper.py** - Скрипт для загрузки таблиц с сайта aprom.by
+- **table_scraper.py** - Скрипт для загрузки таблиц с сайта 
   - Поддерживает автоматические повторные попытки при сетевых ошибках
   - Настраиваемые параметры через CLI или переменные окружения
   - Независим от внешних зависимостей (только stdlib)
-  - См. `python aprom_table_scraper.py --help` для деталей
+  - См. `python table_scraper.py --help` для деталей
 
 ### Данные
-- **aprom_brands.json** - База производителей подшипников (284 записи)
-  - Источник: [aprom.by/brands.php](https://aprom.by/brands.php)
+- **brands.json** - База производителей подшипников (284 записи)
+  - Источник: [/brands.php](/brands.php)
   - Дата выгрузки: 2025-12-28
-  - Схема данных: см. `aprom_brands_schema.json`
+  - Схема данных: см. `brands_schema.json`
 
-- **aprom_brands_schema.json** - JSON Schema для расширенной базы производителей
+- **brands_schema.json** - JSON Schema для расширенной базы производителей
   - Определяет структуру данных для информации о брендах
   - Поддерживает дополнительные поля: категория, сайт, сертификации
 
@@ -33,17 +33,17 @@
 - Снимки состояния онлайн-каталогов
 - Методики извлечения данных
 
-## Использование скрипта aprom_table_scraper.py
+## Использование скрипта table_scraper.py
 
 ### Базовое использование
 ```bash
-python sources/aprom_table_scraper.py --output sources/aprom_table_data.json
+python sources/table_scraper.py --output sources/table_data.json
 ```
 
 ### С настройкой повторных попыток
 ```bash
-python sources/aprom_table_scraper.py \
-    --output sources/aprom_table_data.json \
+python sources/table_scraper.py \
+    --output sources/table_data.json \
     --max-retries 5 \
     --retry-delay 3.0 \
     --verbose
@@ -54,11 +54,11 @@ python sources/aprom_table_scraper.py \
 export APROM_MAX_RETRIES=5
 export APROM_RETRY_DELAY=3.0
 export HTTP_TIMEOUT_SECONDS=15
-python sources/aprom_table_scraper.py --output sources/aprom_table_data.json
+python sources/table_scraper.py --output sources/table_data.json
 ```
 
 ### Параметры
-- `--url` - URL для загрузки (по умолчанию: https://aprom.by/table.php)
+- `--url` - URL для загрузки (по умолчанию: /table.php)
 - `--output` - Путь для сохранения JSON
 - `--timeout` - Таймаут запроса в секундах
 - `--delay` - Задержка между запросами
@@ -71,12 +71,12 @@ python sources/aprom_table_scraper.py --output sources/aprom_table_data.json
 
 Запуск unit-тестов для скрипта:
 ```bash
-python tests/test_aprom_scraper.py
+python tests/test_table_scraper.py
 ```
 
 Или с pytest:
 ```bash
-python -m pytest tests/test_aprom_scraper.py -v
+python -m pytest tests/test_table_scraper.py -v
 ```
 
 ## Версионирование источников
@@ -91,7 +91,7 @@ python -m pytest tests/test_aprom_scraper.py -v
 Пример метаданных:
 ```json
 {
-  "source": "aprom.by/brands.php",
+  "source": "/brands.php",
   "retrieved_at": "2025-12-28T18:00:00Z",
   "checksum_sha256": "...",
   "version": "2025-12-28",

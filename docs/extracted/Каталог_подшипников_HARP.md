@@ -4,7 +4,7 @@
 
 **Size:** 3,3Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-harp.pdf)
+**Source:** [PDF](/catalog/catalog-harp.pdf)
 
 ---
 

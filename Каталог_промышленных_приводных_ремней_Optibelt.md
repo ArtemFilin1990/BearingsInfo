@@ -4,7 +4,7 @@
 
 **Size:** 3,6Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-optibelt.pdf)
+**Source:** [PDF](/catalog/catalog-optibelt.pdf)
 
 ---
 

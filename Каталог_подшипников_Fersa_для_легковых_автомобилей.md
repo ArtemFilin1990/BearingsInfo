@@ -4,7 +4,7 @@
 
 **Size:** 8,8Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-fersa-2.pdf)
+**Source:** [PDF](/catalog/catalog-fersa-2.pdf)
 
 ---
 

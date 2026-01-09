@@ -471,7 +471,7 @@ python scripts/update_repo.py
 python scripts/validate/run_validations.py
 
 # Извлечение данных из источников
-python sources/aprom_table_scraper.py
+python sources/table_scraper.py
 
 # Запуск тестов
 pytest tests/

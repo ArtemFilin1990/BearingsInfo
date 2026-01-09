@@ -4,7 +4,7 @@
 
 **Size:** 6,5Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-ibc.pdf)
+**Source:** [PDF](/catalog/catalog-ibc.pdf)
 
 ---
 

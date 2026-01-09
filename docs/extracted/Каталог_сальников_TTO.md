@@ -4,7 +4,7 @@
 
 **Size:** 8Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-tto.pdf)
+**Source:** [PDF](/catalog/catalog-tto.pdf)
 
 ---
 

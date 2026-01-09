@@ -4,7 +4,7 @@
 
 **Size:** 2,2Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-nrb.pdf)
+**Source:** [PDF](/catalog/catalog-nrb.pdf)
 
 ---
 

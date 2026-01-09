@@ -4,7 +4,7 @@
 
 **Size:** 0,8Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-nachi.pdf)
+**Source:** [PDF](/catalog/catalog-nachi.pdf)
 
 ---
 

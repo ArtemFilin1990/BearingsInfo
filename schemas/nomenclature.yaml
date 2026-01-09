@@ -18,7 +18,7 @@
         "Product Link": {
           "type": "string",
           "required": false,
-          "description": "URL to product on aprom.by or other catalog"
+          "description": "URL to product on  or other catalog"
         },
         "Analog Name": {
           "type": "string",
@@ -28,7 +28,7 @@
         "Analog Link": {
           "type": "string",
           "required": false,
-          "description": "URL to analog product on aprom.by or other catalog"
+          "description": "URL to analog product on  or other catalog"
         },
         "Factory": {
           "type": "string",

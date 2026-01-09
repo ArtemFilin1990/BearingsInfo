@@ -4,7 +4,7 @@
 
 **Size:** 12,3Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-asahi.pdf)
+**Source:** [PDF](/catalog/catalog-asahi.pdf)
 
 ---
 

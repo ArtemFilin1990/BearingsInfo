@@ -1,6 +1,6 @@
 # Стандарты ISO. Подшипники
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=iso
+Источник: /cgi-bin/article.pl?words=iso
 
 # Стандарты ISO. Подшипники
 

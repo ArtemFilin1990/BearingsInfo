@@ -48,7 +48,7 @@
 - Метаданные: `sources/*/meta.yaml` (GOST, ISO, analogs, brands, SKF)
 - Каталоги: `sources/gost/`, `sources/iso/`, `sources/analogs/`, `sources/brands/`, `sources/skf/`
 - Извлечение данных: [`sources/pdf_text_extractor.py`](sources/pdf_text_extractor.py)
-- Парсер aprom.by: [`sources/aprom_table_scraper.py`](sources/aprom_table_scraper.py)
+- Парсер таблиц: [`sources/table_scraper.py`](sources/table_scraper.py)
 
 ## Схемы данных
 - ГОСТ: [`schemas/gost.yaml`](schemas/gost.yaml)
@@ -68,7 +68,7 @@
 - Схемы: [`tests/test_schemas.py`](tests/test_schemas.py)
 - Размеры: [`tests/test_dimensions.py`](tests/test_dimensions.py)
 - Суффиксы: [`tests/test_suffixes.py`](tests/test_suffixes.py)
-- Скрейпер: [`tests/test_aprom_scraper.py`](tests/test_aprom_scraper.py)
+- Скрейпер: [`tests/test_table_scraper.py`](tests/test_table_scraper.py)
 
 ### CI/CD
 - GitHub Actions: [`.github/workflows/ci.yml`](.github/workflows/ci.yml)

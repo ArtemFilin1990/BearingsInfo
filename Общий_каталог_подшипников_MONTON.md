@@ -4,7 +4,7 @@
 
 **Size:** 4,5Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-monton.pdf)
+**Source:** [PDF](/catalog/catalog-monton.pdf)
 
 ---
 

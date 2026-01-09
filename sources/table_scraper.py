@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Scraper for aprom.by/table.php that crawls all pagination links and exports the
+Scraper for table data that crawls all pagination links and exports the
 resulting rows into a JSON file under sources/.
 
 The script is intentionally dependency-free (stdlib only) to simplify execution
@@ -9,14 +9,14 @@ configurable via CLI flags or environment variables:
 
   HTTP_TIMEOUT_SECONDS   - request timeout (default: 10)
   REQUEST_DELAY_SECONDS  - delay between pages in seconds (default: 0.2)
-  APROM_MAX_PAGES        - hard cap for visited pages (default: 250)
-  APROM_SCRAPER_USER_AGENT - optional override for the HTTP User-Agent
-  APROM_MAX_RETRIES      - maximum retry attempts for failed requests (default: 3)
-  APROM_RETRY_DELAY      - delay between retry attempts in seconds (default: 2.0)
+  TABLE_MAX_PAGES        - hard cap for visited pages (default: 250)
+  TABLE_SCRAPER_USER_AGENT - optional override for the HTTP User-Agent
+  TABLE_MAX_RETRIES      - maximum retry attempts for failed requests (default: 3)
+  TABLE_RETRY_DELAY      - delay between retry attempts in seconds (default: 2.0)
 
 Example:
-    python sources/aprom_table_scraper.py \\
-        --output sources/aprom_table_data.json \\
+    python sources/table_scraper.py \\
+        --output sources/table_data.json \\
         --max-retries 5 \\
         --retry-delay 3.0
 
@@ -43,10 +43,10 @@ from urllib.request import Request, urlopen
 
 DEFAULT_TIMEOUT_SECONDS = int(os.getenv("HTTP_TIMEOUT_SECONDS", "10"))
 DEFAULT_DELAY_SECONDS = float(os.getenv("REQUEST_DELAY_SECONDS", "0.2"))
-DEFAULT_MAX_PAGES = int(os.getenv("APROM_MAX_PAGES", "250"))
-DEFAULT_USER_AGENT = os.getenv("APROM_SCRAPER_USER_AGENT", "BazaApromScraper/1.0")
-DEFAULT_MAX_RETRIES = int(os.getenv("APROM_MAX_RETRIES", "3"))
-DEFAULT_RETRY_DELAY = float(os.getenv("APROM_RETRY_DELAY", "2.0"))
+DEFAULT_MAX_PAGES = int(os.getenv("TABLE_MAX_PAGES", "250"))
+DEFAULT_USER_AGENT = os.getenv("TABLE_SCRAPER_USER_AGENT", "TableScraper/1.0")
+DEFAULT_MAX_RETRIES = int(os.getenv("TABLE_MAX_RETRIES", "3"))
+DEFAULT_RETRY_DELAY = float(os.getenv("TABLE_RETRY_DELAY", "2.0"))
 
 
 def configure_logging(verbosity: int) -> None:
@@ -223,10 +223,10 @@ def fetch_html(url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, r
     Raises:
         HTTPError: If HTTP request fails after all retries
         URLError: If network connection fails after all retries
-        ValueError: If max_retries is less than 1
+        ValueError: If max_retries is less than 0
     """
-    if max_retries < 1:
-        raise ValueError("max_retries must be at least 1")
+    if max_retries < 0:
+        raise ValueError("max_retries must be at least 0")
     
     request = Request(url, headers={"User-Agent": DEFAULT_USER_AGENT})
     last_error: Optional[Exception] = None
@@ -314,16 +314,16 @@ def dump_results(rows: List[Dict[str, str]], output_path: str, source_url: str) 
 
 def parse_args(argv: Sequence[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Crawl aprom.by/table.php and export table data into JSON."
+        description="Crawl table data and export into JSON."
     )
     parser.add_argument(
         "--url",
-        default="https://aprom.by/table.php",
+        default="https://example.com/table.php",
         help="Base URL to crawl (default: %(default)s)",
     )
     parser.add_argument(
         "--output",
-        default="sources/aprom_table_data.json",
+        default="sources/table_data.json",
         help="Output JSON path (default: %(default)s)",
     )
     parser.add_argument(

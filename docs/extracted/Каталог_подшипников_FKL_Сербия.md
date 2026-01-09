@@ -4,7 +4,7 @@
 
 **Size:** 29Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-fkl.pdf)
+**Source:** [PDF](/catalog/catalog-fkl.pdf)
 
 ---
 

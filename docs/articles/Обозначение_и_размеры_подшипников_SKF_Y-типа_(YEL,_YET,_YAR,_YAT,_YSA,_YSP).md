@@ -1,6 +1,6 @@
 # Обозначение и размеры подшипников SKF Y-типа (YEL, YET, YAR, YAT, YSA, YSP)
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=y-type
+Источник: /cgi-bin/article.pl?words=y-type
 
 # Обозначение и размеры подшипников SKF Y-типа (YEL, YET, YAR, YAT, YSA, YSP)
 

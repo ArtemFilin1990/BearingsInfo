@@ -1,6 +1,6 @@
 # Обозначение подшипников SKF
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=skf
+Источник: /cgi-bin/article.pl?words=skf
 
 # Обозначение подшипников SKF.
 

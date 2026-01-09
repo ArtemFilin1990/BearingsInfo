@@ -4,7 +4,7 @@
 
 **Size:** 4,4Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-zen.pdf)
+**Source:** [PDF](/catalog/catalog-zen.pdf)
 
 ---
 

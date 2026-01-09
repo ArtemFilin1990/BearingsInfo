@@ -4,7 +4,7 @@
 
 **Size:** 13,9Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-nke.pdf)
+**Source:** [PDF](/catalog/catalog-nke.pdf)
 
 ---
 

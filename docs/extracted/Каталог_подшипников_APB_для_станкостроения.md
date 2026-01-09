@@ -4,7 +4,7 @@
 
 **Size:** 19,3Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-apb-2.pdf)
+**Source:** [PDF](/catalog/catalog-apb-2.pdf)
 
 ---
 

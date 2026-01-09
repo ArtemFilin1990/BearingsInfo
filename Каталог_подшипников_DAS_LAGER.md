@@ -4,7 +4,7 @@
 
 **Size:** 28Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-das lager.pdf)
+**Source:** [PDF](/catalog/catalog-das lager.pdf)
 
 ---
 

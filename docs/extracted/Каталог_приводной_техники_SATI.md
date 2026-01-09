@@ -4,7 +4,7 @@
 
 **Size:** 11,8Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-sati.pdf)
+**Source:** [PDF](/catalog/catalog-sati.pdf)
 
 ---
 

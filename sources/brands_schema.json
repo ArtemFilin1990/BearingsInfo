@@ -57,7 +57,7 @@
       },
       "source": {
         "type": "string",
-        "description": "Source of information (e.g., aprom.by, official catalog)"
+        "description": "Source of information (e.g., official catalog, manufacturer website)"
       },
       "last_updated": {
         "type": "string",

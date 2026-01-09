@@ -4,7 +4,7 @@
 
 **Size:** 3,8Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-ems.pdf)
+**Source:** [PDF](/catalog/catalog-ems.pdf)
 
 ---
 

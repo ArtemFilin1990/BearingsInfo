@@ -4,7 +4,7 @@
 
 **Size:** 4,2Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-nbs.pdf)
+**Source:** [PDF](/catalog/catalog-nbs.pdf)
 
 ---
 

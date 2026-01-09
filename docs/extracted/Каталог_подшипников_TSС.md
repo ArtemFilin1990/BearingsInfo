@@ -4,7 +4,7 @@
 
 **Size:** 0,5Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-tsc.pdf)
+**Source:** [PDF](/catalog/catalog-tsc.pdf)
 
 ---
 

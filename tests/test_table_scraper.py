@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-Unit tests for aprom_table_scraper.py
+Unit tests for table_scraper.py
 
 Run tests with:
-    python -m pytest tests/test_aprom_scraper.py -v
+    python -m pytest tests/test_table_scraper.py -v
     
 Or with standard unittest:
-    python -m unittest tests.test_aprom_scraper
+    python -m unittest tests.test_table_scraper
     
 Or from tests directory:
-    cd tests && python test_aprom_scraper.py
+    cd tests && python test_table_scraper.py
 """
 
 import sys
@@ -17,14 +17,14 @@ import unittest
 from pathlib import Path
 
 
-def _import_aprom_scraper():
-    """Import aprom_table_scraper module with proper path handling."""
+def _import_table_scraper():
+    """Import table_scraper module with proper path handling."""
     # Add sources directory to path if not already there
     sources_path = str(Path(__file__).parent.parent / "sources")
     if sources_path not in sys.path:
         sys.path.insert(0, sources_path)
     
-    from aprom_table_scraper import (
+    from table_scraper import (
         TableCell, extract_tables, derive_headers,
         table_to_records, clean_text, normalize_url,
     )
@@ -32,7 +32,7 @@ def _import_aprom_scraper():
 
 
 # Import the module components
-TableCell, extract_tables, derive_headers, table_to_records, clean_text, normalize_url = _import_aprom_scraper()
+TableCell, extract_tables, derive_headers, table_to_records, clean_text, normalize_url = _import_table_scraper()
 
 
 class TestCleanText(unittest.TestCase):

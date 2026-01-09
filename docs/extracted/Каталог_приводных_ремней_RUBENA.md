@@ -4,7 +4,7 @@
 
 **Size:** 4,3Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-rubena.pdf)
+**Source:** [PDF](/catalog/catalog-rubena.pdf)
 
 ---
 

@@ -1,6 +1,6 @@
 # Класс точности подшипников  ГОСТ, ISO, ABEC
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=class
+Источник: /cgi-bin/article.pl?words=class
 
 ---
 

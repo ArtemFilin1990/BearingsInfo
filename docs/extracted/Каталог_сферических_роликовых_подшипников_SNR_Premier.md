@@ -4,7 +4,7 @@
 
 **Size:** 3,4Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-snr.pdf)
+**Source:** [PDF](/catalog/catalog-snr.pdf)
 
 ---
 

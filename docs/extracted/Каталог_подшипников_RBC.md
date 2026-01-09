@@ -4,7 +4,7 @@
 
 **Size:** 2,3Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-rbc.pdf)
+**Source:** [PDF](/catalog/catalog-rbc.pdf)
 
 ---
 

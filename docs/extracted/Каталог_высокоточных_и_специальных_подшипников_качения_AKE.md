@@ -4,7 +4,7 @@
 
 **Size:** 4Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-ake.pdf)
+**Source:** [PDF](/catalog/catalog-ake.pdf)
 
 ---
 

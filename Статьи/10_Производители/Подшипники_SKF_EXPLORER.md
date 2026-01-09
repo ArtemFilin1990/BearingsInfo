@@ -1,6 +1,6 @@
 # Подшипники SKF EXPLORER
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=skf_explorer
+Источник: /cgi-bin/article.pl?words=skf_explorer
 
 ---
 

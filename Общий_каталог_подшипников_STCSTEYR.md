@@ -4,7 +4,7 @@
 
 **Size:** 2,6Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-stc-steyr.pdf)
+**Source:** [PDF](/catalog/catalog-stc-steyr.pdf)
 
 ---
 

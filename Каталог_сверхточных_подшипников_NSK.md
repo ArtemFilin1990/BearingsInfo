@@ -4,7 +4,7 @@
 
 **Size:** 12,2Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-nsk-2.pdf)
+**Source:** [PDF](/catalog/catalog-nsk-2.pdf)
 
 ---
 

@@ -146,5 +146,5 @@ python sources/pdf_text_extractor.py sources/gost/ГОСТ_520-2002.pdf
 
 ### Парсинг онлайн-каталогов
 ```bash
-python sources/aprom_table_scraper.py
+python sources/table_scraper.py
 ```

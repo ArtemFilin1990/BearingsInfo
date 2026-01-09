@@ -4,7 +4,7 @@
 
 **Size:** 0,9Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-snh.pdf)
+**Source:** [PDF](/catalog/catalog-snh.pdf)
 
 ---
 

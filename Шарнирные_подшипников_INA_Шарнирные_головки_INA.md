@@ -4,7 +4,7 @@
 
 **Size:** 6Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-ina.pdf)
+**Source:** [PDF](/catalog/catalog-ina.pdf)
 
 ---
 

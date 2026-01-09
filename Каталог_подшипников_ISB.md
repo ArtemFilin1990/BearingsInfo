@@ -4,7 +4,7 @@
 
 **Size:** 3,5Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-isb.pdf)
+**Source:** [PDF](/catalog/catalog-isb.pdf)
 
 ---
 

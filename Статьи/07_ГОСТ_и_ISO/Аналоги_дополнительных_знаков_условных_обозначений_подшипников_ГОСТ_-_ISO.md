@@ -1,6 +1,6 @@
 # Аналоги дополнительных знаков условных обозначений подшипников ГОСТ - ISO
 
-Источник: https://aprom.by/cgi-bin/article.pl?words=analog_dop
+Источник: /cgi-bin/article.pl?words=analog_dop
 
 ---
 

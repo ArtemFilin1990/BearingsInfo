@@ -4,7 +4,7 @@
 
 **Size:** 6,4Mb
 
-**Source:** [PDF](https://aprom.by/catalog/catalog-myonic.pdf)
+**Source:** [PDF](/catalog/catalog-myonic.pdf)
 
 ---
 

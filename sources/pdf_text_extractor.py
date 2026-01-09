@@ -8,7 +8,6 @@
 3. Подготовки данных для интеграции в основную базу
 """
 
-import os
 import sys
 from pathlib import Path
 

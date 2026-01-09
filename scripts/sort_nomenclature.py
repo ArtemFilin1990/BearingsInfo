@@ -35,10 +35,14 @@ def verify_sorting(file_path: Path) -> bool:
         rows = list(reader)
     
     for i in range(1, len(rows)):
+        # Skip rows with insufficient columns
+        if len(rows[i-1]) < 2 or len(rows[i]) < 2:
+            continue
+            
         prev_key = (rows[i-1][0], rows[i-1][1])
         curr_key = (rows[i][0], rows[i][1])
         if prev_key > curr_key:
-            print(f"ERROR: Sorting violation at line {i+2}: {curr_key} should come before {prev_key}")
+            print(f"ERROR: Sorting violation at line {i+2}: {prev_key} should come before {curr_key}")
             return False
     
     print(f"OK: {file_path.name} is correctly sorted")

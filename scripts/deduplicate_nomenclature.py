@@ -1,71 +1,83 @@
 #!/usr/bin/env python3
-"""Deduplicate nomenclature.csv by removing duplicate (Brand, Product Name) keys.
-
-Keeps the first occurrence of each unique key and removes all duplicates.
-"""
-
-from __future__ import annotations
+"""Remove duplicate entries from nomenclature.csv based on unique key (Brand, Product Name)."""
 
 import csv
+import os
+import sys
+import tempfile
+from collections import OrderedDict
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-NOMENCLATURE_CSV = REPO_ROOT / "data" / "nomenclature.csv"
+NOMENCLATURE_FILE = REPO_ROOT / "data" / "nomenclature.csv"
 
 
-def deduplicate_nomenclature() -> int:
-    """Remove duplicate entries from nomenclature.csv, keeping first occurrence.
+def deduplicate_nomenclature(input_file: Path, output_file: Path) -> int:
+    """Remove duplicates, keeping first occurrence of each unique key.
     
     Returns:
-        Number of duplicate rows removed
+        Number of duplicates removed
     """
-    if not NOMENCLATURE_CSV.exists():
-        raise FileNotFoundError(f"File not found: {NOMENCLATURE_CSV}")
-    
-    # Read all rows
-    with NOMENCLATURE_CSV.open(encoding="utf-8") as f:
+    with open(input_file, encoding='utf-8', newline='') as f:
         reader = csv.DictReader(f)
-        fieldnames = reader.fieldnames
-        if fieldnames is None:
-            raise ValueError("CSV file has no header")
+        header = reader.fieldnames
         
-        rows = list(reader)
-    
-    # Track seen keys and keep only first occurrence
-    seen_keys = set()
-    unique_rows = []
-    duplicates_removed = 0
-    
-    for row in rows:
-        try:
-            key = (row["Brand"], row["Product Name"])
-        except KeyError as e:
-            print(f"⚠️  Warning: Missing column {e} in row, skipping")
-            continue
+        if not header or 'Brand' not in header or 'Product Name' not in header:
+            print("ERROR: CSV must have 'Brand' and 'Product Name' columns", file=sys.stderr)
+            sys.exit(1)
         
-        if key not in seen_keys:
-            seen_keys.add(key)
-            unique_rows.append(row)
-        else:
-            duplicates_removed += 1
+        # Use OrderedDict to preserve first occurrence
+        unique_rows = OrderedDict()
+        duplicates = []
+        
+        for line_num, row in enumerate(reader, start=2):
+            brand = row.get('Brand', '').strip()
+            product_name = row.get('Product Name', '').strip()
+            key = (brand, product_name)
+            
+            if key in unique_rows:
+                duplicates.append((line_num, key))
+            else:
+                unique_rows[key] = row
     
-    # Sort by Brand, then Product Name
-    unique_rows.sort(key=lambda r: (r["Brand"], r["Product Name"]))
+    # Write to a temporary file first, then atomically replace
+    fd, temp_path = tempfile.mkstemp(dir=output_file.parent, suffix='.csv', text=True)
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=header)
+            writer.writeheader()
+            writer.writerows(unique_rows.values())
+        
+        # Atomically replace the original file
+        os.replace(temp_path, output_file)
+    except Exception:
+        # Clean up temp file on error
+        if os.path.exists(temp_path):
+            os.unlink(temp_path)
+        raise
     
-    # Write back to file
-    with NOMENCLATURE_CSV.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(unique_rows)
+    # Report
+    total_original = len(unique_rows) + len(duplicates)
+    print(f"📊 Статистика дедупликации {input_file.name}:")
+    print(f"  Исходных записей: {total_original}")
+    print(f"  Уникальных записей: {len(unique_rows)}")
+    print(f"  Удалено дубликатов: {len(duplicates)}")
     
-    return duplicates_removed
-
-
-def main() -> None:
-    removed = deduplicate_nomenclature()
-    print(f"✓ Removed {removed:,} duplicate rows from {NOMENCLATURE_CSV.name}")
-    print(f"✓ File saved with unique entries only")
+    if duplicates:
+        print("\n⚠️  Найдены и удалены дубликаты:")
+        for line_num, key in sorted(duplicates)[:10]:  # Show first 10
+            print(f"  Строка {line_num}: {key}")
+        if len(duplicates) > 10:
+            print(f"  ... и ещё {len(duplicates) - 10}")
+    
+    return len(duplicates)
 
 
 if __name__ == "__main__":
-    main()
+    removed = deduplicate_nomenclature(NOMENCLATURE_FILE, NOMENCLATURE_FILE)
+    if removed > 0:
+        print(f"\n✅ Файл {NOMENCLATURE_FILE.name} очищен от {removed} дубликатов")
+        sys.exit(0)
+    else:
+        print(f"\n✅ Файл {NOMENCLATURE_FILE.name} не содержит дубликатов")
+        sys.exit(0)

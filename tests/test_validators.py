@@ -1,7 +1,6 @@
 """Tests for CSV validators."""
 
 import csv
-import tempfile
 
 import pytest
 

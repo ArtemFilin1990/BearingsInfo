@@ -9,7 +9,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from scripts.validate_articles_structure import EXPECTED, TEMPLATE_MARKERS, read_first_h1
+from scripts.validate_articles_structure import EXPECTED, TEMPLATE_MARKERS, read_first_h1  # noqa: E402
 
 
 def fix_h1_mismatch(file_path: Path, expected_h1: str) -> bool:

@@ -13,8 +13,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from scripts.extract.raw_datasets import RAW_DATASETS, DatasetSpec
-from scripts.validate.csv_validator import validate_all
+from scripts.extract.raw_datasets import RAW_DATASETS, DatasetSpec  # noqa: E402
+from scripts.validate.csv_validator import validate_all  # noqa: E402
 
 
 def _dedupe(rows: list[dict[str, str]], unique_keys: list[str]) -> tuple[list[dict[str, str]], int]:
@@ -56,7 +56,6 @@ def _write_csv(dataset: DatasetSpec) -> tuple[int, int, int]:
 def _aggregate_report() -> dict[str, int]:
     counts = {"rows_total": 0, "rows_added": 0, "rows_deduped": 0}
     for spec in RAW_DATASETS.values():
-        original = len(spec["rows"])
         deduped, removed = _dedupe(spec["rows"], spec["unique"])
         counts["rows_total"] += len(deduped)
         counts["rows_added"] += len(deduped)

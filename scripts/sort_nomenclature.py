@@ -31,7 +31,7 @@ def verify_sorting(file_path: Path) -> bool:
     """Verify that nomenclature file is sorted correctly."""
     with open(file_path, encoding="utf-8", newline="") as f:
         reader = csv.reader(f)
-        header = next(reader)
+        next(reader)  # Skip header
         rows = list(reader)
 
     for i in range(1, len(rows)):

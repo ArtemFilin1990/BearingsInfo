@@ -164,7 +164,8 @@ def update_sources_md(table, detailed_table, output_file):
     else:
         footer = """
 ## Проверка статусов
-- Каждый `meta.yaml` содержит статус `unverified`/`verified`. При добавлении нового источника обновляйте статус и цель (`purpose`).
+- Каждый `meta.yaml` содержит статус `unverified`/`verified`. При добавлении нового источника
+  обновляйте статус и цель (`purpose`).
 - Источники из корня и `tests/` перенесены в соответствующие подпапки `sources/`.
 
 ### Формат meta.yaml

@@ -6,10 +6,7 @@ from typing import List, Tuple
 def _load_dimensions(path: Path) -> List[Tuple[str, float, float, float]]:
     with path.open(encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
-        return [
-            (row["designation"], float(row["d"]), float(row["D"]), float(row["B"]))
-            for row in reader
-        ]
+        return [(row["designation"], float(row["d"]), float(row["D"]), float(row["B"])) for row in reader]
 
 
 def test_gost_dimensions_sorted() -> None:

@@ -179,10 +179,7 @@ def derive_headers(table: List[List[TableCell]]) -> List[str]:
         if any(cell.is_header for cell in row):
             return [_normalize_header(cell.text, idx) for idx, cell in enumerate(row, start=1)]
     reference_width = len(table[0]) if table else 0
-    return [
-        _normalize_header(f"column_{idx}", idx)
-        for idx in range(1, reference_width + 1)
-    ]
+    return [_normalize_header(f"column_{idx}", idx) for idx in range(1, reference_width + 1)]
 
 
 def _normalize_header(text: str, position: int) -> str:
@@ -207,19 +204,21 @@ def table_to_records(table: List[List[TableCell]]) -> List[Dict[str, str]]:
     return records
 
 
-def fetch_html(url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, retry_delay: float = DEFAULT_RETRY_DELAY) -> str:
+def fetch_html(
+    url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, retry_delay: float = DEFAULT_RETRY_DELAY
+) -> str:
     """
     Fetch HTML with retry logic for transient network errors.
-    
+
     Args:
         url: URL to fetch
         timeout: Request timeout in seconds
         max_retries: Maximum number of retry attempts (default: 3)
         retry_delay: Delay between retries in seconds (default: 2.0)
-    
+
     Returns:
         str: HTML content decoded as UTF-8
-    
+
     Raises:
         HTTPError: If HTTP request fails after all retries
         URLError: If network connection fails after all retries
@@ -227,10 +226,10 @@ def fetch_html(url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, r
     """
     if max_retries < 0:
         raise ValueError("max_retries must be at least 0")
-    
+
     request = Request(url, headers={"User-Agent": DEFAULT_USER_AGENT})
     last_error: Optional[Exception] = None
-    
+
     for attempt in range(max_retries):
         try:
             with urlopen(request, timeout=timeout) as response:
@@ -238,16 +237,22 @@ def fetch_html(url: str, timeout: int, max_retries: int = DEFAULT_MAX_RETRIES, r
         except (HTTPError, URLError) as error:
             last_error = error
             if attempt < max_retries - 1:
-                logging.warning("Attempt %d/%d failed for %s: %s. Retrying in %.1fs...", 
-                              attempt + 1, max_retries, url, error, retry_delay)
+                logging.warning(
+                    "Attempt %d/%d failed for %s: %s. Retrying in %.1fs...",
+                    attempt + 1,
+                    max_retries,
+                    url,
+                    error,
+                    retry_delay,
+                )
                 time.sleep(retry_delay)
             else:
                 logging.error("All %d attempts failed for %s: %s", max_retries, url, error)
-    
+
     # This should never happen since we always set last_error in the loop, but for type safety
     if last_error is None:
         raise RuntimeError(f"Unexpected error: fetch failed but no error was captured for {url}")
-    
+
     raise last_error
 
 
@@ -313,9 +318,7 @@ def dump_results(rows: List[Dict[str, str]], output_path: str, source_url: str) 
 
 
 def parse_args(argv: Sequence[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Crawl table data and export into JSON."
-    )
+    parser = argparse.ArgumentParser(description="Crawl table data and export into JSON.")
     parser.add_argument(
         "--url",
         default="https://example.com/table.php",

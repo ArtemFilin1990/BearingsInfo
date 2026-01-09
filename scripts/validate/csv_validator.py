@@ -37,7 +37,7 @@ def _load_schema_file(path: Path) -> List[TableSchema]:
                 columns[col_name] = col_def.get("type", "string")
             else:
                 columns[col_name] = col_def
-        
+
         tables.append(
             TableSchema(
                 name=table["name"],
@@ -96,9 +96,7 @@ def validate_table(schema: TableSchema) -> List[str]:
 
         expected_fields = list(schema.columns.keys())
         if reader.fieldnames != expected_fields:
-            errors.append(
-                f"{schema.name}: header mismatch. expected {expected_fields}, found {reader.fieldnames}"
-            )
+            errors.append(f"{schema.name}: header mismatch. expected {expected_fields}, found {reader.fieldnames}")
 
         seen_keys = set()
         prev_key: Tuple | None = None

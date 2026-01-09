@@ -69,7 +69,9 @@ def _write_report(path: Path) -> None:
     report_body = {
         "source_name": "normalized_catalog",
         "timestamp": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "input_files": sorted({row["source"] for spec in RAW_DATASETS.values() for row in spec["rows"] if "source" in row}),
+        "input_files": sorted(
+            {row["source"] for spec in RAW_DATASETS.values() for row in spec["rows"] if "source" in row}
+        ),
         "output_files": sorted(str(spec["output"]) for spec in RAW_DATASETS.values()),
     }
     report_body.update(_aggregate_report())

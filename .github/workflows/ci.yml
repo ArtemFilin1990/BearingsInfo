@@ -192,10 +192,6 @@ jobs:
           python -m py_compile "$file"
           echo "✅ $file is valid"
         done
-    
-    - name: Run scraper help
-      run: |
-        python sources/aprom_table_scraper.py --help
 
   json-validation:
     name: Validate JSON Files

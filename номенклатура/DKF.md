@@ -1,0 +1,18 @@
+# DKF
+
+Источник: https://aprom.by/cgi-bin/nomenclature.pl?brand=DKF
+
+Всего позиций: 8
+
+---
+
+| подшипник | аналог | завод |
+|---|---|---|
+| 4-436206Е1 | A7206SpWT4 | DKF |
+| 4-576205Е | A7205SpWT4 | DKF |
+| 4-576205Е | A7205SpWT4 | DKF |
+| 4-576205Е1 | A7205SpWT4 | DKF |
+| 4-576207Е1 | A7207SpWT4 | DKF |
+| 6-576322Л | A7322SpMAWT6 | DKF |
+| 6-576322Л | A7322SpMAWT6 | DKF |
+| икв55х68х28 | K50X68X27F | DKF |

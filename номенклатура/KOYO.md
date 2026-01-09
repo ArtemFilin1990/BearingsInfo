@@ -1,0 +1,38 @@
+# KOYO
+
+Источник: https://aprom.by/cgi-bin/nomenclature.pl?brand=KOYO
+
+Всего позиций: 28
+
+---
+
+| подшипник | аналог | завод |
+|---|---|---|
+| 4-60053Ю6Т | WOB74ZXST/P4 | KOYO |
+| 4-60053Ю1Т | WOB75-1ZST/P4 | KOYO |
+| 4-60053Ю4Т | WOB75-1ZST/P4 | KOYO |
+| 25-80033Ю1С7 | 633-ZZ | KOYO |
+| 25-80033ЮС7 | 633-ZZ | KOYO |
+| 80033 | 633-ZZ | KOYO |
+| 6-80034 | 634-ZZ/P6 | KOYO |
+| 6-80053 | EE1/2ZZX | KOYO |
+| 80054 | WML4010ZZX | KOYO |
+| 6-80076 | EE11/2ZZ/P6 | KOYO |
+| 80082 | WOB11XXZ | KOYO |
+| 80084 | WML4008ZZX | KOYO |
+| 80086 | OB47ZZ | KOYO |
+| 80753 | EE0ZZ | KOYO |
+| 80755 | EE1SZZ | KOYO |
+| 80756 | EE11/3ZZ | KOYO |
+| 840076 | MLF6010 | KOYO |
+| 860064 | WMLF4007ZX | KOYO |
+| 880750Ю | WOBF93ZZST | KOYO |
+| 880750 | WOBF93ZZ | KOYO |
+| 880755 | OBF84ZZ | KOYO |
+| 880756 | OBF89ZZ | KOYO |
+| 65-1000007ЮТ | ML7011 | KOYO |
+| 1000007 | ML7011 | KOYO |
+| 225-1000092ЮТ | 692STM4/P5 | KOYO |
+| 1М5-1000094 | 694M3/P5 | KOYO |
+| 5-184008/2,5Ю2Т | F68/2,5ST/P5 | KOYO |
+| 5-184008/2,5Ю2Т | F68/2,5ST/P5 | KOYO |

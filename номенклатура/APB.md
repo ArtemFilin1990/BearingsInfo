@@ -1,0 +1,453 @@
+# APB
+
+Источник: https://aprom.by/cgi-bin/nomenclature.pl?brand=APB
+
+Всего позиций: 443
+
+---
+
+| подшипник | аналог | завод |
+|---|---|---|
+|  | AXZF.1762.L.TN | APB |
+|  | AXZF.1762.TN | APB |
+|  | AXZF.2068.L.TN | APB |
+|  | AXZF.2068.TN | APB |
+|  | AXZF.2080.L.TN | APB |
+|  | AXZF.2080.TN | APB |
+|  | AXZF.2575.L.TN | APB |
+|  | AXZF.2575.TN | APB |
+|  | AXZF.2590.L.TN | APB |
+|  | AXZF.2590.TN | APB |
+|  | AXZF.30105.L.TN | APB |
+|  | AXZF.30105.TN | APB |
+|  | AXZF.3080.L.TN | APB |
+|  | AXZF.3080.TN | APB |
+|  | AXZF.35110.L.TN | APB |
+|  | AXZF.35110.TN | APB |
+|  | AXZF.3590.L.TN | APB |
+|  | AXZF.3590.TN | APB |
+|  | AXZF.40100.L.TN | APB |
+|  | AXZF.40100.TN | APB |
+|  | AXZF.40115.L.TN | APB |
+|  | AXZF.40115.TN | APB |
+|  | AXZF.45105.L.TN | APB |
+|  | AXZF.45105.TN | APB |
+|  | AXZF.45130.L.TN | APB |
+|  | AXZF.45130.TN | APB |
+|  | AXZF.50115.L.TN | APB |
+|  | AXZF.50115.TN | APB |
+|  | AXZF.50140.L.TN | APB |
+|  | AXZF.50140.TN | APB |
+|  | AXZF.55145.L.TN | APB |
+|  | AXZF.55145.TN | APB |
+|  | AXZF.60150.L.TN | APB |
+|  | AXZF.60150.TN | APB |
+|  | AXZF.65155.L.TN | APB |
+|  | AXZF.65155.TN | APB |
+|  | AXZF.70160.L.TN | APB |
+|  | AXZF.70160.TN | APB |
+|  | AXZF.75185.L.TN | APB |
+|  | AXZF.75185.TN | APB |
+|  | AXZF.90210.L.TN | APB |
+|  | AXZF.90210.TN | APB |
+|  | AXZN.1747.L.TN | APB |
+|  | AXZN.1747.TN | APB |
+|  | AXZN.2052.L.TN | APB |
+|  | AXZN.2052.TN | APB |
+|  | AXZN.2062.L.TN | APB |
+|  | AXZN.2062.TN | APB |
+|  | AXZN.2557.L.TN | APB |
+|  | AXZN.2557.TN | APB |
+|  | AXZN.2572.L.TN | APB |
+|  | AXZN.2572.TN | APB |
+|  | AXZN.3062.L.TN | APB |
+|  | AXZN.3062.TN | APB |
+|  | AXZN.3080.L.TN | APB |
+|  | AXZN.3080.TN | APB |
+|  | AXZN.3570.L.TN | APB |
+|  | AXZN.3570.TN | APB |
+|  | AXZN.3585.L.TN | APB |
+|  | AXZN.3585.TN | APB |
+|  | AXZN.4075.L.TN | APB |
+|  | AXZN.4075.TN | APB |
+|  | AXZN.4090.L.TN | APB |
+|  | AXZN.4090.TN | APB |
+|  | AXZN.45105.L.TN | APB |
+|  | AXZN.45105.TN | APB |
+|  | AXZN.4580.L.TN | APB |
+|  | AXZN.4580.TN | APB |
+|  | AXZN.50110.L.TN | APB |
+|  | AXZN.5090.L.TN | APB |
+|  | AXZN.55115.L.TN | APB |
+|  | AXZN.55115.TN | APB |
+|  | AXZN.60120.L.TN | APB |
+|  | AXZN.60120.TN | APB |
+|  | AXZN.65125.L.TN | APB |
+|  | AXZN.65125.TN | APB |
+|  | AXZN.70130.L.TN | APB |
+|  | AXZN.70130.TN | APB |
+|  | AXZN.75155.L.TN | APB |
+|  | AXZN.75155.TN | APB |
+|  | AXZN.90180.L.TN | APB |
+|  | AXZN.90180.TN | APB |
+|  | AXZF1762-X-L-TVPB | APB |
+|  | AXZF1762-X-TVPB | APB |
+|  | AXZF2068-X-L-TVPB | APB |
+|  | AXZF2068-X-TVPB | APB |
+|  | AXZF2080-X-L-TVPB | APB |
+|  | AXZF2080-X-TVPB | APB |
+|  | AXZF2575-X-L-TVPB | APB |
+|  | AXZF2575-X-TVPB | APB |
+|  | AXZF2590-X-L-TVPB | APB |
+|  | AXZF2590-X-TVPB | APB |
+|  | AXZF30105-X-L-TVPB | APB |
+|  | AXZF30105-X-TVPB | APB |
+|  | AXZF3080-X-L-TVPB | APB |
+|  | AXZF3080-X-TVPB | APB |
+|  | AXZF35110-X-L-TVPB | APB |
+|  | AXZF35110-X-TVPB | APB |
+|  | AXZF3590-X-L-TVPB | APB |
+|  | AXZF3590-X-TVPB | APB |
+|  | AXZF40100-X-L-TVPB | APB |
+|  | AXZF40100-X-TVPB | APB |
+|  | AXZF40115-X-L-TVPB | APB |
+|  | AXZF40115-X-TVPB | APB |
+|  | AXZF45105-X-L-TVPB | APB |
+|  | AXZF45105-X-TVPB | APB |
+|  | AXZF45130-X-L-TVPB | APB |
+|  | AXZF45130-X-TVPB | APB |
+|  | AXZF50115-X-L-TVPB | APB |
+|  | AXZF50115-X-TVPB | APB |
+|  | AXZF50140-X-L-TVPB | APB |
+|  | AXZF50140-X-TVPB | APB |
+|  | AXZF55145-X-L-TVPB | APB |
+|  | AXZF55145-X-TVPB | APB |
+|  | AXZF60150-X-L-TVPB | APB |
+|  | AXZF60150-X-TVPB | APB |
+|  | AXZF65155-X-L-TVPB | APB |
+|  | AXZF65155-X-TVPB | APB |
+|  | AXZF70160-X-L-TVPB | APB |
+|  | AXZF70160-X-TVPB | APB |
+|  | AXZF75185-X-L-TVPB | APB |
+|  | AXZF75185-X-TVPB | APB |
+|  | AXZF90210-X-L-TVPB | APB |
+|  | AXZF90210-X-TVPB | APB |
+|  | AXZN1747-X-L-TVPB | APB |
+|  | AXZN1747-X-TVPB | APB |
+|  | AXZN2052-X-L-TVPB | APB |
+|  | AXZN2052-X-TVPB | APB |
+|  | AXZN2062-X-L-TVPB | APB |
+|  | AXZN2062-X-TVPB | APB |
+|  | AXZN2557-X-L-TVPB | APB |
+|  | AXZN2557-X-TVPB | APB |
+|  | AXZN2572-X-L-TVPB | APB |
+|  | AXZN2572-X-TVPB | APB |
+|  | AXZN3062-X-L-TVPB | APB |
+|  | AXZN3062-X-TVPB | APB |
+|  | AXZN3080-X-L-TVPB | APB |
+|  | AXZN3080-X-TVPB | APB |
+|  | AXZN3570-X-L-TVPB | APB |
+|  | AXZN3570-X-TVPB | APB |
+|  | AXZN3585-X-L-TVPB | APB |
+|  | AXZN3585-X-TVPB | APB |
+|  | AXZN4075-X-L-TVPB | APB |
+|  | AXZN4075-X-TVPB | APB |
+|  | AXZN4090-X-L-TVPB | APB |
+|  | AXZN4090-X-TVPB | APB |
+|  | AXZN45105-X-L-TVPB | APB |
+|  | AXZN45105-X-TVPB | APB |
+|  | AXZN4580-X-L-TVPB | APB |
+|  | AXZN4580-X-TVPB | APB |
+|  | AXZN50110-X-L-TVPB | APB |
+|  | AXZN50110-X-TVPB | APB |
+|  | AXZN5090-X-L-TVPB | APB |
+|  | AXZN5090-X-TVPB | APB |
+|  | AXZN55115-X-L-TVPB | APB |
+|  | AXZN55115-X-TVPB | APB |
+|  | AXZN60120-X-L-TVPB | APB |
+|  | AXZN60120-X-TVPB | APB |
+|  | AXZN65125-X-L-TVPB | APB |
+|  | AXZN65125-X-TVPB | APB |
+|  | AXZN70130-X-L-TVPB | APB |
+|  | AXZN70130-X-TVPB | APB |
+|  | AXZN75155-X-L-TVPB | APB |
+|  | AXZN75155-X-TVPB | APB |
+|  | AXZN90180-X-L-TVPB | APB |
+|  | AXZN90180-X-TVPB | APB |
+|  | NCF18/500-VX | APB |
+|  | NCF18/530-VX | APB |
+|  | NCF18/560-VX | APB |
+|  | NCF18/600-VX | APB |
+|  | NCF18/630-VX | APB |
+|  | NCF18/670-VX | APB |
+|  | NCF18/710-VX | APB |
+|  | NCF18/750-VX | APB |
+|  | NCF1830-VX | APB |
+|  | NCF1832-VX | APB |
+|  | NCF1834-VX | APB |
+|  | NCF1836-VX | APB |
+|  | NCF1838-VX | APB |
+|  | NCF1840-VX | APB |
+|  | NCF1844-VX | APB |
+|  | NCF1848-VX | APB |
+|  | NCF1852-VX | APB |
+|  | NCF1856-VX | APB |
+|  | NCF1860-VX | APB |
+|  | NCF1864-VX | APB |
+|  | NCF1868-VX | APB |
+|  | NCF1872-VX | APB |
+|  | NCF1876-VX | APB |
+|  | NCF1880-VX | APB |
+|  | NCF1884-VX | APB |
+|  | NCF1888-VX | APB |
+|  | NCF1892-VX | APB |
+|  | NCF1896-VX | APB |
+|  | NCF2205-VX | APB |
+|  | NCF2206-VX | APB |
+|  | NCF2207-VX | APB |
+|  | NCF2208-VX | APB |
+|  | NCF2209-VX | APB |
+|  | NCF2210-VX | APB |
+|  | NCF2211-VX | APB |
+|  | NCF2212-VX | APB |
+|  | NCF2213-VX | APB |
+|  | NCF2214-VX | APB |
+|  | NCF2215-VX | APB |
+|  | NCF2216-VX | APB |
+|  | NCF2217-VX | APB |
+|  | NCF2218-VX | APB |
+|  | NCF2219-VX | APB |
+|  | NCF2220-VX | APB |
+|  | NCF2222-VX | APB |
+|  | NCF2224-VX | APB |
+|  | NCF2226-VX | APB |
+|  | NCF2228-VX | APB |
+|  | NCF2230-VX | APB |
+|  | NCF2232-VX | APB |
+|  | NCF2234-VX | APB |
+|  | NCF2236-VX | APB |
+|  | NCF2238-VX | APB |
+|  | NCF2240-VX | APB |
+|  | NCF2244-VX. | APB |
+|  | NCF29/500-VX | APB |
+|  | NCF29/530-VX | APB |
+|  | NCF29/560-VX | APB |
+|  | NCF29/600-VX | APB |
+|  | NCF29/630-VX | APB |
+|  | NCF29/670-VX | APB |
+|  | NCF29/710-VX | APB |
+|  | NCF29/750-VX | APB |
+|  | NCF2912-VX | APB |
+|  | NCF2913-VX | APB |
+|  | NCF2914-VX | APB |
+|  | NCF2915-VX | APB |
+|  | NCF2916-VX | APB |
+|  | NCF2917-VX | APB |
+|  | NCF2918-VX | APB |
+|  | NCF2919-VX | APB |
+|  | NCF2920-VX | APB |
+|  | NCF2922-VX | APB |
+|  | NCF2924-VX | APB |
+|  | NCF2926-VX | APB |
+|  | NCF2928-VX | APB |
+|  | NCF2930-VX | APB |
+|  | NCF2932-VX | APB |
+|  | NCF2934-VX | APB |
+|  | NCF2936-VX | APB |
+|  | NCF2938-VX | APB |
+|  | NCF2940-VX | APB |
+|  | NCF2944-VX | APB |
+|  | NCF2948-VX | APB |
+|  | NCF2952-VX | APB |
+|  | NCF2956-VX | APB |
+|  | NCF2960-VX | APB |
+|  | NCF2964-VX | APB |
+|  | NCF2968-VX | APB |
+|  | NCF2972-VX | APB |
+|  | NCF2976-VX | APB |
+|  | NCF2980-VX | APB |
+|  | NCF2984-VX | APB |
+|  | NCF2988-VX | APB |
+|  | NCF2992-VX | APB |
+|  | NCF2996-VX | APB |
+|  | NCF30/500-VX | APB |
+|  | NCF30/530-VX | APB |
+|  | NCF30/560-VX | APB |
+|  | NCF3005-VX | APB |
+|  | NCF3006-VX | APB |
+|  | NCF3007-VX | APB |
+|  | NCF3008-VX | APB |
+|  | NCF3009-VX | APB |
+|  | NCF3010-VX | APB |
+|  | NCF3011-VX | APB |
+|  | NCF3012-VX | APB |
+|  | NCF3013-VX | APB |
+|  | NCF3014-VX | APB |
+|  | NCF3015-VX | APB |
+|  | NCF3016-VX | APB |
+|  | NCF3017-VX | APB |
+|  | NCF3018-VX | APB |
+|  | NCF3020-VX | APB |
+|  | NCF3022-VX | APB |
+|  | NCF3024-VX | APB |
+|  | NCF3026-VX | APB |
+|  | NCF3028-VX | APB |
+|  | NCF3030-VX | APB |
+|  | NCF3032-VX | APB |
+|  | NCF3034-VX | APB |
+|  | NCF3036-VX | APB |
+|  | NCF3038-VX | APB |
+|  | NCF3040-VX | APB |
+|  | NCF3044-VX | APB |
+|  | NCF3048-VX | APB |
+|  | NCF3052-VX | APB |
+|  | NCF3056-VX | APB |
+|  | NCF3060-VX | APB |
+|  | NCF3064-VX | APB |
+|  | NCF3068-VX | APB |
+|  | NCF3072-VX | APB |
+|  | NCF3076-VX | APB |
+|  | NCF3080-VX | APB |
+|  | NCF3084-VX | APB |
+|  | NCF3088-VX | APB |
+|  | NCF3092-VX | APB |
+|  | NCF3096-VX | APB |
+|  | NJG2305-VX-H | APB |
+|  | NJG2306-VX-H | APB |
+|  | NJG2307-VX-H | APB |
+|  | NJG2308-VX-H | APB |
+|  | NJG2309-VX-H | APB |
+|  | NJG2310-VX-H | APB |
+|  | NJG2311-VX-H | APB |
+|  | NJG2312-VX-H | APB |
+|  | NJG2313-VX-H | APB |
+|  | NJG2314-VX-H | APB |
+|  | NJG2315-VX-H | APB |
+|  | NJG2316-VX-H | APB |
+|  | NJG2317-VX-H | APB |
+|  | NJG2318-VX-H | APB |
+|  | NJG2320-VX-H | APB |
+|  | NJG2322-VX-H | APB |
+|  | NJG2324-VX-H | APB |
+|  | NJG2326-VX-H | APB |
+|  | NJG2328-VX-H | APB |
+|  | NJG2330-VX-H | APB |
+|  | NJG2332-VX-H | APB |
+|  | NJG2334-VX-H | APB |
+|  | NJG2336-VX-H | APB |
+|  | NJG2338-VX-H | APB |
+|  | NJG2340-VX-H | APB |
+|  | NJG2344-VX-H | APB |
+|  | NJG2348-VX-H | APB |
+|  | NJG2352-VX-H | APB |
+|  | NNF130-2LS-V | APB |
+|  | NNF140-2LS-V | APB |
+|  | NNF150-2LS-V | APB |
+|  | NNF160-2LS-V | APB |
+|  | NNF170-2LS-V | APB |
+|  | NNF180-2LS-V | APB |
+|  | NNF190-2LS-V | APB |
+|  | NNF200-2LS-V | APB |
+|  | NNF220-2LS-V | APB |
+|  | NNF240-2LS-V | APB |
+|  | NNF260-2LS-V | APB |
+|  | NNF300-2LS-V | APB |
+|  | NNF5005-2LS-V | APB |
+|  | NNF5006-2LS-V | APB |
+|  | NNF5007-2LS-V | APB |
+|  | NNF5008-2LS-V | APB |
+|  | NNF5009-2LS-V | APB |
+|  | NNF5010-2LS-V | APB |
+|  | NNF5011-2LS-V | APB |
+|  | NNF5012-2LS-V | APB |
+|  | NNF5013-2LS-V | APB |
+|  | NNF5014-2LS-V | APB |
+|  | NNF5015-2LS-V | APB |
+|  | NNF5016-2LS-V | APB |
+|  | NNF5017-2LS-V | APB |
+|  | NNF5018-2LS-V | APB |
+|  | NNF5019-2LS-V | APB |
+|  | NNF5020-2LS-V | APB |
+|  | NNF5022-2LS-V | APB |
+|  | NNF5024-2LS-V | APB |
+|  | NNF5026-2LS-V | APB |
+|  | NNF5028-2LS-V | APB |
+|  | NNF5030-2LS-V | APB |
+|  | NNF5032-2LS-V | APB |
+|  | NNF5034-2LS-V | APB |
+|  | NNF5036-2LS-V | APB |
+|  | NNF5038-2LS-V | APB |
+|  | NNF5040-2LS-V | APB |
+|  | NNF5044-2LS-V | APB |
+|  | NNF5048-2LS-V | APB |
+|  | NNF5052-2LS-V | APB |
+|  | NNF5056-2LS-V | APB |
+|  | NNF5060-2LS-V | APB |
+|  | AXSF 100200.2Z | APB |
+|  | AXSF 1762.2RS | APB |
+|  | AXSF 1762.2RS.2AP | APB |
+|  | AXSF 1762.2Z | APB |
+|  | AXSF 2068.2RS | APB |
+|  | AXSF 2068.2RS.2AP | APB |
+|  | AXSF 2068.2Z | APB |
+|  | AXSF 2575.2RS | APB |
+|  | AXSF 2575.2RS.2AP | APB |
+|  | AXSF 2575.2Z | APB |
+|  | AXSF 3080.2RS | APB |
+|  | AXSF 3080.2RS.2AP | APB |
+|  | AXSF 3080.2Z | APB |
+|  | AXSF 3590.2RS | APB |
+|  | AXSF 3590.2RS.2AP | APB |
+|  | AXSF 3590.2Z | APB |
+|  | AXSF 40100.2RS | APB |
+|  | AXSF 40100.2RS.2AP | APB |
+|  | AXSF 40100.2Z | APB |
+|  | AXSF 50115.2RS | APB |
+|  | AXSF 50115.2RS.2AP | APB |
+|  | AXSF 50115.2Z | APB |
+|  | AXSF 60145.2Z | APB |
+|  | AXSF 70155.2Z | APB |
+|  | AXSF 80165.2Z | APB |
+|  | AXSF 90190.2Z | APB |
+|  | AXSN 100160.2Z | APB |
+|  | AXSN 1747.2RS | APB |
+|  | AXSN 1747.2RS.2AP | APB |
+|  | AXSN 1747.2Z | APB |
+|  | AXSN 2052.2RS | APB |
+|  | AXSN 2052.2RS.2AP | APB |
+|  | AXSN 2052.2Z | APB |
+|  | AXSN 2557.2RS | APB |
+|  | AXSN 2557.2RS.2AP | APB |
+|  | AXSN 2557.2Z | APB |
+|  | AXSN 3062.2RS | APB |
+|  | AXSN 3062.2RS.2AP | APB |
+|  | AXSN 3062.2Z | APB |
+|  | AXSN 3572.2RS | APB |
+|  | AXSN 3572.2RS.2AP | APB |
+|  | AXSN 3572.2Z | APB |
+|  | AXSN 4075.2RS | APB |
+|  | AXSN 4075.2RS.2AP | APB |
+|  | AXSN 4075.2Z | APB |
+|  | AXSN 5090.2RS | APB |
+|  | AXSN 5090.2RS.2AP | APB |
+|  | AXSN 5090.2Z | APB |
+|  | AXSN 60110.2Z | APB |
+|  | AXSN 70120.2Z | APB |
+|  | AXSN 80130.2Z | APB |
+|  | AXSN 90150.2Z | APB |
+|  | AXRY 100 | APB |
+|  | AXRY 1030 | APB |
+|  | AXRY 120 | APB |
+|  | AXRY 150 | APB |
+|  | AXRY 180 | APB |
+|  | AXRY 200 | APB |
+|  | AXRY 260 | APB |
+|  | AXRY 325 | APB |
+|  | AXRY 395 | APB |
+|  | AXRY 460 | APB |
+|  | AXRY 50 | APB |
+|  | AXRY 580 | APB |
+|  | AXRY 650 | APB |
+|  | AXRY 80* | APB |
+|  | AXRY 850 | APB |
+|  | AXRY 950 | APB |

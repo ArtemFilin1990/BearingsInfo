@@ -1,0 +1,435 @@
+# AKE
+
+Источник: https://aprom.by/cgi-bin/nomenclature.pl?brand=AKE
+
+Всего позиций: 425
+
+---
+
+| подшипник | аналог | завод |
+|---|---|---|
+|  | 3207C P69S0 | AKE |
+|  | PLC 14-22 | AKE |
+|  | 7200BETNG | AKE |
+|  | 7201BETNG | AKE |
+|  | 7202 TPFK 108 | AKE |
+|  | 7202 TPFK 109 | AKE |
+|  | 7202AA | AKE |
+|  | 7202B | AKE |
+|  | 7204AA | AKE |
+|  | 7204B | AKE |
+|  | 7204BTNG | AKE |
+|  | 7211AA | AKE |
+|  | 7212AA | AKE |
+|  | 7302BETNG | AKE |
+|  | 7303AA | AKE |
+|  | 7303B | AKE |
+|  | 7303BTNG | AKE |
+|  | 7304LA TPFK 118 | AKE |
+|  | 7305B | AKE |
+|  | 7305BTNG | AKE |
+|  | 7305LA TPFK 118 | AKE |
+|  | 7305X2LA TPFK 118 | AKE |
+|  | 7306 TPFK-11-3 | AKE |
+|  | 7306LA TPFK 118 | AKE |
+|  | 7307B | AKE |
+|  | 7308LA TPFK 118 | AKE |
+|  | 7309 TPFK 169 | AKE |
+|  | 7309 TPFK-11-3 | AKE |
+|  | 7309B | AKE |
+|  | 7310 TPFK 169 | AKE |
+|  | 7311B | AKE |
+|  | A7000 TPFK 273D | AKE |
+|  | A7000 TPFK 273T | AKE |
+|  | A7202 TPFK 415 | AKE |
+|  | A7203 TPFK 374 | AKE |
+|  | A727CBTA | AKE |
+|  | A729CBTA | AKE |
+|  | A7304CEMA P4C8OM TPF 82 | AKE |
+|  | A7305CEMA P4C80M TPF 82 | AKE |
+|  | A7306CEMA P4C80M TPF 82 | AKE |
+|  | A7308CEMA P4C80M TPF 82 | AKE |
+|  | AC7201ATA | AKE |
+|  | B7002ATA | AKE |
+|  | B7002CTA | AKE |
+|  | B7003ATA | AKE |
+|  | B7003CTA | AKE |
+|  | B7004ATA | AKE |
+|  | B7004CTA | AKE |
+|  | B7005ATA | AKE |
+|  | B7005CTA | AKE |
+|  | B7006ATA | AKE |
+|  | B7006CTA | AKE |
+|  | B7007AATB | AKE |
+|  | B7007ATA | AKE |
+|  | B7007CTA | AKE |
+|  | B7008AATB | AKE |
+|  | B7008ATA | AKE |
+|  | B7008CTA | AKE |
+|  | B7009ATA | AKE |
+|  | B7009CTA | AKE |
+|  | B7010AATB | AKE |
+|  | B7010ATA | AKE |
+|  | B7010CTA | AKE |
+|  | B7011AATB | AKE |
+|  | B7012ATA | AKE |
+|  | B7012CTA | AKE |
+|  | B7014AATB | AKE |
+|  | B7014ATA | AKE |
+|  | B7014CTA | AKE |
+|  | B7016AATB | AKE |
+|  | B7016ATA | AKE |
+|  | B7016CATB | AKE |
+|  | B7016CTA | AKE |
+|  | B7017AAMB | AKE |
+|  | B7017AATA | AKE |
+|  | B7017ATA | AKE |
+|  | B7017CTA | AKE |
+|  | B7018AATB | AKE |
+|  | B7018ATA | AKE |
+|  | B7018CATB | AKE |
+|  | B7018CTA | AKE |
+|  | B7020ATA | AKE |
+|  | B7020CTA | AKE |
+|  | B7024AATB | AKE |
+|  | B7024ATA | AKE |
+|  | B7024CATB | AKE |
+|  | B7024CTA | AKE |
+|  | B70826AAMB | AKE |
+|  | B71822ATA | AKE |
+|  | B71822CTA | AKE |
+|  | B71909ATA | AKE |
+|  | B71909CTA | AKE |
+|  | B72001CTA | AKE |
+|  | B7200ATA | AKE |
+|  | B7200CATB | AKE |
+|  | B7200CBTB | AKE |
+|  | B7200CTA | AKE |
+|  | B7201ATA | AKE |
+|  | B7201CATB | AKE |
+|  | B7201CBTB | AKE |
+|  | B7202ATA | AKE |
+|  | B7202CATB | AKE |
+|  | B7202CBTB | AKE |
+|  | B7202CTA | AKE |
+|  | B7203ATA | AKE |
+|  | B7203CATB | AKE |
+|  | B7203CBTB | AKE |
+|  | B7203CTA | AKE |
+|  | B7204AATB | AKE |
+|  | B7204ATA | AKE |
+|  | B7204CATB | AKE |
+|  | B7204CBTB | AKE |
+|  | B7204CTA | AKE |
+|  | B7205AATB | AKE |
+|  | B7205ATA | AKE |
+|  | B7205CATB | AKE |
+|  | B7205CBTB | AKE |
+|  | B7205CTA | AKE |
+|  | B7206AATB | AKE |
+|  | B7206ATA | AKE |
+|  | B7206CATB | AKE |
+|  | B7206CBTB | AKE |
+|  | B7206CTA | AKE |
+|  | B7207AATB | AKE |
+|  | B7207ATA | AKE |
+|  | B7207CAMB | AKE |
+|  | B7207CATB | AKE |
+|  | B7207CBTB | AKE |
+|  | B7207CTA | AKE |
+|  | B7208ATA | AKE |
+|  | B7208CATB | AKE |
+|  | B7208CBTB | AKE |
+|  | B7208CTA | AKE |
+|  | B7209ATA | AKE |
+|  | B7209CATB | AKE |
+|  | B7209CBTB | AKE |
+|  | B7209CTA | AKE |
+|  | B7210AATB | AKE |
+|  | B7210ATA | AKE |
+|  | B7210CATB | AKE |
+|  | B7210CBTB | AKE |
+|  | B7210CTA | AKE |
+|  | B7211ATA | AKE |
+|  | B7211CATB | AKE |
+|  | B7211CBTB | AKE |
+|  | B7211CTA | AKE |
+|  | B7212AATB | AKE |
+|  | B7212ATA | AKE |
+|  | B7212CATB | AKE |
+|  | B7212CBTB | AKE |
+|  | B7212CTA | AKE |
+|  | B7213ATA | AKE |
+|  | B7213CATB | AKE |
+|  | B7213CTA | AKE |
+|  | B7214ATA | AKE |
+|  | B7214CATB | AKE |
+|  | B7214CBTB | AKE |
+|  | B7214CTA | AKE |
+|  | B7215AAMB | AKE |
+|  | B7215AATB | AKE |
+|  | B7215ATA | AKE |
+|  | B7215CATB | AKE |
+|  | B7215CTA | AKE |
+|  | B7216AATB | AKE |
+|  | B7216ATA | AKE |
+|  | B7216CATB | AKE |
+|  | B7216CTA | AKE |
+|  | B7217AATB | AKE |
+|  | B7217ATA | AKE |
+|  | B7217CATB | AKE |
+|  | B7217CTA | AKE |
+|  | B7220AATB | AKE |
+|  | B7220ATA | AKE |
+|  | B7220CTA | AKE |
+|  | C 7202V TPFK 109 | AKE |
+|  | CB7002ATA | AKE |
+|  | CB7002CTA | AKE |
+|  | CB7003ATA | AKE |
+|  | CB7003CTA | AKE |
+|  | CB7004ATA | AKE |
+|  | CB7004CTA | AKE |
+|  | CB7005ATA | AKE |
+|  | CB7005CTA | AKE |
+|  | CB7006ATA | AKE |
+|  | CB7006CTA | AKE |
+|  | CB7007ATA | AKE |
+|  | CB7007CTA | AKE |
+|  | CB7008ATA | AKE |
+|  | CB7008CTA | AKE |
+|  | CB7009ATA | AKE |
+|  | CB7009CTA | AKE |
+|  | CB7010ATA | AKE |
+|  | CB7010CTA | AKE |
+|  | CB7012ATA | AKE |
+|  | CB7012CTA | AKE |
+|  | CB7014ATA | AKE |
+|  | CB7014CTA | AKE |
+|  | CB7016ATA | AKE |
+|  | CB7016CTA | AKE |
+|  | CB7017ATA | AKE |
+|  | CB7017CTA | AKE |
+|  | CB7018ATA | AKE |
+|  | CB7018CTA | AKE |
+|  | CB7020ATA | AKE |
+|  | CB7020CTA | AKE |
+|  | CB7024ATA | AKE |
+|  | CB7024CTA | AKE |
+|  | CB71909ATA | AKE |
+|  | CB71909CTA | AKE |
+|  | CB7200ATA | AKE |
+|  | CB7200CTA | AKE |
+|  | CB7220ATA | AKE |
+|  | CB7220CTA | AKE |
+|  | CX B7000V TPFK 273 | AKE |
+|  | X A7202 TPFK 415 | AKE |
+|  | 12000 | AKE |
+|  | N1004MAP P439NA TPF 327 | AKE |
+|  | N1007 TPFK 332 | AKE |
+|  | N1007MAPR P549NAS1 TPF 331 | AKE |
+|  | N1009 TPFK 373 | AKE |
+|  | N1015 TPFK 312 | AKE |
+|  | N1015 TPFK 441 | AKE |
+|  | N1015MAP P639NA TPF 311 | AKE |
+|  | N1022 TPFK 374 | AKE |
+|  | N1919BMAPR P529NAS1 TPF 422 | AKE |
+|  | N203 TPFK 326 | AKE |
+|  | N203MAP P539NAS0 TPF 325 | AKE |
+|  | N205 TPFK 335 | AKE |
+|  | N205MAPR P549NAS2 TPF 334 | AKE |
+|  | N206 TPFK 320 | AKE |
+|  | N206 TPFK 441 | AKE |
+|  | N206EMAP P69NAS0 TPF 319 | AKE |
+|  | N206EX11MAP P69NAS0 TPF 319 | AKE |
+|  | N206EX1MAP P69NAS0 TPF 319 | AKE |
+|  | N206X1 TPFK 320 | AKE |
+|  | N206X11 TPF 320 | AKE |
+|  | N309 TPFK 169 | AKE |
+|  | N310 TPFK 169 | AKE |
+|  | N312 TPFK 169 | AKE |
+|  | NJ1005MAP P59NA TPF 327 | AKE |
+|  | NJ1006 TPFK 376 | AKE |
+|  | NJ202 TPFK 340 | AKE |
+|  | NJ203 TPFK 340 | AKE |
+|  | NJ204 TPFK 376 | AKE |
+|  | NJ205 TPFK 376 | AKE |
+|  | NU1014A0MAPR P559S0 | AKE |
+|  | NU202CMAP P429NAS1 TPF 340 | AKE |
+|  | NU202ETNG C3NA | AKE |
+|  | NU206CMAP P529NAS1 TPF 340 | AKE |
+|  | NU207 TPFK 340 | AKE |
+|  | PLC 410-37 | AKE |
+|  | PLC 42-7 | AKE |
+|  | PLC 43-15 | AKE |
+|  | PLC 43-19 | AKE |
+|  | PLC 44-3 | AKE |
+|  | PLC 44-4 | AKE |
+|  | PLC 46-11 | AKE |
+|  | PLC 46-12 | AKE |
+|  | PLC 46-8-2 | AKE |
+|  | PLC 46-8-4 | AKE |
+|  | PLC 47-7 | AKE |
+|  | PLC 47-9 | AKE |
+|  | PLC 48-14 | AKE |
+|  | R N203 TPFK 376 | AKE |
+|  | R NU1008MA P59S0 | AKE |
+|  | R NU203 TPFK 375 | AKE |
+|  | R NU204 TPFK 375 | AKE |
+|  | 16001CMA P548S1 TPF 340 | AKE |
+|  | 16002 P68 | AKE |
+|  | 16002 P68 TPF 337 | AKE |
+|  | 16002A P59 TPF 338 | AKE |
+|  | 16002CMA P548S1 TPF 340 | AKE |
+|  | 16003 TPFK 375 | AKE |
+|  | 16005 P68 | AKE |
+|  | 16005 P68 TPF 337 | AKE |
+|  | 16005 TPFK 375 | AKE |
+|  | 16005A P59 TPF 338 | AKE |
+|  | 16006 TPFK S-009 | AKE |
+|  | 16006CMB P539S1 TPF 340 | AKE |
+|  | 16007 TPFK 387 | AKE |
+|  | 16007CMA P639S1 TPF 340 | AKE |
+|  | 16008CMA P639S1 TPF 340 | AKE |
+|  | 16010CMA P639S0 TPF 340 | AKE |
+|  | 6000 TPFK 365 | AKE |
+|  | 6000 ZR P59S0 | AKE |
+|  | 6001 P68 | AKE |
+|  | 6001 P68 TPF 337 | AKE |
+|  | 6001 TPFK 116 | AKE |
+|  | 6001A P59 TPF 338 | AKE |
+|  | 6002 P68 | AKE |
+|  | 6002 P68 TPF 337 | AKE |
+|  | 6002A P59 TPF 338 | AKE |
+|  | 6004 P68 | AKE |
+|  | 6004 TPFK 375 | AKE |
+|  | 6004AMA P439 TPF 338 | AKE |
+|  | 6004CMA P439S1 TPF 340 | AKE |
+|  | 6004MA P539 TPF 337 | AKE |
+|  | 6004MA P638 | AKE |
+|  | 6005 P59S0 | AKE |
+|  | 6005 P68 | AKE |
+|  | 6005 P68 TPF 337 | AKE |
+|  | 6005 TPFK 375 | AKE |
+|  | 6005A P59 TPF 338 | AKE |
+|  | 6005AMA P59 TPF 338 | AKE |
+|  | 6005MA P539 TPF 337 | AKE |
+|  | 6005MA P638 | AKE |
+|  | 6005MA P68 | AKE |
+|  | 6005MA P68 TPF 337 | AKE |
+|  | 6006NXMB P68 | AKE |
+|  | 607 P4 | AKE |
+|  | 607 P5 | AKE |
+|  | 608 P4 | AKE |
+|  | 608 P5 | AKE |
+|  | 608 TPFK 150 | AKE |
+|  | 608 TPFK S-009 | AKE |
+|  | 609 P4 | AKE |
+|  | 609 P5 | AKE |
+|  | 619/2 | AKE |
+|  | 619/5 P4 X | AKE |
+|  | 619/5 P5 | AKE |
+|  | 619/5 P57 TPF 77 | AKE |
+|  | 619/6 P4 | AKE |
+|  | 619/6 P5 | AKE |
+|  | 61904 TPFK 415 | AKE |
+|  | 6200-2Z P539 | AKE |
+|  | 6200CMA P49S0 TPF 340 | AKE |
+|  | 6201 P68 | AKE |
+|  | 6201 P68 TPF 337 | AKE |
+|  | 6201-2Z TPFK 399 | AKE |
+|  | 6201A P59 TPF 338 | AKE |
+|  | 6202CMA P538S1 TPF 340 | AKE |
+|  | 6203CMA P449S1 TPF 340 | AKE |
+|  | 6203MA P638 | AKE |
+|  | 6204 P59S0 | AKE |
+|  | 6204 TPFK 387 | AKE |
+|  | 6204-2RS2 P439S0TWH | AKE |
+|  | 6204-2Z TPFK 399 | AKE |
+|  | 6204CMA P548S1 TPF 340 | AKE |
+|  | 6205 P59S0 | AKE |
+|  | 6205-2RS P639 | AKE |
+|  | 6206-2RS P59S0TWB | AKE |
+|  | 6206-2Z TPFK 399 | AKE |
+|  | 6206CMA P548S1 TPF 340 | AKE |
+|  | 6207 TPFK 340 | AKE |
+|  | 6207-2Z TPFK 399 | AKE |
+|  | 6211MA P59 | AKE |
+|  | 6213MA P639 | AKE |
+|  | 62204-2RS2TA P539S0TWH | AKE |
+|  | 623 P4 | AKE |
+|  | 623 P5 | AKE |
+|  | 623Y P57 TPF 77 | AKE |
+|  | 623Y P57R10-13 TPF 77 | AKE |
+|  | 623Y P57R13-17 TPF 77 | AKE |
+|  | 624 P4 | AKE |
+|  | 624 P5 | AKE |
+|  | 625 P4 | AKE |
+|  | 625 P5 | AKE |
+|  | 625 TPFK 117 | AKE |
+|  | 626 P4 | AKE |
+|  | 626 P5 | AKE |
+|  | 626 P5 TPX TPF 84 | AKE |
+|  | 627 P4 | AKE |
+|  | 627 P5 | AKE |
+|  | 629 P4 | AKE |
+|  | 629 P5 | AKE |
+|  | 629 P5 TPF 84 | AKE |
+|  | 6303MA P43S0 TPF 82 | AKE |
+|  | 6304CMA P559S1 TPF 340 | AKE |
+|  | 6304LA TPFK 118 | AKE |
+|  | 6304MA P43 TPF 82 | AKE |
+|  | 6304MA P638 | AKE |
+|  | 6305 TPFK 340 | AKE |
+|  | 6305CMA P548S1 TPF 340 | AKE |
+|  | 6305LA TPFK 118 | AKE |
+|  | 6305MA P43 TPF 82 | AKE |
+|  | 6306LA TPFK 118 | AKE |
+|  | 6306MA P43 TPF 82 | AKE |
+|  | 6308-2Z TPFK 399 | AKE |
+|  | 6308LA TPFK 118 | AKE |
+|  | 6308MA P43 TPF 82 | AKE |
+|  | 6309-2Z TPFK 399 | AKE |
+|  | 6310MA P44S0 TPF 82 | AKE |
+|  | 63203-2RS2 P439S0TWH | AKE |
+|  | 63204-2RS2 P439S0TWH | AKE |
+|  | LGVZ10076 | AKE |
+|  | LGVZ12090 | AKE |
+|  | LGVZ160120 | AKE |
+|  | LGVZ3526 | AKE |
+|  | LGVZ5037 | AKE |
+|  | LGVZ6045 | AKE |
+|  | LGVZ8060 | AKE |
+|  | PLC 01-45 | AKE |
+|  | PLC 02-23 | AKE |
+|  | PLC 02-24 | AKE |
+|  | PLC 02-35 | AKE |
+|  | PLC 02-39 | AKE |
+|  | PLC 02-5 | AKE |
+|  | PLC 03-45 | AKE |
+|  | PLC 03-53-1 | AKE |
+|  | PLC 03-53-2 | AKE |
+|  | PLC 03-78 | AKE |
+|  | PLC 03-79 | AKE |
+|  | PLC 03-81 | AKE |
+|  | PLC 03-81-1 | AKE |
+|  | PLC 03-88 | AKE |
+|  | PLC 04-3 | AKE |
+|  | PLC 07-10 | AKE |
+|  | PLC 07-9 | AKE |
+|  | PLC 08-7-2 | AKE |
+|  | PLC 09-10 | AKE |
+|  | PLC 09-11 | AKE |
+|  | PLC 09-6 | AKE |
+|  | PLC 09-9 | AKE |
+|  | PLC 56-2 | AKE |
+|  | QJ202 TPFK 323 | AKE |
+|  | QJ203 TPFK 374 | AKE |
+|  | QJ206 TPFK 329 | AKE |
+|  | QJ211 TPFK 374 | AKE |
+|  | QJ219N2MAC3 | AKE |
+|  | QJ220N2MAC3 | AKE |
+|  | QJ306 TPFK-11-3 | AKE |
+|  | QJ309 TPFK-11-3 | AKE |
+|  | X 619/6 P57 TPF 77 | AKE |
+|  | X 623Y P57 TPF 77 | AKE |
+|  | X 626 P5 TPX TPF 84 | AKE |

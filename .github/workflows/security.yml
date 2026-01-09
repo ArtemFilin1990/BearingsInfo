@@ -37,7 +37,7 @@ jobs:
 
       - name: Upload pip-audit results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pip-audit-results
           path: pip-audit.json
@@ -109,7 +109,7 @@ jobs:
           pip-licenses --format=json --output-file=sbom.json
 
       - name: Upload SBOM
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: sbom
           path: sbom.json

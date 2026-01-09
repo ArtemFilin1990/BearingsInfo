@@ -3,7 +3,6 @@
 import csv
 from pathlib import Path
 import pytest
-import tempfile
 from scripts.deduplicate_nomenclature import deduplicate_nomenclature
 
 

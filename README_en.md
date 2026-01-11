@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](docs/bearings/selection_guide.md)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
-![Last Update](https://img.shields.io/badge/updated-01.01.2026-blue.svg)
+![Last Update](https://img.shields.io/badge/updated-10.01.2026-blue.svg)
 ![Articles](https://img.shields.io/badge/articles-122-green.svg)
 ![Catalogs](https://img.shields.io/badge/catalogs-150+-orange.svg)
 
@@ -195,10 +195,10 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 ## 📌 Version and Updates
 
 **Current version:** 1.1.0  
-**Last update:** January 1, 2026  
+**Last update:** January 10, 2026  
 **Articles:** 122  
 **Catalogs:** 150+  
-**Images:** 687
+**Images:** 688
 
 ---
 

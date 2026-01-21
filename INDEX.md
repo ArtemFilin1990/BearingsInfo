@@ -43,6 +43,10 @@
 - Краткая памятка: [`docs/QUICK_REFERENCE.md`](docs/QUICK_REFERENCE.md) - Быстрый старт
 - Примеры: [`docs/examples/`](docs/examples/) - Образцы готовых статей
 
+### Специализированные промпты
+- Энциклопедический ассистент: [`PROMPT_ENCYCLOPEDIA_ASSISTANT.md`](PROMPT_ENCYCLOPEDIA_ASSISTANT.md) - ГОСТ ⇄ ISO справочник с обязательными таблицами соответствий
+- Google Ads: [`PROMPT_GOOGLE_ADS_COPYWRITER.md`](PROMPT_GOOGLE_ADS_COPYWRITER.md) - Создание рекламных заголовков для Google Ads
+
 ### Стандарты и спецификации
 - ГОСТ: [`docs/gost/`](docs/gost/) - Стандарты ГОСТ
 - ISO: [`docs/iso/`](docs/iso/) - Стандарты ISO

@@ -83,3 +83,12 @@ This report tracks incremental cleanup batches. Each batch records scope, action
 - MOVE: `gost/bearings/suffixes.md` → `02_standards_marking/02_14_gost_suffixes_prefixes.md` (Standards & Marking content population)
 - MOVE: `gost/bearings/dimensions.md` → `02_standards_marking/02_15_gost_dimensions.md` (Standards & Marking content population)
 - MOVE: `03_ГОСТ_подшипники_и_нормативка/ГОСТ/ГОСТ подшипники - стандарты.md` → `02_standards_marking/02_16_gost_standards_list.md` (Standards & Marking content population)
+
+### Batch 3 — Standards & Marking Content Population (Full)
+
+old_path | action | new_path | reason
+--- | --- | --- | ---
+gost/bearings/marking.md | MOVE | 02_standards_marking/02_13_gost_marking.md | Section 02 — standards/marking
+gost/bearings/suffixes.md | MOVE | 02_standards_marking/02_14_gost_suffixes_prefixes.md | Section 02 — standards/marking
+gost/bearings/dimensions.md | MOVE | 02_standards_marking/02_15_gost_dimensions.md | Section 02 — standards/marking
+03_ГОСТ_подшипники_и_нормативка/ГОСТ/ГОСТ подшипники - стандарты.md | MOVE | 02_standards_marking/02_16_gost_standards_list.md | Section 02 — standards/marking

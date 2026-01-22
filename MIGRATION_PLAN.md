@@ -42,3 +42,8 @@
 - Section: `/02_standards_marking/`
 - Files moved: 4
 - Notes: Added ГОСТ marking, suffixes/prefixes, dimensions, and standards list references.
+
+### Batch 3 — Content Migration by Topic (Standards & Marking, Full) ✅ Completed
+- Section: `/02_standards_marking/`
+- Files moved: 16
+- Notes: Consolidated standards, marking, suffix/prefix, dimensions, and analogue references.

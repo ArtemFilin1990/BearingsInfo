@@ -37,3 +37,8 @@
 - README navigation still works.
 - `CLEANUP_REPORT.md` updated with batch summary.
 - No bulk moves or large diffs.
+
+### Batch 4 — Content Migration by Topic (Standards & Marking Supplement) ✅ Completed
+- Section: `/02_standards_marking/`
+- Files moved: 4
+- Notes: Added ГОСТ marking, suffixes/prefixes, dimensions, and standards list references.

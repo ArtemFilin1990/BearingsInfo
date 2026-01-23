@@ -3,10 +3,9 @@
 Построение поискового индекса и вычисление схожести документов
 """
 
-import os
 import json
+import os
 import re
-from typing import Dict
 
 
 class SearchIndexBuilder:
@@ -17,7 +16,7 @@ class SearchIndexBuilder:
         self.documents = {}
         self.similarity_matrix = {}
 
-    def extract_documents(self) -> Dict:
+    def extract_documents(self) -> dict:
         """Извлечь все документы из репозитория"""
         print("Извлечение документов...")
 
@@ -34,7 +33,7 @@ class SearchIndexBuilder:
                 if file.endswith(".md") and file not in ["README.md"]:
                     file_path = os.path.join(root, file)
                     try:
-                        with open(file_path, "r", encoding="utf-8") as f:
+                        with open(file_path, encoding="utf-8") as f:
                             content = f.read()
 
                             # Извлекаем заголовок
@@ -69,7 +68,6 @@ class SearchIndexBuilder:
         try:
             from sklearn.feature_extraction.text import TfidfVectorizer
             from sklearn.metrics.pairwise import cosine_similarity
-            import numpy as np
         except ImportError:
             print("Для вычисления схожести требуются библиотеки scikit-learn и numpy")
             print("Установите их: pip install scikit-learn numpy")

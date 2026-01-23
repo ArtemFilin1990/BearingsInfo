@@ -1,17 +1,11 @@
 """Test dimension conflict detection."""
 
 import csv
-from pathlib import Path
-
-import pytest
 
 from app.catalog import load_catalog
 from app.processor import process_file
 from app.registry import Registry
 from app.report import ReportWriter
-
-# Import fixtures
-from tests.test_pipeline_conftest import temp_dir, test_config
 
 
 def test_dimension_conflicts(temp_dir, test_config):

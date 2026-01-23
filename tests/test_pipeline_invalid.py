@@ -1,15 +1,8 @@
 """Test invalid file handling."""
 
-from pathlib import Path
-
-import pytest
-
 from app.processor import process_file
 from app.registry import Registry
 from app.report import ReportWriter
-
-# Import fixtures
-from tests.test_pipeline_conftest import temp_dir, test_config
 
 
 def test_invalid_file_to_error(temp_dir, test_config):
@@ -101,7 +94,7 @@ def test_oversized_file_to_error(temp_dir, test_config):
         writer.writerow(["data"])
         # Write many rows to make file large
         for i in range(100000):
-            writer.writerow([f"a" * 100])
+            writer.writerow(["a" * 100])
 
     # Temporarily set a lower limit for testing
     original_limit = test_config.limits.get("max_file_size_mb")

@@ -1,17 +1,11 @@
 """Test XLSX file processing."""
 
-from pathlib import Path
-
 import pandas as pd
-import pytest
 
 from app.catalog import load_catalog
 from app.processor import process_file
 from app.registry import Registry
 from app.report import ReportWriter
-
-# Import fixtures
-from tests.test_pipeline_conftest import temp_dir, test_config
 
 
 def test_xlsx_processing(temp_dir, test_config):

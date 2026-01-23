@@ -1,6 +1,11 @@
 """
-<<<<<<< HEAD
-Логика автодополнения и поиска
+Бизнес-логика приложения.
+
+Содержит логику обработки данных о подшипниках:
+- Поиск и фильтрация
+- Расчеты характеристик
+- Определение аналогов
+- Валидация данных
 """
 
 import json
@@ -247,78 +252,3 @@ class SearchHistory:
             })
         
         return popular
-=======
-Бизнес-логика приложения.
-
-Содержит логику обработки данных о подшипниках:
-- Поиск и фильтрация
-- Расчеты характеристик
-- Определение аналогов
-- Валидация данных
-"""
-
-from __future__ import annotations
-
-import logging
-from typing import Any, Dict, List, Optional
-
-logger = logging.getLogger(__name__)
-
-
-class BearingLogic:
-    """Класс с бизнес-логикой для работы с подшипниками."""
-
-    @staticmethod
-    def search_bearings(
-        designation: Optional[str] = None,
-        bearing_type: Optional[str] = None,
-        inner_diameter: Optional[float] = None,
-        outer_diameter: Optional[float] = None,
-    ) -> List[Dict[str, Any]]:
-        """
-        Поиск подшипников по параметрам.
-
-        Args:
-            designation: Обозначение подшипника
-            bearing_type: Тип подшипника
-            inner_diameter: Внутренний диаметр
-            outer_diameter: Наружный диаметр
-
-        Returns:
-            Список найденных подшипников
-        """
-        logger.error("Bearing search is not implemented yet")
-        raise NotImplementedError("Bearing search is not implemented yet.")
-
-    @staticmethod
-    def find_analogs(designation: str) -> List[Dict[str, Any]]:
-        """
-        Найти аналоги подшипника.
-
-        Args:
-            designation: Обозначение подшипника
-
-        Returns:
-            Список аналогов
-        """
-        logger.error("Bearing analog search is not implemented yet")
-        raise NotImplementedError("Bearing analog search is not implemented yet.")
-
-    @staticmethod
-    def calculate_capacity(
-        bearing_type: str,
-        dimensions: Dict[str, float],
-    ) -> Dict[str, float]:
-        """
-        Расчет грузоподъемности подшипника.
-
-        Args:
-            bearing_type: Тип подшипника
-            dimensions: Размеры подшипника
-
-        Returns:
-            Характеристики грузоподъемности
-        """
-        logger.error("Capacity calculation is not implemented yet")
-        raise NotImplementedError("Capacity calculation is not implemented yet.")
->>>>>>> main

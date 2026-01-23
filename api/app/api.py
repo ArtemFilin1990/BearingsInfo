@@ -1,6 +1,11 @@
 """
-<<<<<<< HEAD
-FastAPI приложение для поиска по справочнику подшипников
+API endpoints для работы с подшипниками.
+
+Определяет REST API endpoints для:
+- Поиска подшипников
+- Получения информации о подшипниках
+- Работы с аналогами
+- Доступа к справочным данным
 """
 
 from fastapi import FastAPI, Query, HTTPException
@@ -417,64 +422,4 @@ async def global_exception_handler(request, exc):
             "message": "An unexpected error occurred. Please contact support if the problem persists."
         }
     )
-=======
-API endpoints для работы с подшипниками.
 
-Определяет REST API endpoints для:
-- Поиска подшипников
-- Получения информации о подшипниках
-- Работы с аналогами
-- Доступа к справочным данным
-"""
-
-from __future__ import annotations
-
-import logging
-from typing import Optional
-
-from fastapi import APIRouter, HTTPException, Query
-
-logger = logging.getLogger(__name__)
-
-router = APIRouter()
-
-
-def _not_implemented(endpoint: str) -> None:
-    logger.warning("Endpoint not implemented", extra={"endpoint": endpoint})
-    raise HTTPException(status_code=501, detail="Endpoint not implemented yet.")
-
-
-@router.get("/bearings")
-def list_bearings(
-    designation: Optional[str] = Query(default=None),
-    bearing_type: Optional[str] = Query(default=None, alias="type"),
-    inner_diameter: Optional[float] = Query(default=None, ge=0),
-    outer_diameter: Optional[float] = Query(default=None, ge=0),
-) -> None:
-    """Получить список подшипников (пока не реализовано)."""
-    _not_implemented("GET /bearings")
-
-
-@router.get("/bearings/{bearing_id}")
-def get_bearing(bearing_id: int) -> None:
-    """Получить подшипник по ID (пока не реализовано)."""
-    _not_implemented("GET /bearings/{bearing_id}")
-
-
-@router.get("/search")
-def search_bearings(query: Optional[str] = Query(default=None)) -> None:
-    """Расширенный поиск подшипников (пока не реализовано)."""
-    _not_implemented("GET /search")
-
-
-@router.get("/analogs")
-def find_analogs(designation: str = Query(...)) -> None:
-    """Получить аналоги подшипника (пока не реализовано)."""
-    _not_implemented("GET /analogs")
-
-
-@router.get("/standards")
-def list_standards() -> None:
-    """Работа со стандартами (пока не реализовано)."""
-    _not_implemented("GET /standards")
->>>>>>> main

@@ -1,17 +1,17 @@
-# 00 Meta
+# Bearings Info
 
-Purpose: Conventions, templates, glossary, and contribution rules for the knowledge base.
+Этот репозиторий посвящён систематизации информации о подшипниках: их устройстве, классификации, выборе и обслуживании. Данные структурированы в виде тематических директорий для удобства изучения и использования.
 
-## What goes here
-- Contribution guidelines and review checklists
-- Naming conventions and formatting standards
-- Glossary of terms and abbreviations
-- Templates for articles, tables, and reports
-- Governance notes for sourcing and validation
+## Языковой состав
+В проекте используются следующие языки:
+- **Python**: 89.6% (основная логика, скрипты анализа данных)
+- **PLpgSQL**: 5.5% (хранимые процедуры для PostgreSQL)
+- **Shell**: 3.8% (автоматизация и утилиты)
+- **Other**: 1.1% (разное)
 
-## Index (WIP)
-- [ ] TODO: Add conventions overview
-- [ ] TODO: Add glossary entry list
-- [ ] TODO: Add templates index
+## Структура проекта
+- **00_meta/**: Конвенции, шаблоны, словарь терминов, правила внесения изменений.
+- **00_ВСПОМОГАТЕЛЬНЫЕ/**: Служебные файлы и утилиты.
+- **01_basics/**: Основы — термины, устройство, классификация подшипников.
 
-Content will be migrated in batches to keep diffs small.
+Проект активно развивается. Дополнительные материалы и улучшения будут добавляться в будущем.

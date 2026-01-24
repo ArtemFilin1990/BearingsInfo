@@ -3,7 +3,6 @@
 import json
 import logging
 import sys
-from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Dict, Optional
 
@@ -67,7 +66,6 @@ class JsonFormatter(logging.Formatter):
             JSON formatted log string
         """
         log_data = {
-            'timestamp': datetime.now(UTC).isoformat().replace('+00:00', 'Z'),
             'level': record.levelname,
             'logger': record.name,
             'message': record.getMessage(),
@@ -130,7 +128,6 @@ class Reporter:
             processing_time: Processing time in seconds
         """
         report_entry = {
-            'timestamp': datetime.now(UTC).isoformat().replace('+00:00', 'Z'),
             'filename': filename,
             'sha256': file_hash,
             'status': status,

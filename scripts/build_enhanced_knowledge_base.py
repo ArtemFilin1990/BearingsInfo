@@ -8,12 +8,10 @@ Enhanced Knowledge Base Builder - MAX CONTEXT MODE
 Извлекает 100% информации из всех файлов без сокращений.
 """
 
-import os
 import re
-from pathlib import Path
-from typing import Dict, List, Set, Tuple
 from collections import defaultdict
 from datetime import datetime
+from pathlib import Path
 
 
 class EnhancedKnowledgeBaseBuilder:
@@ -75,7 +73,7 @@ class EnhancedKnowledgeBaseBuilder:
 
         return "\n\n".join(domain_desc)
 
-    def extract_terms_from_docs(self) -> Dict[str, List[str]]:
+    def extract_terms_from_docs(self) -> dict[str, list[str]]:
         """Извлекает термины из документации."""
         terms = defaultdict(list)
 
@@ -111,7 +109,7 @@ class EnhancedKnowledgeBaseBuilder:
 
         return dict(terms)
 
-    def extract_processes(self) -> List[Dict]:
+    def extract_processes(self) -> list[dict]:
         """Извлекает процессы и алгоритмы из документации."""
         processes = []
 
@@ -146,7 +144,7 @@ class EnhancedKnowledgeBaseBuilder:
 
         return processes
 
-    def extract_rules_and_constraints(self) -> List[Dict]:
+    def extract_rules_and_constraints(self) -> list[dict]:
         """Извлекает правила и ограничения из стандартов ГОСТ/ISO."""
         rules = []
 
@@ -185,7 +183,7 @@ class EnhancedKnowledgeBaseBuilder:
 
         return rules
 
-    def extract_usage_scenarios(self) -> List[Dict]:
+    def extract_usage_scenarios(self) -> list[dict]:
         """Извлекает сценарии использования."""
         scenarios = []
 
@@ -213,7 +211,7 @@ class EnhancedKnowledgeBaseBuilder:
 
         return scenarios
 
-    def extract_relationships(self) -> List[Dict]:
+    def extract_relationships(self) -> list[dict]:
         """Извлекает связи и зависимости."""
         relationships = []
 
@@ -415,7 +413,7 @@ def main():
 
     output_file = "KNOWLEDGE_BASE_ENHANCED.md"
 
-    print(f"📝 Построение расширенной базы знаний...")
+    print("📝 Построение расширенной базы знаний...")
     print(f"📁 Репозиторий: {builder.repo_path}")
     print(f"📄 Выходной файл: {output_file}\n")
 

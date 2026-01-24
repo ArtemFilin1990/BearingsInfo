@@ -6,8 +6,8 @@ This example demonstrates how to use the Knowledge Base Builder
 to create a comprehensive knowledge base from your repository.
 """
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 # Add scripts to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -31,7 +31,7 @@ def example_programmatic_access():
     builder.scan_repository()
 
     # Access extracted data
-    print(f"\n📊 Statistics:")
+    print("\n📊 Statistics:")
     print(f"   - Total files: {len(builder.file_inventory)}")
     print(f"   - Terms in glossary: {len(builder.terms_glossary)}")
     print(f"   - Data structures: {sum(len(v) for v in builder.data_structures.values())}")
@@ -40,12 +40,12 @@ def example_programmatic_access():
     markdown_files = [f for f in builder.file_inventory if f["type"] == "Markdown"]
     python_files = [f for f in builder.file_inventory if f["type"] == "Python"]
 
-    print(f"\n📁 File Types:")
+    print("\n📁 File Types:")
     print(f"   - Markdown files: {len(markdown_files)}")
     print(f"   - Python files: {len(python_files)}")
 
     # Show some sample terms
-    print(f"\n📖 Sample Terms (first 5):")
+    print("\n📖 Sample Terms (first 5):")
     for idx, (term, definitions) in enumerate(list(builder.terms_glossary.items())[:5], 1):
         print(f"   {idx}. {term}: {len(definitions)} definition(s)")
 

@@ -6,9 +6,10 @@
 
 import os
 import sys
-import psycopg2
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+import psycopg2
 
 # Настройки подключения к базе данных
 DB_CONFIG = {
@@ -43,7 +44,7 @@ def create_schema(conn):
         return False
 
     try:
-        with open(schema_file, "r", encoding="utf-8") as f:
+        with open(schema_file, encoding="utf-8") as f:
             schema_sql = f.read()
 
         cursor = conn.cursor()
@@ -212,11 +213,13 @@ def import_all_data(conn):
 
     # Добавить source_standard и target_standard для аналогов
     cursor = conn.cursor()
-    cursor.execute("""
-        UPDATE analogs 
+    cursor.execute(
+        """
+        UPDATE analogs
         SET source_standard = 'GOST', target_standard = 'ISO'
         WHERE source_standard IS NULL AND target_standard IS NULL
-    """)
+    """
+    )
     conn.commit()
     cursor.close()
 

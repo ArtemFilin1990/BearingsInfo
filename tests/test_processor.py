@@ -14,7 +14,6 @@ from src.parser import DataParser
 from src.processor import FileProcessor
 from src.registry import Registry
 from src.utils import (
-    compute_file_hash,
     detect_file_type,
     generate_processed_filename,
     make_safe_filename,

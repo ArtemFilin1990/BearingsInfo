@@ -5,11 +5,9 @@ Tests for Knowledge Base Builder
 Tests the functionality of the knowledge base builder script.
 """
 
-import os
-import tempfile
-import shutil
-from pathlib import Path
 import sys
+import tempfile
+from pathlib import Path
 
 # Add scripts to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
@@ -140,7 +138,7 @@ def test_builder_with_sample_files():
         assert "README.md" in content
         assert "test.py" in content
 
-        print(f"✅ Builder integration test passed")
+        print("✅ Builder integration test passed")
         print(f"   - Files processed: {len(builder.file_inventory)}")
         print(f"   - Terms extracted: {len(builder.terms_glossary)}")
         print(f"   - KB file size: {kb_file.stat().st_size} bytes")
@@ -154,7 +152,7 @@ def test_code_structure_extraction():
 class MyClass:
     def __init__(self):
         pass
-    
+
     def method1(self):
         pass
 

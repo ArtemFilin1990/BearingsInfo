@@ -7,11 +7,10 @@
 - Серий (60, 62, 63 и т.д.)
 """
 
+import json
 import os
 import re
-import json
-from collections import defaultdict, Counter
-from typing import Dict
+from collections import Counter, defaultdict
 
 
 class AutocompleteDictBuilder:
@@ -45,7 +44,7 @@ class AutocompleteDictBuilder:
             "HEIM",
         }
 
-    def extract_terms_from_documents(self) -> Dict[str, int]:
+    def extract_terms_from_documents(self) -> dict[str, int]:
         """Извлечь термины из всех документов"""
         print("Извлечение терминов из документов...")
 
@@ -112,7 +111,7 @@ class AutocompleteDictBuilder:
                 if file.endswith(".md"):
                     file_path = os.path.join(root, file)
                     try:
-                        with open(file_path, "r", encoding="utf-8") as f:
+                        with open(file_path, encoding="utf-8") as f:
                             content = f.read().lower()
                             # Извлекаем слова
                             words = re.findall(r"\b[а-яё]{4,}\b", content)
@@ -124,7 +123,7 @@ class AutocompleteDictBuilder:
 
         return dict(self.terms)
 
-    def extract_bearing_codes(self) -> Dict[str, int]:
+    def extract_bearing_codes(self) -> dict[str, int]:
         """Извлечь коды подшипников из базы данных и документов"""
         print("Извлечение кодов подшипников...")
 
@@ -142,7 +141,7 @@ class AutocompleteDictBuilder:
                 if file.endswith(".md"):
                     file_path = os.path.join(root, file)
                     try:
-                        with open(file_path, "r", encoding="utf-8") as f:
+                        with open(file_path, encoding="utf-8") as f:
                             content = f.read()
                             # Ищем коды подшипников
                             for pattern in patterns:
@@ -208,7 +207,7 @@ class AutocompleteDictBuilder:
 
         return dict(self.bearing_codes)
 
-    def extract_brands(self) -> Dict[str, int]:
+    def extract_brands(self) -> dict[str, int]:
         """Извлечь бренды из документов"""
         print("Извлечение брендов...")
 
@@ -224,20 +223,20 @@ class AutocompleteDictBuilder:
                 if file.endswith(".md"):
                     file_path = os.path.join(root, file)
                     try:
-                        with open(file_path, "r", encoding="utf-8") as f:
+                        with open(file_path, encoding="utf-8") as f:
                             content = f.read()
                             for brand in self.known_brands:
                                 # Подсчет упоминаний бренда
                                 count = len(re.findall(r"\b" + re.escape(brand) + r"\b", content, re.IGNORECASE))
                                 if count > 0:
                                     self.brands[brand] += count
-                    except Exception as e:
+                    except Exception:
                         # Пропускаем файлы с ошибками чтения
                         continue
 
         return dict(self.brands)
 
-    def extract_series(self) -> Dict[str, int]:
+    def extract_series(self) -> dict[str, int]:
         """Извлечь серии подшипников"""
         print("Извлечение серий подшипников...")
 
@@ -249,7 +248,7 @@ class AutocompleteDictBuilder:
 
         return dict(self.series)
 
-    def build_trie_structure(self) -> Dict:
+    def build_trie_structure(self) -> dict:
         """Построить префиксное дерево для быстрого поиска"""
         print("Построение префиксного дерева...")
 

@@ -28,9 +28,8 @@ Examples:
     python manage.py sources
 """
 
-import sys
-import os
 import subprocess
+import sys
 from pathlib import Path
 
 # Add repository root to path
@@ -43,15 +42,9 @@ def run_command(cmd, description):
     print(f"\n{'=' * 60}")
     print(f"Running: {description}")
     print(f"{'=' * 60}\n")
-    
+
     try:
-        result = subprocess.run(
-            cmd,
-            shell=True,
-            check=True,
-            cwd=REPO_ROOT,
-            text=True
-        )
+        subprocess.run(cmd, shell=True, check=True, cwd=REPO_ROOT, text=True)
         print(f"\n✅ {description} completed successfully")
         return 0
     except subprocess.CalledProcessError as e:
@@ -61,47 +54,28 @@ def run_command(cmd, description):
 
 def cmd_validate():
     """Run CSV data validation."""
-    return run_command(
-        "python scripts/validate/run_validations.py",
-        "CSV Data Validation"
-    )
+    return run_command("python scripts/validate/run_validations.py", "CSV Data Validation")
 
 
 def cmd_extract():
     """Extract data from sources."""
-    return run_command(
-        "python scripts/extract/raw_datasets.py",
-        "Data Extraction from Sources"
-    )
+    return run_command("python scripts/extract/raw_datasets.py", "Data Extraction from Sources")
 
 
 def cmd_normalize():
     """Normalize and sort CSV data."""
-    return run_command(
-        "python scripts/update_repo.py",
-        "Data Normalization and Sorting"
-    )
+    return run_command("python scripts/update_repo.py", "Data Normalization and Sorting")
 
 
 def cmd_test():
     """Run test suite."""
     # Try pytest first, fall back to unittest
-    pytest_installed = subprocess.run(
-        "python -m pytest --version",
-        shell=True,
-        capture_output=True
-    ).returncode == 0
-    
+    pytest_installed = subprocess.run("python -m pytest --version", shell=True, capture_output=True).returncode == 0
+
     if pytest_installed:
-        return run_command(
-            "python -m pytest tests/ -v",
-            "Test Suite (pytest)"
-        )
+        return run_command("python -m pytest tests/ -v", "Test Suite (pytest)")
     else:
-        return run_command(
-            "python -m unittest discover tests/",
-            "Test Suite (unittest)"
-        )
+        return run_command("python -m unittest discover tests/", "Test Suite (unittest)")
 
 
 def cmd_report():
@@ -109,30 +83,30 @@ def cmd_report():
     print("\n" + "=" * 60)
     print("Generating Data Update Report")
     print("=" * 60 + "\n")
-    
+
     # This would generate a JSON report in data/reports/
     import json
     from datetime import datetime
-    
+
     report_dir = REPO_ROOT / "data" / "reports"
     report_dir.mkdir(exist_ok=True)
-    
+
     report_file = report_dir / f"{datetime.now().strftime('%Y-%m-%d')}_update.json"
-    
+
     report = {
         "timestamp": datetime.now().isoformat(),
         "type": "manual_update",
         "files_checked": [],
-        "status": "generated"
+        "status": "generated",
     }
-    
+
     # List all CSV files
     for csv_file in (REPO_ROOT / "data").rglob("*.csv"):
         report["files_checked"].append(str(csv_file.relative_to(REPO_ROOT)))
-    
-    with open(report_file, 'w', encoding='utf-8') as f:
+
+    with open(report_file, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
-    
+
     print(f"✅ Report generated: {report_file.relative_to(REPO_ROOT)}")
     return 0
 
@@ -142,33 +116,33 @@ def cmd_sources():
     print("\n" + "=" * 60)
     print("Sources Status")
     print("=" * 60 + "\n")
-    
+
     try:
         import yaml
     except ImportError:
         print("❌ Error: PyYAML is not installed")
         print("Install it with: pip install pyyaml")
         return 1
-    
+
     sources_dir = REPO_ROOT / "sources"
     categories = ["gost", "iso", "analogs", "brands", "skf"]
-    
+
     for category in categories:
         meta_file = sources_dir / category / "meta.yaml"
         if meta_file.exists():
             print(f"\n📁 {category.upper()}")
             print("-" * 60)
-            
+
             try:
-                with open(meta_file, 'r', encoding='utf-8') as f:
+                with open(meta_file, encoding="utf-8") as f:
                     meta = yaml.safe_load(f)
-                    
-                if meta and 'sources' in meta:
-                    for source in meta['sources']:
-                        status = source.get('status', 'unknown')
-                        file = source.get('file', 'unknown')
-                        purpose = source.get('purpose', 'N/A')
-                        
+
+                if meta and "sources" in meta:
+                    for source in meta["sources"]:
+                        status = source.get("status", "unknown")
+                        file = source.get("file", "unknown")
+                        purpose = source.get("purpose", "N/A")
+
                         status_icon = "✅" if status == "verified" else "⏳"
                         print(f"{status_icon} {file}")
                         print(f"   Status: {status}")
@@ -179,8 +153,8 @@ def cmd_sources():
         else:
             print(f"\n📁 {category.upper()}")
             print("-" * 60)
-            print(f"   ⚠️  No meta.yaml file found")
-    
+            print("   ⚠️  No meta.yaml file found")
+
     return 0
 
 
@@ -195,31 +169,31 @@ def main():
     if len(sys.argv) < 2:
         cmd_help()
         return 1
-    
+
     command = sys.argv[1].lower()
-    
+
     commands = {
-        'validate': cmd_validate,
-        'extract': cmd_extract,
-        'normalize': cmd_normalize,
-        'test': cmd_test,
-        'report': cmd_report,
-        'sources': cmd_sources,
-        'help': cmd_help,
-        '--help': cmd_help,
-        '-h': cmd_help,
+        "validate": cmd_validate,
+        "extract": cmd_extract,
+        "normalize": cmd_normalize,
+        "test": cmd_test,
+        "report": cmd_report,
+        "sources": cmd_sources,
+        "help": cmd_help,
+        "--help": cmd_help,
+        "-h": cmd_help,
     }
-    
+
     if command not in commands:
         print(f"❌ Unknown command: {command}")
         print("\nAvailable commands:")
         for cmd in sorted(set(commands.keys())):
-            if not cmd.startswith('-'):
+            if not cmd.startswith("-"):
                 print(f"  - {cmd}")
         return 1
-    
+
     return commands[command]()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(main())

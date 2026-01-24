@@ -14,4 +14,4 @@ APP_VERSION = "1.0.0"
 __version__ = APP_VERSION
 __author__ = "ArtemFilin1990"
 
-__all__ = ['app', "APP_DESCRIPTION", "APP_NAME", "APP_VERSION", "__author__", "__version__"]
+__all__ = ["app", "APP_DESCRIPTION", "APP_NAME", "APP_VERSION", "__author__", "__version__"]

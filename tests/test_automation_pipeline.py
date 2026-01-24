@@ -1,17 +1,13 @@
 """Integration tests for automated bearings catalog pipeline."""
 
 import json
-import tempfile
 from pathlib import Path
 
 import pandas as pd
 import pytest
 
-from src.catalog import CatalogManager
 from src.config import Config
-from src.parser import DataParser
 from src.processor import FileProcessor
-from src.registry import Registry
 from src.utils import compute_file_hash
 
 
@@ -184,7 +180,7 @@ def test_duplicate_file_idempotency(temp_workspace, processor):
     unique_data.to_csv(csv_file, index=False, encoding="utf-8")
 
     # Compute hash before processing
-    original_hash = compute_file_hash(csv_file)
+    compute_file_hash(csv_file)
 
     # First processing
     status1, n_records1 = processor.process_file(csv_file)

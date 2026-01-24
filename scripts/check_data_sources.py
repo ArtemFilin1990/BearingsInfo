@@ -8,9 +8,7 @@ Usage:
 """
 
 import csv
-import os
 from pathlib import Path
-from typing import Dict, List, Tuple
 
 # Constants for data quality thresholds
 SMALL_FILE_THRESHOLD = 10  # Files with fewer records
@@ -18,10 +16,10 @@ SMALL_FILE_DISPLAY_THRESHOLD = 50  # Show headers for files with fewer records
 LARGE_FILE_THRESHOLD = 50000  # Files that might need splitting
 
 
-def analyze_csv_structure(file_path: Path) -> Tuple[int, List[str]]:
+def analyze_csv_structure(file_path: Path) -> tuple[int, list[str]]:
     """Analyze CSV file structure and return row count and columns."""
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             reader = csv.reader(f)
             headers = next(reader)
             row_count = sum(1 for _ in reader)
@@ -31,7 +29,7 @@ def analyze_csv_structure(file_path: Path) -> Tuple[int, List[str]]:
         return 0, []
 
 
-def scan_data_directory(data_dir: Path) -> Dict[str, Dict]:
+def scan_data_directory(data_dir: Path) -> dict[str, dict]:
     """Scan data directory and return statistics."""
     results = {}
 
@@ -49,7 +47,7 @@ def scan_data_directory(data_dir: Path) -> Dict[str, Dict]:
     return results
 
 
-def print_statistics(stats: Dict[str, Dict]):
+def print_statistics(stats: dict[str, dict]):
     """Print formatted statistics."""
     print("=" * 80)
     print("СТАТИСТИКА ДАННЫХ / DATA STATISTICS")
@@ -88,13 +86,13 @@ def print_statistics(stats: Dict[str, Dict]):
         print(f"  Итого в категории: {category_rows:,} строк")
 
     print("=" * 80)
-    print(f"ВСЕГО / TOTAL:")
+    print("ВСЕГО / TOTAL:")
     print(f"  Файлов / Files: {total_files}")
     print(f"  Записей / Records: {total_rows:,}")
     print("=" * 80)
 
 
-def check_data_quality(stats: Dict[str, Dict]) -> List[str]:
+def check_data_quality(stats: dict[str, dict]) -> list[str]:
     """Check data quality and return list of recommendations."""
     recommendations = []
 

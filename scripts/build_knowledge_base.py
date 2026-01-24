@@ -8,13 +8,13 @@ Knowledge Base Builder (MAX CONTEXT MODE)
 Режим максимального контекста - никаких сокращений, полная извлечение информации.
 """
 
-import os
 import json
+import os
 import re
-from pathlib import Path
-from typing import Dict, List, Set, Tuple, Any
 from collections import defaultdict
 from datetime import datetime
+from pathlib import Path
+from typing import Any
 
 
 class KnowledgeBaseBuilder:
@@ -63,12 +63,12 @@ class KnowledgeBaseBuilder:
         }
 
         # Сбор данных
-        self.file_inventory: List[Dict[str, Any]] = []
-        self.terms_glossary: Dict[str, List[str]] = defaultdict(list)
-        self.processes: Dict[str, List[str]] = defaultdict(list)
-        self.rules: Dict[str, List[str]] = defaultdict(list)
-        self.data_structures: Dict[str, List[str]] = defaultdict(list)
-        self.conflicts: List[Dict[str, Any]] = []
+        self.file_inventory: list[dict[str, Any]] = []
+        self.terms_glossary: dict[str, list[str]] = defaultdict(list)
+        self.processes: dict[str, list[str]] = defaultdict(list)
+        self.rules: dict[str, list[str]] = defaultdict(list)
+        self.data_structures: dict[str, list[str]] = defaultdict(list)
+        self.conflicts: list[dict[str, Any]] = []
 
     def should_process_file(self, file_path: Path) -> bool:
         """Определяет, нужно ли обрабатывать файл."""
@@ -85,7 +85,7 @@ class KnowledgeBaseBuilder:
         try:
             if file_path.stat().st_size > 100 * 1024 * 1024:  # 100 MB
                 return False
-        except:
+        except OSError:
             return False
 
         return True
@@ -138,26 +138,26 @@ class KnowledgeBaseBuilder:
         """Читает содержимое файла."""
         try:
             # Попытка прочитать как текстовый файл
-            with open(file_path, "r", encoding="utf-8") as f:
+            with open(file_path, encoding="utf-8") as f:
                 return f.read()
         except UnicodeDecodeError:
             try:
                 # Попытка с другой кодировкой
-                with open(file_path, "r", encoding="cp1251") as f:
+                with open(file_path, encoding="cp1251") as f:
                     return f.read()
-            except (UnicodeDecodeError, IOError, PermissionError):
+            except (OSError, UnicodeDecodeError, PermissionError):
                 pass
-        except (IOError, PermissionError):
+        except (OSError, PermissionError):
             pass
 
         # Для бинарных файлов возвращаем метаинформацию
         try:
             size = file_path.stat().st_size
             return f"[[BINARY FILE: {size} bytes]]"
-        except (IOError, PermissionError, OSError):
+        except (PermissionError, OSError):
             return "[[DATA NOT FOUND]]"
 
-    def extract_terms_from_markdown(self, content: str, file_path: Path) -> List[Tuple[str, str]]:
+    def extract_terms_from_markdown(self, content: str, file_path: Path) -> list[tuple[str, str]]:
         """Извлекает термины из Markdown файла."""
         terms = []
 
@@ -176,7 +176,7 @@ class KnowledgeBaseBuilder:
 
         return terms
 
-    def extract_code_structures(self, content: str, file_type: str) -> List[str]:
+    def extract_code_structures(self, content: str, file_type: str) -> list[str]:
         """Извлекает структуры данных из кода."""
         structures = []
 
@@ -197,12 +197,12 @@ class KnowledgeBaseBuilder:
                     if isinstance(data, dict)
                     else f"JSON array with {len(data)} items"
                 )
-            except:
+            except (json.JSONDecodeError, ValueError):
                 pass
 
         return structures
 
-    def analyze_file(self, file_path: Path) -> Dict[str, Any]:
+    def analyze_file(self, file_path: Path) -> dict[str, Any]:
         """Анализирует отдельный файл."""
         file_type = self.get_file_type(file_path)
         content = self.read_file_content(file_path)
@@ -276,7 +276,7 @@ class KnowledgeBaseBuilder:
 
         return "Общий файл"
 
-    def extract_key_topics(self, content: str, file_type: str) -> List[str]:
+    def extract_key_topics(self, content: str, file_type: str) -> list[str]:
         """Извлекает ключевые темы из содержимого."""
         topics = []
 
@@ -533,7 +533,7 @@ class KnowledgeBaseBuilder:
             f.write("\n".join(lines))
 
         print(f"✅ База знаний сохранена: {output_file}")
-        print(f"📊 Статистика:")
+        print("📊 Статистика:")
         print(f"   - Всего файлов: {len(self.file_inventory)}")
         print(f"   - Терминов в глоссарии: {len(self.terms_glossary)}")
         print(f"   - Структур данных: {sum(len(v) for v in self.data_structures.values())}")

@@ -97,13 +97,9 @@ def sample_xlsx_data():
     ])
 
 
-def test_csv_processing_with_clear_columns(temp_workspace, sample_csv_data):
-    """Test 1: CSV with clear column names produces correct catalog."""
-    # Create CSV file in inbox
-    csv_file = temp_workspace['inbox'] / 'bearings_data.csv'
-    sample_csv_data.to_csv(csv_file, index=False, encoding='utf-8')
-    
-    # Process file
+@pytest.fixture
+def processor(temp_workspace):
+    """Create configured processor for testing."""
     config = Config(config_dir=temp_workspace['config'])
     from src.logger import LoggerSetup
     logger = LoggerSetup.setup(
@@ -111,8 +107,16 @@ def test_csv_processing_with_clear_columns(temp_workspace, sample_csv_data):
         'json',
         'INFO'
     )
-    processor = FileProcessor(config, logger)
+    return FileProcessor(config, logger)
+
+
+def test_csv_processing_with_clear_columns(temp_workspace, sample_csv_data, processor):
+    """Test 1: CSV with clear column names produces correct catalog."""
+    # Create CSV file in inbox
+    csv_file = temp_workspace['inbox'] / 'bearings_data.csv'
+    sample_csv_data.to_csv(csv_file, index=False, encoding='utf-8')
     
+    # Process file
     status, n_records = processor.process_file(csv_file)
     
     # Verify
@@ -134,22 +138,13 @@ def test_csv_processing_with_clear_columns(temp_workspace, sample_csv_data):
     assert len(processed_files) == 1
 
 
-def test_xlsx_with_alternative_column_names(temp_workspace, sample_xlsx_data):
+def test_xlsx_with_alternative_column_names(temp_workspace, sample_xlsx_data, processor):
     """Test 2: XLSX with alternative column names maps correctly."""
     # Create XLSX file in inbox
     xlsx_file = temp_workspace['inbox'] / 'bearings_data.xlsx'
     sample_xlsx_data.to_excel(xlsx_file, index=False, engine='openpyxl')
     
     # Process file
-    config = Config(config_dir=temp_workspace['config'])
-    from src.logger import LoggerSetup
-    logger = LoggerSetup.setup(
-        temp_workspace['logs'] / 'app.log',
-        'json',
-        'INFO'
-    )
-    processor = FileProcessor(config, logger)
-    
     status, n_records = processor.process_file(xlsx_file)
     
     # Verify
@@ -167,7 +162,7 @@ def test_xlsx_with_alternative_column_names(temp_workspace, sample_xlsx_data):
     assert df.iloc[0]['d'] == 30
 
 
-def test_duplicate_file_idempotency(temp_workspace, sample_csv_data):
+def test_duplicate_file_idempotency(temp_workspace, processor):
     """Test 3: Processing the same file twice is idempotent (no duplicate records)."""
     # Use unique data to avoid registry collision with other tests
     unique_data = pd.DataFrame([
@@ -190,15 +185,6 @@ def test_duplicate_file_idempotency(temp_workspace, sample_csv_data):
     original_hash = compute_file_hash(csv_file)
     
     # First processing
-    config = Config(config_dir=temp_workspace['config'])
-    from src.logger import LoggerSetup
-    logger = LoggerSetup.setup(
-        temp_workspace['logs'] / 'app.log',
-        'json',
-        'INFO'
-    )
-    processor = FileProcessor(config, logger)
-    
     status1, n_records1 = processor.process_file(csv_file)
     assert status1 == 'success'
     
@@ -222,7 +208,7 @@ def test_duplicate_file_idempotency(temp_workspace, sample_csv_data):
     assert len(df2) == count_after_first
 
 
-def test_dimension_conflict_detection(temp_workspace):
+def test_dimension_conflict_detection(temp_workspace, processor):
     """Test 4: Dimension conflicts are detected and logged."""
     # Create file with conflicting dimensions for same part
     data = pd.DataFrame([
@@ -246,15 +232,6 @@ def test_dimension_conflict_detection(temp_workspace):
     data.to_csv(csv_file, index=False, encoding='utf-8')
     
     # Process
-    config = Config(config_dir=temp_workspace['config'])
-    from src.logger import LoggerSetup
-    logger = LoggerSetup.setup(
-        temp_workspace['logs'] / 'app.log',
-        'json',
-        'INFO'
-    )
-    processor = FileProcessor(config, logger)
-    
     status, n_records = processor.process_file(csv_file)
     
     assert status == 'success'
@@ -275,22 +252,13 @@ def test_dimension_conflict_detection(temp_workspace):
         assert last_report['n_conflicts'] >= 1
 
 
-def test_invalid_file_error_handling(temp_workspace):
+def test_invalid_file_error_handling(temp_workspace, processor):
     """Test 5: Invalid files are moved to error directory."""
     # Create invalid file
     invalid_file = temp_workspace['inbox'] / 'invalid.txt'
     invalid_file.write_text('This is not valid bearing data\nJust random text')
     
     # Process
-    config = Config(config_dir=temp_workspace['config'])
-    from src.logger import LoggerSetup
-    logger = LoggerSetup.setup(
-        temp_workspace['logs'] / 'app.log',
-        'json',
-        'INFO'
-    )
-    processor = FileProcessor(config, logger)
-    
     status, n_records = processor.process_file(invalid_file)
     
     # Should fail
@@ -304,7 +272,7 @@ def test_invalid_file_error_handling(temp_workspace):
     assert '__ERROR_' in error_files[0].name
 
 
-def test_json_file_processing(temp_workspace):
+def test_json_file_processing(temp_workspace, processor):
     """Test JSON file processing."""
     # Create JSON file
     data = [
@@ -321,15 +289,6 @@ def test_json_file_processing(temp_workspace):
     json_file.write_text(json.dumps(data, ensure_ascii=False))
     
     # Process
-    config = Config(config_dir=temp_workspace['config'])
-    from src.logger import LoggerSetup
-    logger = LoggerSetup.setup(
-        temp_workspace['logs'] / 'app.log',
-        'json',
-        'INFO'
-    )
-    processor = FileProcessor(config, logger)
-    
     status, n_records = processor.process_file(json_file)
     
     assert status == 'success'

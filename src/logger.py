@@ -66,7 +66,6 @@ class JsonFormatter(logging.Formatter):
         Returns:
             JSON formatted log string
         """
-        from datetime import datetime, timezone
         log_data = {
             'timestamp': datetime.now(timezone.utc).isoformat(),
             'level': record.levelname,

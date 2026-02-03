@@ -419,13 +419,13 @@
 |  | 6206RSR | KINEX |
 |  | 6206ZR | KINEX |
 |  | 6206ZR | KINEX |
-|  | 62072) | KINEX |
+|  | 6207-2 | KINEX |
 |  | 6207-2RSR | KINEX |
 |  | 6207-2ZR | KINEX |
 |  | 6207N | KINEX |
 |  | 6207RSR | KINEX |
 |  | 6207ZR | KINEX |
-|  | 62082) | KINEX |
+|  | 6208-2 | KINEX |
 |  | 6208-2RSR | KINEX |
 |  | 6208-2ZR | KINEX |
 |  | 6208N | KINEX |

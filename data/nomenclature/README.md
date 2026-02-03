@@ -22,5 +22,5 @@
 
 ## Связанные материалы
 
-- [Производители и бренды](../part-iii/9-proizvoditeli-brendy.md)
-- [Система обозначений по ГОСТ](../part-i/2-uslovnye-oboznacheniya-gost.md)
+- [Производители и бренды](../../Учебник/часть-3/9-proizvoditeli-brendy.md)
+- [Система обозначений по ГОСТ](../../Учебник/часть-1/2-uslovnye-oboznacheniya-gost.md)

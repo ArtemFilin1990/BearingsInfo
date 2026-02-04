@@ -23,6 +23,7 @@ engine = create_engine(DB_URL)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
+
 def import_bearings(file_path):
     with open(file_path, "r") as file:
         bearings_data = json.load(file)

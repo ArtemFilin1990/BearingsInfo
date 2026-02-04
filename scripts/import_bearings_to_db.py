@@ -15,14 +15,15 @@ class Bearing(Base):
     type = Column(String)
 
     def __repr__(self):
-        return f"<Bearing(name='{{self.name}}', size='{{self.size}}', type='{{self.type}}')>"
+        return (
+            f"<Bearing(name='{self.name}', size='{self.size}', type='{self.type}')>"
+        )
 
 
 DB_URL = os.getenv("DATABASE_URL")
-engine = create_engine(DB_URL)
+gine = create_engine(DB_URL)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
-
 
 def import_bearings(file_path):
     with open(file_path, "r") as file:

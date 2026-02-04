@@ -19,9 +19,10 @@ class Bearing(Base):
 
 
 DB_URL = os.getenv("DATABASE_URL")
-gine = create_engine(DB_URL)
+engine = create_engine(DB_URL)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
+
 
 def import_bearings(file_path):
     with open(file_path, "r") as file:

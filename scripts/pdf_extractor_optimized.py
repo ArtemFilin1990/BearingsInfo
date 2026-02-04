@@ -81,7 +81,7 @@ class PDFExtractor:
             conn = sqlite3.connect(self.db_path)
             cursor = conn.cursor()
 
-            cursor.execute("""
+
                 CREATE TABLE IF NOT EXISTS extracted_data (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     filename TEXT NOT NULL,
@@ -90,12 +90,6 @@ class PDFExtractor:
                     extraction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     UNIQUE(filename, page_number, extracted_value)
                 )
-            """)
-
-            cursor.execute("""
-                CREATE INDEX IF NOT EXISTS idx_filename 
-                ON extracted_data(filename)
-            """)
 
             conn.commit()
             conn.close()
@@ -237,13 +231,12 @@ class PDFExtractor:
             cursor.execute("SELECT COUNT(*) FROM extracted_data")
             total = cursor.fetchone()[0]
 
-            cursor.execute("""
+
                 SELECT filename, COUNT(*) as count 
                 FROM extracted_data 
                 GROUP BY filename 
                 ORDER BY count DESC 
                 LIMIT 10
-            """)
             top_files = cursor.fetchall()
 
             conn.close()

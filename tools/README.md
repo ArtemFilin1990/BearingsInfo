@@ -272,7 +272,7 @@
 **Зависимости (установка):**
 ```bash
 # Клонирование репозитория
-git clone https://github.com/your-repo/BearingsInfo.git
+git clone https://github.com/ArtemFilin1990/BearingsInfo.git
 cd BearingsInfo
 
 # Установка зависимостей

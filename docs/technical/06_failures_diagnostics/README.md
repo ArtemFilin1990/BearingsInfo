@@ -173,7 +173,7 @@ Purpose: Failure modes, defect terminology, and diagnostic references.
 - ✔ ГОСТ vibration standards
 - ✔ Complete workflow integration
 
-### Additional Materials (TODO - Future Enhancements)
+### Additional Materials [[TBD]]
 - ☐ Motor-specific failure modes (electric motor bearings)
 - ☐ Automotive bearing diagnostics (wheel bearings, hub units)
 - ☐ High-speed bearing diagnostics (spindles, turbines)

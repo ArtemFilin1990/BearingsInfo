@@ -9,9 +9,9 @@ Purpose: Manufacturer references, brand marking specifics, and quality tiers.
 - Cross-reference notes by brand
 - Regional availability summaries
 
-## Index (WIP)
-- [ ] TODO: Add manufacturer index
-- [ ] TODO: Add brand marking notes
-- [ ] TODO: Add quality tier summary
+## Index
+
+[[TBD]] — Technical documents pending migration. See main repository sections:
+- [7. Бренды и производители](../../7.%20Бренды%20и%20производители/)
 
 Content will be migrated in batches to keep diffs small.

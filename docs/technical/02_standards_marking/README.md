@@ -45,5 +45,5 @@ Content will be migrated in batches to keep diffs small.
 - ✔ ГОСТ prefixes/suffixes
 - ✔ ГОСТ dimension reference
 - ✔ ГОСТ standards list (source summary)
-- ☐ Prefixes/suffixes by manufacturer (TODO)
-- ☐ TN VED codes for bearings (TODO)
+- ☐ Prefixes/suffixes by manufacturer [[TBD]]
+- ☐ TN VED codes for bearings [[TBD]]

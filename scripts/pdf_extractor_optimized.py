@@ -10,13 +10,12 @@
 - Обработка повреждённых PDF с пропуском
 """
 
-import sqlite3
-import re
 import logging
-from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime
+import re
+import sqlite3
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
 
 try:
     import PyPDF2
@@ -81,7 +80,7 @@ class PDFExtractor:
             conn = sqlite3.connect(self.db_path)
             cursor = conn.cursor()
 
-
+            cursor.execute("""
                 CREATE TABLE IF NOT EXISTS extracted_data (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     filename TEXT NOT NULL,
@@ -90,7 +89,7 @@ class PDFExtractor:
                     extraction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     UNIQUE(filename, page_number, extracted_value)
                 )
-
+                """)
             conn.commit()
             conn.close()
 
@@ -161,8 +160,8 @@ class PDFExtractor:
 
             # Параметризованный запрос для защиты от SQL-инъекций
             cursor.executemany(
-                """INSERT OR IGNORE INTO extracted_data 
-                   (filename, page_number, extracted_value) 
+                """INSERT OR IGNORE INTO extracted_data
+                   (filename, page_number, extracted_value)
                    VALUES (?, ?, ?)""",
                 data,
             )
@@ -215,11 +214,11 @@ class PDFExtractor:
                     print(f"✗ {pdf_path.name}: ошибка обработки")
 
         print(f"\n{'='*60}")
-        print(f"Обработка завершена!")
+        print("Обработка завершена!")
         print(f"Обработано файлов: {processed}/{len(pdf_files)}")
         print(f"Извлечено записей: {total_records}")
         print(f"База данных: {self.db_path}")
-        print(f"Лог ошибок: parser_errors.log")
+        print("Лог ошибок: parser_errors.log")
         print(f"{'='*60}")
 
     def get_statistics(self):
@@ -231,12 +230,15 @@ class PDFExtractor:
             cursor.execute("SELECT COUNT(*) FROM extracted_data")
             total = cursor.fetchone()[0]
 
-
-                SELECT filename, COUNT(*) as count 
-                FROM extracted_data 
-                GROUP BY filename 
-                ORDER BY count DESC 
+            cursor.execute(
+                """
+                SELECT filename, COUNT(*) as count
+                FROM extracted_data
+                GROUP BY filename
+                ORDER BY count DESC
                 LIMIT 10
+                """
+            )
             top_files = cursor.fetchall()
 
             conn.close()
@@ -245,7 +247,7 @@ class PDFExtractor:
             print("СТАТИСТИКА БАЗЫ ДАННЫХ")
             print(f"{'='*60}")
             print(f"Всего записей: {total}")
-            print(f"\nТоп-10 файлов по количеству извлечённых данных:")
+            print("\nТоп-10 файлов по количеству извлечённых данных:")
             for filename, count in top_files:
                 print(f"  {filename}: {count} записей")
             print(f"{'='*60}\n")

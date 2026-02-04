@@ -399,9 +399,8 @@ tools/
 ## Контакты и поддержка
 
 По вопросам работы инструментов обращайтесь:
-- **Issues:** https://github.com/your-repo/BearingsInfo/issues
-- **Discussions:** https://github.com/your-repo/BearingsInfo/discussions
-- **Email:** support@bearingsinfo.example (замените на реальный)
+- **Issues:** https://github.com/ArtemFilin1990/BearingsInfo/issues
+- **Discussions:** https://github.com/ArtemFilin1990/BearingsInfo/discussions
 
 ---
 

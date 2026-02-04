@@ -9,9 +9,9 @@ Purpose: Special designs, temperature ranges, date codes, and bibliography.
 - Application-specific reference notes
 - Bibliography and source lists
 
-## Index (WIP)
-- [ ] TODO: Add special designs index
-- [ ] TODO: Add temperature reference list
-- [ ] TODO: Add bibliography list
+## Index
+
+[[TBD]] — Technical documents pending migration. See main repository sections:
+- [8. Специальные исполнения и справка](../../8.%20Специальные%20исполнения%20и%20справка/)
 
 Content will be migrated in batches to keep diffs small.

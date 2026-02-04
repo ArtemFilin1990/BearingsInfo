@@ -32,5 +32,5 @@ Purpose: Bearing types and their components, materials, and assemblies.
 - ✔ Contact vs non-contact sealing
 - ✔ Seal materials and temperature ranges
 - ✔ Seal selection criteria
-- ☐ Housing and sleeve types (TODO)
-- ☐ Mounting hardware (TODO)
+- ☐ Housing and sleeve types [[TBD]]
+- ☐ Mounting hardware [[TBD]]

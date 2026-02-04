@@ -1,4 +1,6 @@
-# Trash Review
+# Trash Review (Archive - WIP)
+
+**Статус: Архив — в разработке**
 
 Purpose: Quarantined items pending review before relocation or removal.
 
@@ -8,9 +10,8 @@ Purpose: Quarantined items pending review before relocation or removal.
 - Files with unclear source attribution
 - Conflicting versions needing review
 
-## Index (WIP)
-- [ ] TODO: Add review queue
-- [ ] TODO: Add duplicate candidates
-- [ ] TODO: Add decision log
+## Index
+
+[[TBD]] — Archive под review, контент будет мигрирован или удалён.
 
 Content will be migrated in batches to keep diffs small.

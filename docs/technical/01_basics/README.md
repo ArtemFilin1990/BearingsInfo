@@ -30,5 +30,5 @@ Purpose: Core terms, construction, classification, and basic selection guidance.
 - ✔ Verification procedures
 - ✔ Lubrication selection
 - ✔ Mounting arrangement guidelines
-- ☐ Advanced selection examples (TODO)
-- ☐ Case studies (TODO)
+- ☐ Advanced selection examples [[TBD]]
+- ☐ Case studies [[TBD]]

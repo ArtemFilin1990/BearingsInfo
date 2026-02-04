@@ -230,15 +230,13 @@ class PDFExtractor:
             cursor.execute("SELECT COUNT(*) FROM extracted_data")
             total = cursor.fetchone()[0]
 
-            cursor.execute(
-                """
+            cursor.execute("""
                 SELECT filename, COUNT(*) as count
                 FROM extracted_data
                 GROUP BY filename
                 ORDER BY count DESC
                 LIMIT 10
-                """
-            )
+                """)
             top_files = cursor.fetchall()
 
             conn.close()

@@ -19,7 +19,7 @@ class Bearing(Base):
 
 
 DB_URL = os.getenv("DATABASE_URL")
-engine = create_engine(DB_URL)
+gine = create_engine(DB_URL)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 

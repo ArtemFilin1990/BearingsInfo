@@ -6,7 +6,6 @@ from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
-
 class Bearing(Base):
     __tablename__ = "bearings"
     id = Column(Integer, primary_key=True)
@@ -16,12 +15,11 @@ class Bearing(Base):
 
     def __repr__(self):
         return (
-            f"<Bearing(name='{self.name}', size='{self.size}', type='{self.type}')>"
+            f"<Bearing(name='{{self.name}}', size='{{self.size}}', type='{{self.type}}')>"
         )
 
-
 DB_URL = os.getenv("DATABASE_URL")
-gine = create_engine(DB_URL)
+engine = create_engine(DB_URL)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 

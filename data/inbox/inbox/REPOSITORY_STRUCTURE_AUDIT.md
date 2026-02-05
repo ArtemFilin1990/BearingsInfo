@@ -372,6 +372,7 @@
 - `AGENT.md` - Документация агента
 - `PROMPT_ARTICLE_CREATION.md` - Промпт создания статей
 - `PROMPT_ENCYCLOPEDIA_ASSISTANT.md` - Промпт помощника энциклопедии
+- `PROMPT_REPOSITORY_STRUCTURE_REFACTOR.md` - Промпт рефактора структуры репозитория
 - `PROMPT_GOOGLE_ADS_COPYWRITER.md` - Промпт копирайтера Google Ads
 - `PROMPT_SARD_SRS.md` - Промпт SARD SRS
 

@@ -62,7 +62,7 @@ def run_command(cmd, description):
 def cmd_validate():
     """Run CSV data validation."""
     return run_command(
-        "python scripts/validate/run_validations.py",
+        "python tools/scripts/validate/run_validations.py",
         "CSV Data Validation"
     )
 
@@ -70,7 +70,7 @@ def cmd_validate():
 def cmd_extract():
     """Extract data from sources."""
     return run_command(
-        "python scripts/extract/raw_datasets.py",
+        "python tools/scripts/extract/raw_datasets.py",
         "Data Extraction from Sources"
     )
 
@@ -78,7 +78,7 @@ def cmd_extract():
 def cmd_normalize():
     """Normalize and sort CSV data."""
     return run_command(
-        "python scripts/update_repo.py",
+        "python tools/scripts/update_repo.py",
         "Data Normalization and Sorting"
     )
 

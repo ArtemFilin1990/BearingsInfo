@@ -232,6 +232,10 @@ class Config:
         if "registry" in config:
             registry = cls._require_dict(config, "registry", path)
             cls._require_str(registry, "registry.file", path, allow_empty=False)
+            if "allow_reprocess_errors" in registry:
+                cls._require_bool(
+                    registry, "registry.allow_reprocess_errors", path
+                )
 
     @classmethod
     def _validate_brand_aliases(cls, data: Dict[str, Any], path: Path) -> None:

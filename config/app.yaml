@@ -64,3 +64,5 @@ logging:
 registry:
   # Path to processed files registry
   file: "out/processed_registry.json"
+  # Allow reprocessing files that previously failed
+  allow_reprocess_errors: false

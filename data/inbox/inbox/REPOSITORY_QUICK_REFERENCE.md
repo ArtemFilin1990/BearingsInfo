@@ -263,14 +263,14 @@ api/
 │   ├── db.py           # База данных
 │   ├── models.py       # Модели
 │   └── logic.py        # Бизнес-логика
-├── scripts/            # Утилиты
+├── tools/scripts/      # Утилиты
 └── tests/              # Тесты
 ```
 
 ### Важные скрипты
-- `scripts/validate/run_validations.py` - валидация данных
-- `scripts/check_data_sources.py` - проверка источников
-- `scripts/build_autocomplete_dict.py` - автодополнение
+- `tools/scripts/validate/run_validations.py` - валидация данных
+- `tools/scripts/check_data_sources.py` - проверка источников
+- `tools/scripts/build_autocomplete_dict.py` - автодополнение
 - `api/scripts/import_to_postgres.py` - импорт в PostgreSQL
 
 ### Тестирование
@@ -337,7 +337,7 @@ pytest api/tests/
     ↓
 Inbox (data/inbox/)
     ↓
-Валидация (scripts/validate/)
+Валидация (tools/scripts/validate/)
     ↓
 CSV (data/csv/)
     ↓

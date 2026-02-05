@@ -24,7 +24,7 @@
 
 ## Обновление
 ```bash
-python scripts/update_repo.py --no-report   # перезапись CSV из сырых таблиц
-python scripts/validate/run_validations.py  # проверка схем
+python tools/scripts/update_repo.py --no-report   # перезапись CSV из сырых таблиц
+python tools/scripts/validate/run_validations.py  # проверка схем
 ```
 Источники: `sources/iso/Суффиксы ISO.docx`, `sources/iso/Подшипники ISO.pdf`, каталоги SKF/NSK/NTN в `sources/brands` и `sources/skf`.

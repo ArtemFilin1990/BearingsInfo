@@ -53,7 +53,7 @@ jobs:
         run: python -m pytest -v
 
       - name: Validate data
-        run: python scripts/validate/run_validations.py
+        run: python tools/scripts/validate/run_validations.py
 
       - name: Create data archive
         run: |

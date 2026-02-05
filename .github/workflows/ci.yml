@@ -38,10 +38,10 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Deduplicate nomenclature
-        run: python scripts/deduplicate_nomenclature.py
+        run: python tools/scripts/deduplicate_nomenclature.py
 
       - name: Normalize datasets
-        run: python scripts/update_repo.py --no-report
+        run: python tools/scripts/update_repo.py --no-report
 
       - name: Check for duplicate keys in nomenclature
         run: |
@@ -69,7 +69,7 @@ jobs:
           "
 
       - name: Run validations
-        run: python scripts/validate/run_validations.py
+        run: python tools/scripts/validate/run_validations.py
 
       - name: Run tests
         run: |

@@ -21,7 +21,7 @@
 
 > **Примечание:** Для получения актуального списка используйте:
 > ```bash
-> python scripts/generate_sources_table.py
+> python tools/scripts/generate_sources_table.py
 > ```
 
 
@@ -128,7 +128,7 @@ sources:
 ## Как использовать
 1. Добавьте новый PDF/DOCX в нужный каталог `sources/<category>/`.
 2. Обновите `meta.yaml` (название файла, purpose, status, year, pages, url, notes).
-3. Запустите `python scripts/update_repo.py` для пересборки CSV.
+3. Запустите `python tools/scripts/update_repo.py` для пересборки CSV.
 4. Зафиксируйте изменения вместе с новым отчётом в `data/reports/`.
 
 ## Автоматизация
@@ -136,7 +136,7 @@ sources:
 ### Генерация списка источников
 Автоматически обновить этот файл на основе meta.yaml:
 ```bash
-python scripts/generate_sources_table.py
+python tools/scripts/generate_sources_table.py
 ```
 
 ### Извлечение данных из PDF

@@ -16,9 +16,9 @@
 ## Правила работы
 
 2. Все технические документы должны содержать ссылки на источники (ГОСТ, ISO, DIN)
-3. Использовать скрипт `scripts/update_repo.py` для нормализации данных
+3. Использовать скрипт `tools/scripts/update_repo.py` для нормализации данных
 4. Избегать дубликатов в `data/nomenclature.csv` (проверка по паре Brand + Product Name)
-5. Валидировать изменения через `scripts/validate/run_validations.py`
+5. Валидировать изменения через `tools/scripts/validate/run_validations.py`
 
 ## Технические требования
 

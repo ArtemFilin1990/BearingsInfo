@@ -2,7 +2,7 @@
 
 Практика эксплуатации, обслуживания и регламентов.
 
-![Контроль внутреннего зазора при монтаже](../../images/Изображения/5_izmerenie-vnutrennego-zazora-pri-montazhe-sfericheskih-rolikopodshipnikov.jpg_)
+![Посадки подшипников](../../images/Изображения/40_posadki_podshipnikov.jpg)
 
 ## Подразделы
 - [5.1. Смазки: подбор и совместимость](<5.1. Смазки подбор и совместимость/README.md>)

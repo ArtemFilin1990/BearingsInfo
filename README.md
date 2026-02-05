@@ -2,6 +2,42 @@
 
 Систематизация информации о подшипниках: устройство, классификация, выбор, эксплуатация и сопутствующая документация.
 
+## 📁 Структура репозитория
+
+После реорганизации репозиторий имеет следующую структуру:
+
+```
+BearingsInfo/
+├── docs/                    # 📚 Вся документация
+│   ├── 01-podshipniki-obshaya-informatsiya/
+│   ├── 02-standarty-i-markirovka/
+│   ├── 03-tipy-i-elementy/
+│   ├── 04-raschet-i-parametry/
+│   ├── 05-ekspluatatsiya-i-obsluzhivanie/
+│   ├── 06-otkazy-i-diagnostika/
+│   ├── 07-brendy-i-proizvoditeli/
+│   ├── 08-spetsialnye-ispolneniya-i-spravka/
+│   ├── 09-soputstvuyushchie-izdeliya/
+│   ├── images/              # Изображения и схемы
+│   ├── prakticheskie-rukovodstva/
+│   └── ...
+├── data/                    # 📊 Данные, базы, таблицы
+│   ├── katalogi/
+│   ├── schemas/
+│   ├── sql/
+│   └── *.csv, *.xlsx
+├── src/                     # 💻 Исходный код
+│   ├── api/
+│   ├── sources/
+│   └── *.py
+├── tools/                   # 🛠 Утилиты и скрипты
+│   ├── scripts/
+│   └── bin/
+├── config/                  # ⚙️ Конфигурационные файлы
+├── tests/                   # ✅ Тесты
+└── README.md               # Этот файл
+```
+
 ---
 
 ## Навигация по репозиторию

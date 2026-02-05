@@ -118,9 +118,13 @@ class DataParser:
         """
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
+
+        stripped_content = content.strip()
+        if not stripped_content:
+            raise ValueError(f"TXT file is empty: {file_path}")
         
         # Try to parse as CSV (tab or comma separated)
-        lines = content.strip().split('\n')
+        lines = stripped_content.split('\n')
         
         # Try tab-separated
         if '\t' in lines[0]:

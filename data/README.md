@@ -48,8 +48,7 @@ data/
 ├── dimensions/                      # ⭐ Размеры (НОВОЕ)
 │   └── bearing_dimensions.csv      # Полные размеры + нагрузки
 ├── inbox/                           # Входящие файлы (из bearing-api)
-├── schemas/                         # JSON схемы
-└── sources/                         # Исходные данные
+└── schemas/                         # JSON схемы
 ```
 
 ---
@@ -173,7 +172,7 @@ python api/scripts/unpack_and_classify.py
 - Правила валидации
 - Определения форматов
 
-### 📂 sources/
+### 📂 sources/ (в корне репозитория)
 **Назначение**: Исходные данные в различных форматах
 
 Источник: Baza
@@ -183,6 +182,8 @@ python api/scripts/unpack_and_classify.py
 - Сканы каталогов
 - Справочные материалы
 - Сырые данные до обработки
+
+См. также: [sources/README.md](../sources/README.md)
 
 ---
 

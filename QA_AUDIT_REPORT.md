@@ -189,8 +189,8 @@ git clone https://github.com/your-repo/BearingsInfo.git
 
 **Локация:**
 - `docs/archive/trash_review/README.md` (4 TODO)
-- `docs/archive/zip/01_basics/README.md` (2 TODO)
-- `docs/archive/zip/03_types_components/README.md` (2 TODO)
+- `archive/zip/01_basics/README.md` (2 TODO)
+- `archive/zip/03_types_components/README.md` (2 TODO)
 - `docs/technical/06_failures_diagnostics/README.md` (1 TODO)
 - `docs/technical/07_brands_manufacturers/README.md` (3 TODO)
 - `docs/technical/08_special_reference/README.md` (3 TODO)
@@ -642,4 +642,3 @@ jobs:
 
 **Контакт для вопросов:** См. CONTRIBUTING.md  
 **Следующая проверка:** После устранения Blockers и High Priority issues
-

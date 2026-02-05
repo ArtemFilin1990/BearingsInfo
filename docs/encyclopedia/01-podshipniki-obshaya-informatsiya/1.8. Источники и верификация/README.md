@@ -164,7 +164,7 @@
 Список источников:
 - `/docs/technical/standards/gost_list.md` — Перечень стандартов ГОСТ
 - `/docs/technical/standards/iso_list.md` — Перечень стандартов ISO
-- `/data/sources/manufacturer_catalogs.csv` — Каталоги производителей
+- `/sources/manufacturer_catalogs.csv` — Каталоги производителей
 - `/docs/bibliography/` — Техническая литература
 
 ## Источники

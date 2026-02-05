@@ -30,6 +30,22 @@
 
 ```
 docs/
+├── encyclopedia/                       # Разделы 01-09
+│   ├── 01-podshipniki-obshaya-informatsiya/
+│   ├── 02-standarty-i-markirovka/
+│   ├── 03-tipy-i-elementy/
+│   ├── 04-raschet-i-parametry/
+│   ├── 05-ekspluatatsiya-i-obsluzhivanie/
+│   ├── 06-otkazy-i-diagnostika/
+│   ├── 07-brendy-i-proizvoditeli/
+│   ├── 08-spetsialnye-ispolneniya-i-spravka/
+│   └── 09-soputstvuyushchie-izdeliya/
+├── kb/                                  # Курсы и база знаний
+│   ├── knowledge-base/
+│   ├── uchebnik/
+│   ├── uchebnik-akademichesky/
+│   ├── vvodny-kurs-dlya-novichkov/
+│   └── testy/
 ├── bearings/                           # Основная документация
 │   ├── MASTER_INDEX.md                 # 🔍 Главный навигатор
 │   ├── selection_guide.md              # 📖 Справочник подбора

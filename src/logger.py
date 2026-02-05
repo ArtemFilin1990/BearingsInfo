@@ -2,7 +2,9 @@
 
 import json
 import logging
+import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Optional
 
@@ -55,6 +57,44 @@ class LoggerSetup:
 
 class JsonFormatter(logging.Formatter):
     """JSON log formatter."""
+
+    _SENSITIVE_KEYS = {
+        'api_key',
+        'apikey',
+        'authorization',
+        'bearer',
+        'password',
+        'secret',
+        'token',
+        'access_token',
+        'refresh_token',
+        'client_secret',
+    }
+    _REDACTION_PATTERNS = (
+        re.compile(r'(?i)\b(authorization|bearer)\s+([^\s,]+)'),
+        re.compile(r'(?i)\b(api_key|apikey|token|password|secret)\s*[:=]\s*([^\s,;]+)'),
+    )
+
+    @staticmethod
+    def _mask_value(value: Any) -> str:
+        return '***'
+
+    @classmethod
+    def _sanitize_message(cls, message: str) -> str:
+        sanitized = message
+        for pattern in cls._REDACTION_PATTERNS:
+            sanitized = pattern.sub(lambda match: f"{match.group(1)}={cls._mask_value(match.group(2))}", sanitized)
+        return sanitized
+
+    @classmethod
+    def _sanitize_context(cls, context: Dict[str, Any]) -> Dict[str, Any]:
+        sanitized: Dict[str, Any] = {}
+        for key, value in context.items():
+            if key.lower() in cls._SENSITIVE_KEYS:
+                sanitized[key] = cls._mask_value(value)
+            else:
+                sanitized[key] = value
+        return sanitized
     
     def format(self, record: logging.LogRecord) -> str:
         """Format log record as JSON.
@@ -66,10 +106,30 @@ class JsonFormatter(logging.Formatter):
             JSON formatted log string
         """
         log_data = {
+            'timestamp': datetime.fromtimestamp(record.created, tz=timezone.utc).isoformat(),
             'level': record.levelname,
             'logger': record.name,
-            'message': record.getMessage(),
+            'message': self._sanitize_message(record.getMessage()),
+            'module': record.module,
+            'function': record.funcName,
+            'line': record.lineno,
         }
+
+        if record.exc_info:
+            log_data['exception'] = self.formatException(record.exc_info)
+
+        context_fields: Dict[str, Any] = {}
+        if hasattr(record, 'operation'):
+            context_fields['operation'] = record.operation
+        if hasattr(record, 'duration_ms'):
+            context_fields['duration_ms'] = record.duration_ms
+        if hasattr(record, 'result'):
+            context_fields['result'] = record.result
+        elif hasattr(record, 'status'):
+            context_fields['result'] = record.status
+        if hasattr(record, 'request_id'):
+            context_fields['request_id'] = record.request_id
+        log_data.update(self._sanitize_context(context_fields))
         
         # Add extra fields if present
         if hasattr(record, 'file'):

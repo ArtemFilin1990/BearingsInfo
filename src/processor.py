@@ -54,6 +54,10 @@ class FileProcessor:
         
         registry_file = Path(config.get('registry.file', 'out/processed_registry.json'))
         self.registry = Registry(registry_file)
+        self.allow_reprocess_errors = config.get(
+            'registry.allow_reprocess_errors',
+            False,
+        )
         
         self.reporter = Reporter(self.out_dir / 'run_report.ndjson')
         
@@ -84,39 +88,60 @@ class FileProcessor:
             file_hash = compute_file_hash(file_path)
             
             # Check if already processed
-            if self.registry.is_processed(file_hash):
-                self.logger.info(
-                    f"File already processed (hash: {file_hash[:8]}), skipping",
-                    extra={'file': filename, 'sha': file_hash[:8], 'status': 'skipped'}
-                )
-                
-                # Move to processed directory anyway
-                existing_entry = self.registry.get_entry(file_hash)
-                n_records = existing_entry.get('n_records', 0) if existing_entry else 0
-                
-                processing_time = time.time() - start_time
-                self.reporter.write_report(
-                    filename=filename,
-                    file_hash=file_hash,
-                    status='skipped_duplicate',
-                    n_rows=n_records,
-                    n_added=0,
-                    n_skipped=n_records,
-                    n_conflicts=0,
-                    processing_time=processing_time
-                )
-                
-                # Move to processed with existing name
-                dest_name = existing_entry.get('processed_name', filename) if existing_entry else filename
-                dest_path = self.processed_dir / dest_name
-                
-                if dest_path.exists():
-                    # Add timestamp to avoid collision
-                    dest_path = self.processed_dir / f"{dest_path.stem}_dup{dest_path.suffix}"
-                
-                shutil.move(str(file_path), str(dest_path))
-                
-                return 'skipped_duplicate', n_records
+            existing_entry = self.registry.get_entry(file_hash)
+            if existing_entry:
+                existing_status = existing_entry.get('status')
+                if existing_status == 'error' and self.allow_reprocess_errors:
+                    self.logger.info(
+                        f"Reprocessing previously failed file (hash: {file_hash[:8]})",
+                        extra={
+                            'file': filename,
+                            'sha': file_hash[:8],
+                            'status': 'reprocess_error',
+                        },
+                    )
+                else:
+                    self.logger.info(
+                        f"File already processed (hash: {file_hash[:8]}), skipping",
+                        extra={
+                            'file': filename,
+                            'sha': file_hash[:8],
+                            'status': 'skipped',
+                        },
+                    )
+                    
+                    # Move to processed directory anyway
+                    n_records = existing_entry.get('n_records', 0)
+                    
+                    processing_time = time.time() - start_time
+                    self.reporter.write_report(
+                        filename=filename,
+                        file_hash=file_hash,
+                        status='skipped_duplicate',
+                        n_rows=n_records,
+                        n_added=0,
+                        n_skipped=n_records,
+                        n_conflicts=0,
+                        processing_time=processing_time
+                    )
+                    
+                    # Move to processed with existing name
+                    dest_name = existing_entry.get(
+                        'processed_name',
+                        filename,
+                    )
+                    dest_path = self.processed_dir / dest_name
+                    
+                    if dest_path.exists():
+                        # Add timestamp to avoid collision
+                        dest_path = (
+                            self.processed_dir
+                            / f"{dest_path.stem}_dup{dest_path.suffix}"
+                        )
+                    
+                    shutil.move(str(file_path), str(dest_path))
+                    
+                    return 'skipped_duplicate', n_records
             
             # Detect file type
             file_type = detect_file_type(file_path)
@@ -205,6 +230,7 @@ class FileProcessor:
             # Handle error
             error_msg = str(e)
             self.logger.error(f"Error processing {filename}: {error_msg}", exc_info=True)
+            error_code = 'PARSE_ERROR'
             
             # Move to error directory
             try:
@@ -217,10 +243,21 @@ class FileProcessor:
                 n_records=0,
                 file_hash=file_hash,
                 is_error=True,
-                error_code='PARSE_ERROR'
+                error_code=error_code
             )
             
             dest_path = self.error_dir / error_name
+
+            if file_hash != 'unknown':
+                self.registry.add_entry(
+                    file_hash=file_hash,
+                    original_name=filename,
+                    processed_name=error_name,
+                    n_records=0,
+                    status='error',
+                    error_code=error_code,
+                    error_message=error_msg,
+                )
             
             try:
                 shutil.move(str(file_path), str(dest_path))

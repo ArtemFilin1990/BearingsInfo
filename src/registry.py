@@ -60,7 +60,9 @@ class Registry:
         original_name: str,
         processed_name: str,
         n_records: int,
-        status: str = 'success'
+        status: str = 'success',
+        error_code: str | None = None,
+        error_message: str | None = None,
     ) -> None:
         """Add entry to registry.
         
@@ -70,13 +72,20 @@ class Registry:
             processed_name: Processed filename
             n_records: Number of records processed
             status: Processing status
+            error_code: Optional error code
+            error_message: Optional error message
         """
-        self._data[file_hash] = {
+        entry = {
             'original_name': original_name,
             'processed_name': processed_name,
             'n_records': n_records,
             'status': status,
         }
+        if error_code:
+            entry['error_code'] = error_code
+        if error_message:
+            entry['error_message'] = error_message
+        self._data[file_hash] = entry
         self._save()
     
     def get_entry(self, file_hash: str) -> Optional[Dict]:

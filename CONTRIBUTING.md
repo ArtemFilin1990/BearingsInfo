@@ -10,7 +10,7 @@
 2. Создайте новую ветку (`git checkout -b feature/bearing-data`)
 3. Добавьте данные в соответствующие файлы в `data/` или документацию в `docs/bearings/`
 4. Убедитесь, что данные содержат ссылки на источники (ГОСТ, ISO, DIN, каталоги производителей)
-5. Запустите валидацию: `python scripts/validate/run_validations.py`
+5. Запустите валидацию: `python tools/scripts/validate/run_validations.py`
 6. Закоммитьте изменения (`git commit -m 'Add: данные по подшипнику XXX'`)
 7. Запушьте ветку (`git push origin feature/bearing-data`)
 8. Откройте Pull Request
@@ -27,15 +27,15 @@
 - `data/` — CSV файлы с данными подшипников
 - `docs/bearings/` — документация по классификации, стандартам, аналогам
 - `sources/` — скрипты для парсинга источников данных
-- `scripts/` — утилиты для валидации и обработки данных
+- `tools/scripts/` — утилиты для валидации и обработки данных
 
 ### Запуск тестов
 
 ```bash
 python -m pip install -r requirements.txt
-python scripts/deduplicate_nomenclature.py
-python scripts/update_repo.py --no-report
-python scripts/validate/run_validations.py
+python tools/scripts/deduplicate_nomenclature.py
+python tools/scripts/update_repo.py --no-report
+python tools/scripts/validate/run_validations.py
 pytest -v
 ```
 

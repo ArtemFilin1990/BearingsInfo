@@ -57,7 +57,7 @@ Baza/
 │   └── 14_Справочная_информация/       # Reference information
 ├── 📂 Каталоги/       # Manufacturer catalogs in Markdown (150+ catalogs)
 ├── 📋 schemas/        # Data schemas (YAML)
-├── 🛠️  scripts/        # Processing and validation scripts
+├── 🛠️  tools/scripts/  # Processing and validation scripts
 ├── 🔧 sources/        # Source materials (PDFs, catalogs, standards)
 └── ✅ tests/          # Tests
 ```
@@ -140,12 +140,12 @@ Baza/
 
 **Data normalization:**
 ```bash
-python scripts/update_repo.py
+python tools/scripts/update_repo.py
 ```
 
 **Data validation:**
 ```bash
-python scripts/validate/run_validations.py
+python tools/scripts/validate/run_validations.py
 ```
 
 **Running tests:**

@@ -95,10 +95,10 @@
 
 ## Скрипты и проверки
 ### Обработка данных
-- Нормализация: [`scripts/update_repo.py`](scripts/update_repo.py)
-- Извлечение: [`scripts/extract/raw_datasets.py`](scripts/extract/raw_datasets.py)
-- Валидация: [`scripts/validate/run_validations.py`](scripts/validate/run_validations.py)
-- CSV валидатор: [`scripts/validate/csv_validator.py`](scripts/validate/csv_validator.py)
+- Нормализация: [`tools/scripts/update_repo.py`](tools/scripts/update_repo.py)
+- Извлечение: [`tools/scripts/extract/raw_datasets.py`](tools/scripts/extract/raw_datasets.py)
+- Валидация: [`tools/scripts/validate/run_validations.py`](tools/scripts/validate/run_validations.py)
+- CSV валидатор: [`tools/scripts/validate/csv_validator.py`](tools/scripts/validate/csv_validator.py)
 
 ### Тесты
 - Тесты: [`tests/`](tests/)

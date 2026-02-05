@@ -85,7 +85,7 @@ Baza/
 │   ├── skf/           SKF-specific materials             │
 │   └── */meta.yaml    Metadata for each category         │
 │                                                          │
-├── 🛠️ scripts/ ──────────────────────────────────────────┤
+├── 🛠️ tools/scripts/ ──────────────────────────────────┤
 │   │   Processing and automation scripts                 │
 │   ├── extract/       Data extraction scripts            │
 │   ├── validate/      Data validation tools              │
@@ -107,7 +107,7 @@ Baza/
        │
        ▼
 ┌─────────────┐
-│  EXTRACT    │  scripts/extract/raw_datasets.py
+│  EXTRACT    │  tools/scripts/extract/raw_datasets.py
 │  (Python)   │  sources/pdf_text_extractor.py
 └──────┬──────┘
        │
@@ -118,13 +118,13 @@ Baza/
        │
        ▼
 ┌─────────────┐
-│ NORMALIZE   │  scripts/update_repo.py
+│ NORMALIZE   │  tools/scripts/update_repo.py
 │  (Python)   │  • Sort data
 └──────┬──────┘  • Remove duplicates
        │         • Format CSV
        ▼
 ┌─────────────┐
-│  VALIDATE   │  scripts/validate/run_validations.py
+│  VALIDATE   │  tools/scripts/validate/run_validations.py
 │  (Python)   │  • Check schemas
 └──────┬──────┘  • Verify types
        │         • Test uniqueness
@@ -153,7 +153,7 @@ Baza/
    └─> Update sources/<category>/meta.yaml
 
 2. Extract (optional)
-   └─> python scripts/extract/raw_datasets.py
+   └─> python tools/scripts/extract/raw_datasets.py
    └─> or manual CSV creation
 
 3. Normalize
@@ -194,7 +194,7 @@ Baza/
    └─> Reference in article
 
 4. Validate Structure
-   └─> python scripts/validate_articles_structure.py
+   └─> python tools/scripts/validate_articles_structure.py
 
 5. Test Links
    └─> Check relative paths
@@ -316,7 +316,7 @@ docs/articles/*.md ──────────┘
 - **Main README**: [README.md](../README.md)
 - **Navigation**: [INDEX.md](../INDEX.md)
 - **Contributing**: [CONTRIBUTING.md](../CONTRIBUTING.md)
-- **Scripts Guide**: [scripts/README.md](../scripts/README.md)
+- **Scripts Guide**: [tools/scripts/README.md](../tools/scripts/README.md)
 - **CLI Help**: `python manage.py help`
 
 ---

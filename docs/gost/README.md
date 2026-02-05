@@ -19,12 +19,12 @@
 
 ## Проверка данных
 - Уникальные ключи: `designation` в bearings/tolerances/series и `(designation, d, D, B)` в dimensions.
-- Сортировка фиксирована по обозначениям и размерам; изменять порядок строк руками запрещено — используйте `python scripts/update_repo.py`.
+- Сортировка фиксирована по обозначениям и размерам; изменять порядок строк руками запрещено — используйте `python tools/scripts/update_repo.py`.
 - Числа записываются с точкой и без пробелов, пустые значения оставляются пустыми строками.
 
 ## Обновление
 ```bash
-python scripts/update_repo.py         # нормализация CSV
-python scripts/validate/run_validations.py  # проверки схем
+python tools/scripts/update_repo.py         # нормализация CSV
+python tools/scripts/validate/run_validations.py  # проверки схем
 ```
 Отчёты о сборке формируются в `data/reports/YYYY-MM-DD_source.json` и фиксируют входные файлы из `sources/gost/*`.

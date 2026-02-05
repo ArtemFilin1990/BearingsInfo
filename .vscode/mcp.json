@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "b24-dev-mcp": {
+      "url": "https://mcp-dev.bitrix24.tech/mcp",
+      "type": "http"
+    }
+  },
+  "inputs": []
+}

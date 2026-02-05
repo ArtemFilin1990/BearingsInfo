@@ -51,7 +51,7 @@ python_classes = ["Test*"]
 python_functions = ["test_*"]
 
 [tool.coverage.run]
-source = ["scripts", "sources"]
+source = ["tools/scripts", "src/sources"]
 omit = [
     "*/tests/*",
     "*/test_*.py",

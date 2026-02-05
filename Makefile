@@ -16,29 +16,29 @@ install-dev: install ## Install development dependencies
 
 lint: ## Run code linters
 	@echo "Running ruff..."
-	ruff check scripts/ sources/ tests/
+	ruff check tools/scripts/ src/sources/ tests/
 	@echo "Running mypy..."
-	mypy scripts/ sources/ tests/ --ignore-missing-imports
+	mypy tools/scripts/ src/sources/ tests/ --ignore-missing-imports
 	@echo "Checking code style with black..."
-	black --check scripts/ sources/ tests/
+	black --check tools/scripts/ src/sources/ tests/
 
 format: ## Format code with black and ruff
 	@echo "Formatting with black..."
-	black scripts/ sources/ tests/
+	black tools/scripts/ src/sources/ tests/
 	@echo "Fixing with ruff..."
-	ruff check --fix scripts/ sources/ tests/
+	ruff check --fix tools/scripts/ src/sources/ tests/
 
 test: ## Run tests with pytest
 	pytest -v
 
 test-cov: ## Run tests with coverage
-	pytest --cov=scripts --cov=sources --cov-report=html --cov-report=term
+	pytest --cov=tools/scripts --cov=src/sources --cov-report=html --cov-report=term
 
 dedup: ## Run deduplication on nomenclature.csv
-	python scripts/deduplicate_nomenclature.py
+	python tools/scripts/deduplicate_nomenclature.py
 
 validate: ## Validate CSV files
-	python scripts/validate/run_validations.py
+	python tools/scripts/validate/run_validations.py
 
 ci: lint test validate ## Run full CI pipeline locally
 	@echo "✅ All CI checks passed!"

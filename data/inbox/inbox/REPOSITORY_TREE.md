@@ -371,6 +371,7 @@ BearingsInfo/
 │   │   ├── AGENT.md                                [агент]
 │   │   ├── PROMPT_ARTICLE_CREATION.md              [создание статей]
 │   │   ├── PROMPT_ENCYCLOPEDIA_ASSISTANT.md        [помощник]
+│   │   ├── PROMPT_REPOSITORY_STRUCTURE_REFACTOR.md [рефактор структуры]
 │   │   ├── PROMPT_GOOGLE_ADS_COPYWRITER.md         [копирайтер]
 │   │   └── PROMPT_SARD_SRS.md                      [SARD SRS]
 │   │

@@ -8,6 +8,7 @@
 - 🔍 [Полный аудит структуры](REPOSITORY_STRUCTURE_AUDIT.md) - детальный анализ всех 381 директорий и 3318 файлов
 - 🌳 [Дерево структуры](REPOSITORY_TREE.md) - визуальная карта организации
 - ⚡ [Быстрая навигация](REPOSITORY_QUICK_REFERENCE.md) - поиск "Я хочу..."
+- 🧭 [Промт рефактора структуры](PROMPT_REPOSITORY_STRUCTURE_REFACTOR.md) - переносы, дедупликация, починка ссылок
 
 ## Automated Data Processing Pipeline
 

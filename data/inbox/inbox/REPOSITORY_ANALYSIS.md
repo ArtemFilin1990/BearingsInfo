@@ -88,6 +88,7 @@ wiki/
 #### Существующие промты и руководства:
 - PROMPT_ARTICLE_CREATION.md — создание статей
 - PROMPT_GOOGLE_ADS_COPYWRITER.md
+- PROMPT_REPOSITORY_STRUCTURE_REFACTOR.md — рефактор структуры репозитория
 - PROMPT_SARD_SRS.md
 - AGENT.md
 
@@ -248,4 +249,3 @@ wiki/
 5. ⏳ Создать 1-2 примера статей по новому шаблону
 6. ⏳ Создать детальный план интеграции
 7. ⏳ Начать миграцию критических разделов
-

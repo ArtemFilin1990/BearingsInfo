@@ -229,8 +229,8 @@ find . -name "*.json" -exec python -m json.tool {} \; > /dev/null
 4. **Валидация перед коммитом**
    ```bash
    # Запустите валидацию данных
-   python scripts/validate/run_validations.py
-   
+   python tools/scripts/validate/run_validations.py
+
    # Запустите тесты
    pytest tests/
    ```
@@ -277,7 +277,7 @@ git checkout -b data/update-iso-suffixes
 # Добавляем источник в sources/iso/
 
 # 3. Проверка
-python scripts/validate/run_validations.py
+python tools/scripts/validate/run_validations.py
 pytest tests/test_suffixes.py
 
 # 4. Коммит
@@ -421,11 +421,11 @@ ci: add security scanning workflow
 2. **Исправьте локально**
    ```bash
    # Воспроизведите ошибку
-   python scripts/validate/run_validations.py
-   
+   python tools/scripts/validate/run_validations.py
+
    # Исправьте
    # ...
-   
+
    # Проверьте
    pytest tests/
    ```
@@ -451,7 +451,7 @@ Error: Files would be reformatted
 pip install black==24.10.0
 
 # Отформатируйте код
-black scripts/ sources/ tests/
+black tools/scripts/ sources/ tests/
 
 # Или используйте make
 make format
@@ -481,7 +481,7 @@ def process_data(data: dict) -> list[str]:
     ...
 
 # Проверка
-mypy scripts/ sources/
+mypy tools/scripts/ sources/
 ```
 
 **4. CSV validation errors**
@@ -491,10 +491,10 @@ Error: Duplicate keys found
 **Решение:**
 ```bash
 # Запустите дедупликацию
-python scripts/deduplicate_nomenclature.py
+python tools/scripts/deduplicate_nomenclature.py
 
 # Проверка
-python scripts/validate/run_validations.py
+python tools/scripts/validate/run_validations.py
 ```
 
 **5. Test failures**

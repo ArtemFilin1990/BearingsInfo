@@ -57,23 +57,23 @@ designation,note
 
 ## Процесс обновления
 1. Поместите новый PDF/DOCX в `sources/<category>/` и добавьте запись в `meta.yaml`.
-2. Обновите сырые таблицы в `scripts/extract/raw_datasets.py` с указанием источника.
+2. Обновите сырые таблицы в `tools/scripts/extract/raw_datasets.py` с указанием источника.
 3. Запустите:
    ```bash
-   python scripts/update_repo.py         # нормализация CSV
-   python scripts/validate/run_validations.py
+   python tools/scripts/update_repo.py         # нормализация CSV
+   python tools/scripts/validate/run_validations.py
    python -m pytest -q
    ```
 4. Добавьте отчёт в `data/reports/YYYY-MM-DD_source.json` с входными/выходными файлами и статистикой строк.
 
 ## Контроль качества
-- Валидации: `scripts/validate/csv_validator.py` проверяет схему, сортировку, типы и дубликаты.
+- Валидации: `tools/scripts/validate/csv_validator.py` проверяет схему, сортировку, типы и дубликаты.
 - CI: `.github/workflows/ci.yml` запускает нормализацию, валидации и тесты на каждом push/PR.
 - Любое нарушение правил формата считается блокирующим и должно быть исправлено до коммита.
 
 ### Описание валидаторов
 
-#### CSV валидатор (`scripts/validate/csv_validator.py`)
+#### CSV валидатор (`tools/scripts/validate/csv_validator.py`)
 Проверяет следующие аспекты:
 - **Схема**: соответствие столбцов определениям в `schemas/*.yaml`
 - **Типы данных**: корректность типов (string, integer, float, boolean)
@@ -84,12 +84,12 @@ designation,note
 
 Пример использования:
 ```bash
-python scripts/validate/csv_validator.py data/gost/bearings.csv schemas/gost.yaml
+python tools/scripts/validate/csv_validator.py data/gost/bearings.csv schemas/gost.yaml
 ```
 
 #### Запуск всех валидаций
 ```bash
-python scripts/validate/run_validations.py
+python tools/scripts/validate/run_validations.py
 ```
 
 Эта команда проверит все CSV файлы в директориях `data/gost/`, `data/iso/`, `data/analogs/`, `data/brands/` на соответствие схемам.

@@ -36,26 +36,26 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Check code formatting with black
-        run: black --check scripts/ sources/ tests/
+        run: black --check tools/scripts/ sources/ tests/
 
       - name: Run ruff linting
-        run: ruff check scripts/ sources/ tests/
+        run: ruff check tools/scripts/ sources/ tests/
 
       - name: Run mypy type checking
         run: |
           export PYTHONPATH=$PWD
-          mypy scripts/ sources/ tests/ --ignore-missing-imports || true
+          mypy tools/scripts/ sources/ tests/ --ignore-missing-imports || true
 
       - name: Deduplicate nomenclature
-        run: python scripts/deduplicate_nomenclature.py
+        run: python tools/scripts/deduplicate_nomenclature.py
 
       - name: Run validations
-        run: python scripts/validate/run_validations.py
+        run: python tools/scripts/validate/run_validations.py
 
       - name: Run tests with coverage
         run: |
           export PYTHONPATH=$PWD
-          pytest --cov=scripts --cov=sources --cov-report=xml --cov-report=term
+          pytest --cov=tools/scripts --cov=sources --cov-report=xml --cov-report=term
 
       - name: Upload coverage reports
         uses: codecov/codecov-action@v3

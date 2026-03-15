@@ -9,7 +9,7 @@ Purpose: Standards coverage (GOST/ISO), decoding rules, and designation systems.
 - Suffixes/prefixes and series definitions
 - Analog and cross-reference notes
 
-## Index (WIP)
+## Index
 - [02_01_gost_standards.md](02_01_gost_standards.md)
 - [02_02_iso_standards.md](02_02_iso_standards.md)
 - [02_03_designation_system.md](02_03_designation_system.md)

@@ -1,6 +1,6 @@
-# CSV Schema Definitions
+# Schema Definitions
 
-Эта директория содержит YAML-схемы для валидации CSV файлов в директории `/data/`.
+Эта директория содержит YAML-схемы для валидации CSV файлов в директории `/data/`, а также SQL-схему базы данных (`bearings_db_schema.sql`).
 
 ## Назначение
 

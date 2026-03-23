@@ -13,7 +13,7 @@ import json
 import re
 from datetime import datetime
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import APIRouter, FastAPI, HTTPException, Query
 from fastapi.responses import JSONResponse, StreamingResponse
 
 from .export_utils import AnalogsExporter, SearchResultsExporter
@@ -37,6 +37,9 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# Роутер для подключения к основному приложению
+router = APIRouter()
+
 # Инициализация движков
 autocomplete_engine = AutocompleteEngine()
 search_engine = DocumentSearchEngine()
@@ -59,7 +62,7 @@ async def root():
     }
 
 
-@app.get("/autocomplete")
+@router.get("/autocomplete")
 async def autocomplete(
     q: str = Query(..., min_length=1, description="Префикс для поиска (минимум 1 символ)"),
     limit: int = Query(10, ge=1, le=50, description="Количество предложений"),
@@ -91,7 +94,7 @@ async def autocomplete(
     return {"query": q, "suggestions": suggestions, "count": len(suggestions)}
 
 
-@app.get("/autocomplete/popular")
+@router.get("/autocomplete/popular")
 async def get_popular_autocomplete(limit: int = Query(10, ge=1, le=50, description="Количество результатов")):
     """Получить самые популярные термины для автодополнения"""
     popular = autocomplete_engine.get_popular_searches(limit=limit)
@@ -99,7 +102,7 @@ async def get_popular_autocomplete(limit: int = Query(10, ge=1, le=50, descripti
     return {"popular": popular, "count": len(popular)}
 
 
-@app.get("/search")
+@router.get("/search")
 async def search(
     q: str = Query(..., min_length=1, description="Поисковый запрос"),
     include_similar: bool = Query(True, description="Добавить похожие документы"),
@@ -147,7 +150,7 @@ async def search(
     return {"query": q, "total": len(results), "results": results}
 
 
-@app.get("/similar/{document_id}")
+@router.get("/similar/{document_id}")
 async def get_similar_documents(
     document_id: str, limit: int = Query(5, ge=1, le=20, description="Количество похожих документов")
 ):
@@ -166,7 +169,7 @@ async def get_similar_documents(
     return {"document_id": document_id, "similar": similar, "count": len(similar)}
 
 
-@app.get("/history")
+@router.get("/history")
 async def get_search_history(
     user_id: str = Query(..., description="ID пользователя"),
     limit: int = Query(50, ge=1, le=200, description="Количество записей"),
@@ -190,7 +193,7 @@ async def get_search_history(
     return {"user_id": user_id, "history": history, "count": len(history)}
 
 
-@app.delete("/history")
+@router.delete("/history")
 async def clear_search_history(user_id: str = Query(..., description="ID пользователя")):
     """Очистить историю поиска"""
     search_history.clear_user_history(user_id)
@@ -198,7 +201,7 @@ async def clear_search_history(user_id: str = Query(..., description="ID пол�
     return {"message": f"История пользователя {user_id} очищена", "status": "success"}
 
 
-@app.get("/history/popular")
+@router.get("/history/popular")
 async def get_popular_queries(limit: int = Query(10, ge=1, le=50, description="Количество запросов")):
     """
     Получить самые популярные поисковые запросы (без привязки к пользователю)
@@ -213,8 +216,8 @@ async def get_popular_queries(limit: int = Query(10, ge=1, le=50, description="�
     return {"popular": popular, "count": len(popular)}
 
 
-@app.get("/analytics/search")
-async def get_search_analytics(period: str = Query("7d", regex="^(1d|7d|30d)$", description="Период: 1d, 7d, 30d")):
+@router.get("/analytics/search")
+async def get_search_analytics(period: str = Query("7d", pattern="^(1d|7d|30d)$", description="Период: 1d, 7d, 30d")):
     """
     Аналитика поисковых запросов
 
@@ -240,10 +243,10 @@ async def get_search_analytics(period: str = Query("7d", regex="^(1d|7d|30d)$", 
     }
 
 
-@app.get("/search/export")
+@router.get("/search/export")
 async def export_search_results(
     q: str = Query(..., description="Поисковый запрос"),
-    export_format: str = Query("json", regex="^(json|csv|xlsx)$", description="Формат: json, csv, xlsx"),
+    export_format: str = Query("json", pattern="^(json|csv|xlsx)$", description="Формат: json, csv, xlsx"),
     limit: int = Query(100, ge=1, le=1000, description="Количество результатов"),
 ):
     """
@@ -286,10 +289,10 @@ async def export_search_results(
         )
 
 
-@app.get("/analogs/{bearing_code}/export")
+@router.get("/analogs/{bearing_code}/export")
 async def export_analogs(
     bearing_code: str,
-    export_format: str = Query("json", regex="^(json|csv|xlsx)$", description="Формат: json, csv, xlsx"),
+    export_format: str = Query("json", pattern="^(json|csv|xlsx)$", description="Формат: json, csv, xlsx"),
 ):
     """
     Экспорт списка аналогов
@@ -334,9 +337,9 @@ async def export_analogs(
         )
 
 
-@app.post("/export/batch")
+@router.post("/export/batch")
 async def export_batch(
-    queries: list[str], export_format: str = Query("xlsx", regex="^(json|xlsx)$", description="Формат: json, xlsx")
+    queries: list[str], export_format: str = Query("xlsx", pattern="^(json|xlsx)$", description="Формат: json, xlsx")
 ):
     """
     Массовый экспорт результатов для списка запросов
@@ -369,6 +372,9 @@ async def export_batch(
             media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             headers={"Content-Disposition": f"attachment; filename={filename}"},
         )
+
+# Включаем роутер в приложение
+app.include_router(router)
 
 
 # Обработчик ошибок

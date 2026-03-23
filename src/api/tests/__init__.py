@@ -4,9 +4,14 @@
 Проверяют базовые healthcheck/endpoints и функционал поиска.
 """
 
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
 from fastapi.testclient import TestClient
 
-from api.main import app
+from main import app
 
 client = TestClient(app)
 

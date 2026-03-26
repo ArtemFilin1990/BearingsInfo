@@ -1,0 +1,169 @@
+name: Seed D1 Database
+
+# Запускается автоматически при слиянии в main
+# Можно запустить вручную: Actions → Seed D1 Database → Run workflow
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/**'
+      - 'data/schema/d1_schema.sql'
+      - 'tools/scripts/build_bearings_seed.py'
+      - '.github/workflows/seed-database.yml'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry-run: только генерировать SQL, не заливать в D1'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+      reset_db:
+        description: 'Сбросить базу перед заливкой (DROP + CREATE)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  contents: read
+
+env:
+  # Имя базы D1 — должно совпадать с wrangler.toml
+  D1_DATABASE_NAME: bearings-db
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  seed:
+    name: Build seed SQL and populate D1
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      # ── 1. Клонировать репозиторий BearingsInfo ──────────────────────────
+      - name: Checkout BearingsInfo
+        uses: actions/checkout@v4
+        with:
+          repository: ArtemFilin1990/BearingsInfo
+          ref: main
+          fetch-depth: 1
+
+      # ── 2. Python + зависимости ──────────────────────────────────────────
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-seed-${{ hashFiles('requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-seed-
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas openpyxl
+
+      # ── 3. Генерация seed SQL ────────────────────────────────────────────
+      - name: Build seed SQL files
+        run: |
+          echo "=== build_bearings_seed.py ==="
+          python tools/scripts/build_bearings_seed.py
+          echo ""
+          echo "=== Сгенерированные файлы ==="
+          ls -lh seed/
+
+      - name: Upload seed SQL as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: seed-sql-${{ github.sha }}
+          path: seed/
+          retention-days: 14
+
+      # ── 4. Node + Wrangler ───────────────────────────────────────────────
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Wrangler
+        run: npm install -g wrangler@latest
+
+      # ── 5. Применить схему ───────────────────────────────────────────────
+      - name: Apply D1 schema
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "=== Применяю схему D1 ==="
+          wrangler d1 execute ${{ env.D1_DATABASE_NAME }} \
+            --remote \
+            --file=data/schema/d1_schema.sql
+
+      # ── 6. Сброс данных (опционально) ────────────────────────────────────
+      - name: Reset database tables (optional)
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event.inputs.reset_db == 'true' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "=== Сброс таблиц ==="
+          wrangler d1 execute ${{ env.D1_DATABASE_NAME }} \
+            --remote \
+            --command="DELETE FROM bearings; DELETE FROM manufacturers; DELETE FROM analogs; DELETE FROM nomenclature;"
+
+      # ── 7. Залить seed SQL в D1 ──────────────────────────────────────────
+      - name: Execute seed SQL files
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "=== Заливаю seed-данные в D1 ==="
+          # Сортируем файлы по имени (00_ → 01_ → 02_ → ...)
+          for sql_file in $(ls seed/*.sql | sort); do
+            echo "→ $sql_file"
+            wrangler d1 execute ${{ env.D1_DATABASE_NAME }} \
+              --remote \
+              --file="$sql_file"
+            echo "  ✓ Выполнено"
+          done
+
+      # ── 8. Проверка после заливки ────────────────────────────────────────
+      - name: Verify D1 counts
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "=== Проверка строк в D1 ==="
+          for table in bearings manufacturers analogs nomenclature; do
+            COUNT=$(wrangler d1 execute ${{ env.D1_DATABASE_NAME }} \
+              --remote \
+              --command="SELECT COUNT(*) as cnt FROM $table;" \
+              --json 2>/dev/null | python3 -c "
+          import json,sys
+          data = json.load(sys.stdin)
+          try:
+              cnt = data[0]['results'][0]['cnt']
+              print(cnt)
+          except:
+              print('?')
+          ")
+            echo "  $table: $COUNT строк"
+          done
+
+      # ── 9. Сухой прогон — только показать манифест ───────────────────────
+      - name: Dry-run summary
+        if: ${{ github.event.inputs.dry_run == 'true' }}
+        run: |
+          echo "=== DRY-RUN: SQL сгенерирован, в D1 НЕ заливался ==="
+          cat seed/manifest.json

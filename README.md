@@ -49,136 +49,429 @@ BearingsInfo/
 
 ---
 
-## 📂 Что где лежит — подробное описание каталогов и файлов
+## 📂 Что где лежит — подробная структура папок и файлов
 
-Ниже подробно расписано, что находится в каждой папке репозитория и какие там файлы (каталоги производителей, таблицы обозначений, справочники, схемы БД, исходный код и т. д.).
+Ниже приведена полная развёрнутая структура репозитория с описанием каждой папки и ключевых файлов: каталоги производителей, таблицы обозначений (ГОСТ/ISO/DIN), справочники, схемы БД, исходный код, тесты и инфраструктура.
 
 ### 📁 `docs/` — Документация и контент справочника
 
-Главный каталог с текстовым контентом (Markdown) — энциклопедия, учебники, статьи, руководства.
+Главный каталог с текстовым контентом (Markdown): энциклопедия, учебники, статьи, руководства, wiki, технические материалы.
 
-- **`docs/encyclopedia/`** — Основная энциклопедия по подшипникам, разбитая на 9 тематических разделов:
-  - `01-podshipniki-obshaya-informatsiya/` — общая информация, термины, классификация, алгоритм выбора
-  - `02-standarty-i-markirovka/` — **система обозначений** (ГОСТ, ISO, DIN, ANSI), маркировка, расшифровка кодов, классы точности, аналоги
-  - `03-tipy-i-elementy/` — типы подшипников (шариковые, роликовые, игольчатые), сепараторы, тела качения, узлы
-  - `04-raschet-i-parametry/` — нагрузки, ресурс, зазоры, преднатяг, комплекты DF/DB/DT
-  - `05-ekspluatatsiya-i-obsluzhivanie/` — смазка, посадки, монтаж, хранение
-  - `06-otkazy-i-diagnostika/` — дефекты, причины повреждений, диагностика
-  - `07-brendy-i-proizvoditeli/` — производители (СКФ, FAG, NSK, NTN, ГПЗ, китайские бренды и т. д.)
-  - `08-spetsialnye-ispolneniya-i-spravka/` — миниатюрные, керамические, высокотемпературные подшипники
-  - `09-soputstvuyushchie-izdeliya/` — крепёж, втулки, уплотнения, передачи
-- **`docs/kb/`** — База знаний и обучающие материалы:
-  - `knowledge-base/` — структурированная база знаний
-  - `uchebnik/`, `uchebnik-akademichesky/` — учебники (практический и академический)
-  - `vvodny-kurs-dlya-novichkov/` — вводный курс
-  - `testy/` — тесты для проверки знаний
-- **`docs/podshipniki/`** — Тематические разделы (обозначения, классы точности, зазоры, моменты трения, типы, смазка, примеры обозначений).
-- **`docs/articles/`** — Статьи по сопутствующим изделиям (ШС, ремни, сальники, цепи, шкивы, РТИ, РВД, кольца и т. д.).
-- **`docs/bearings/`** — Расширенный справочник: `MASTER_INDEX.md`, `glossary.md`, `gost_comprehensive_guide.md`, подкаталоги `analogues/`, `brands/`, `catalog/`, `classification/`, `designations/`, `faq/`.
-- **`docs/wiki/`** — Wiki-формат: основы, терминология, стандарты, маркировка, `Home.md`.
-- **`docs/prakticheskie-rukovodstva/`** — Практические руководства, кейсы, чек-листы.
-- **`docs/instrumenty-i-spravochniki/`** — Калькуляторы, конвертеры, справочники.
-- **`docs/karty-znany-i-navigatsiya/`** — Карты знаний и навигационные схемы.
-- **`docs/images/`** — Изображения, фотографии, чертежи и схемы.
-- **`docs/gost/`, `docs/iso/`, `docs/en/`** — Материалы по стандартам ГОСТ, ISO и англоязычные материалы.
-- **`docs/analogs/`, `docs/brands/`** — Аналоги и бренды (текстовая часть).
-- **`docs/appendices/`, `docs/supplementary/`, `docs/technical/`** — Приложения, дополнительные и технические материалы.
-- **`docs/extracted/`** — Текст, извлечённый из источников (PDF и т. д.).
-- **`docs/examples/`** — Примеры.
-- **`docs/it-infrastructure/`** — Документация по IT-инфраструктуре проекта.
-- **`docs/archive/`** — Архивные документы.
-- **`docs/meta/`** — Метаданные документации.
-- **Корневые `.md` файлы в `docs/`:** `QUICK_START.md`, `QUICK_REFERENCE.md`, `NAVIGATION_GUIDE.md`, `REPOSITORY_STRUCTURE.md`, `DEMO.md`, `ARTICLE_CREATION_GUIDE.md`, `KNOWLEDGE_BASE_BUILDER.md`, `EXTRACTED_KNOWLEDGE_INDEX.md`, `automation.md`, `automation_ru.md`, `AGENT.md`.
+```
+docs/
+├── encyclopedia/                              # 📖 Основная энциклопедия (9 разделов)
+│   ├── 01-podshipniki-obshaya-informatsiya/   # Общая информация, термины, выбор
+│   │   ├── 1.1. Назначение и границы/
+│   │   ├── 1.2. Как пользоваться базой/
+│   │   ├── 1.3. Термины и определения RU EN/
+│   │   ├── 1.4. Из чего состоит подшипник/
+│   │   ├── 1.5. Классификация подшипников/
+│   │   ├── 1.6. Ключевые параметры выбора/
+│   │   ├── 1.7. Алгоритм выбора и чек-лист ошибок/
+│   │   ├── 1.8. Источники и верификация/
+│   │   ├── 1.9. Структура данных для БД/
+│   │   ├── 1.10. Статусы материалов и обновления/
+│   │   └── README.md
+│   ├── 02-standarty-i-markirovka/             # 🏷 Стандарты, маркировка, обозначения
+│   │   ├── 2.1. Карта стандартов ГОСТ, ISO, DIN, ANSI/
+│   │   ├── 2.2. Система обозначений базовая модель/
+│   │   ├── 2.3. ГОСТ правила формирования обозначения/
+│   │   ├── 2.4. ISO DIN ANSI правила и отличия/
+│   │   ├── 2.5. Сопоставление ГОСТ и ISO аналоги/
+│   │   ├── 2.6. Классы точности ГОСТ, ISO, ABEC/
+│   │   ├── 2.7. Зазоры и группы маркировка и влияние/
+│   │   ├── 2.8. Уплотнения и защита обозначения/
+│   │   ├── 2.9. Клетки и сепараторы обозначения/
+│   │   ├── 2.10. Скорость, температура, смазка обозначения/
+│   │   ├── 2.11. Примеры расшифровки обозначений/
+│   │   ├── 2.12. ТН ВЭД коды по типам/
+│   │   ├── gost/
+│   │   └── README.md
+│   ├── 03-tipy-i-elementy/                    # 🔩 Типы и элементы конструкции
+│   │   ├── 3.1. Шариковые подшипники/
+│   │   ├── 3.2. Радиально-упорные углы контакта и комплекты/
+│   │   ├── 3.3. Роликовые цилиндрические N, NU, NJ, NUP/
+│   │   ├── 3.4. Роликовые конические/
+│   │   ├── 3.5. Роликовые сферические/
+│   │   ├── 3.6. Игольчатые/
+│   │   ├── 3.7. Самоустанавливающиеся/
+│   │   ├── 3.8. Исполнения и модификации/
+│   │   ├── 3.9. Сепараторы материалы и ограничения/
+│   │   ├── 3.10. Узлы и корпуса UC, UCP, UCF, UCFL/
+│   │   ├── 3.11. Крепёж втулки, гайки, стопора/
+│   │   ├── 3.12. Прецизионные, шпиндельные, высокоскоростные/
+│   │   ├── 3.13. Гибридные и керамические/
+│   │   ├── 3.14. Подшипники скольжения/
+│   │   └── README.md
+│   ├── 04-raschet-i-parametry/                # 📐 Нагрузки, ресурс, зазоры, преднатяг
+│   ├── 05-ekspluatatsiya-i-obsluzhivanie/     # 🛠 Смазка, посадки, монтаж, хранение
+│   ├── 06-otkazy-i-diagnostika/               # 🔍 Дефекты, причины, диагностика
+│   ├── 07-brendy-i-proizvoditeli/             # 🏭 SKF, FAG, NSK, NTN, ГПЗ, China brands
+│   ├── 08-spetsialnye-ispolneniya-i-spravka/  # ⚙ Миниатюрные, керамические, высокотемп.
+│   └── 09-soputstvuyushchie-izdeliya/         # 🔧 Крепёж, втулки, уплотнения, передачи
+│
+├── kb/                                        # 🎓 База знаний и обучающие материалы
+│   ├── knowledge-base/                        #     Структурированная БЗ (номенклатура, учебники, тесты)
+│   ├── uchebnik/                              #     Учебник (часть-1 … часть-4)
+│   ├── uchebnik-akademichesky/                #     Учебник академический
+│   ├── vvodny-kurs-dlya-novichkov/            #     Вводный курс для новичков
+│   └── testy/                                 #     Тесты для проверки знаний
+│
+├── podshipniki/                               # 📚 Тематические разделы (обозначения, типы, маркировка)
+│   ├── 1.1. Система условных обозначений подшипников/
+│   ├── 1.2. Класс точности подшипников ГОСТ, ISO, ABEC/
+│   ├── 1.3. Зазоры в подшипниках качения/
+│   ├── 1.4. Обозначение момента трения подшипников/
+│   ├── 1.5. Обозначение категорий подшипников/
+│   ├── 1.6. Обозначение внутреннего диаметра подшипников/
+│   ├── 1.7. Обозначение размерных серий подшипников/
+│   ├── 1.8. Типы подшипников/
+│   ├── 1.9. Сепараторы подшипников качения/
+│   ├── 1.10. Смазка подшипников/
+│   ├── 1.11. Примеры условного обозначения подшипников/
+│   ├── 2.1.–2.8. ГОСТ, ISO, ЕТУ, ТН ВЭД, аналоги/
+│   ├── 3.1.–3.28. Конструкция, расчёт, монтаж, диагностика/
+│   ├── 4.1.–4.16. Типы подшипников (сферические, игольчатые, упорные, …)/
+│   ├── 5.1.–5.5. Узлы, SKF Y-тип, гибридные, шпиндельные/
+│   ├── 6.1.–6.4.x. Заводы СНГ, бренды (SKF/FAG/NSK/NTN/SNFA/KOYO/GMN/BARDEN/FKL/BBC-R/MPZ)/
+│   ├── 7.1.–7.4. Шарики, ролики, тела качения, втулки/
+│   └── 8.1.–8.3. Втулки скольжения, тапербуш/
+│
+├── articles/                                  # 📝 Статьи по сопутствующим изделиям
+│   ├── 2_ball_joints/                         #   Шарнирные соединения
+│   ├── 3_linear_guides_and_ball_screws/       #   Линейные направляющие и ШВП
+│   ├── 4_rti_gost/                            #   РТИ по ГОСТ
+│   ├── 5_drive_belts/                         #   Приводные ремни
+│   ├── 6_seals_and_cuffs/                     #   Сальники и манжеты
+│   ├── 7_hoses_and_rvd/                       #   Рукава и РВД
+│   ├── 8_o_rings/                             #   O-ring кольца
+│   ├── 9_pulleys/                             #   Шкивы
+│   ├── 10_chains_and_sprockets/               #   Цепи и звёздочки
+│   ├── 11_accessories/                        #   Аксессуары
+│   └── bearings/                              #   Статьи по подшипникам
+│
+├── bearings/                                  # 🔎 Расширенный справочник
+│   ├── analogues/                             #   Аналоги
+│   ├── brands/                                #   Бренды
+│   ├── catalog/                               #   Каталог
+│   ├── classification/                        #   Классификация
+│   ├── designations/                          #   Обозначения
+│   ├── faq/                                   #   FAQ
+│   ├── glossary.md                            #   Глоссарий
+│   ├── gost_comprehensive_guide.md            #   Полный гайд по ГОСТ
+│   ├── guides/, standards/, training/
+│   ├── MASTER_INDEX.md
+│   └── README.md
+│
+├── wiki/                                      # 📑 Wiki-формат
+│   ├── 1-osnovy-terminologiya-vybor/          #   Основы, терминология, выбор
+│   ├── 2-standarty-i-markirovka/              #   Стандарты и маркировка
+│   └── Home.md
+│
+├── prakticheskie-rukovodstva/                 # ✅ Практические руководства, кейсы, чек-листы
+│                                              #   (~150 файлов: расшифровка маркировки, подбор аналогов,
+│                                              #    монтаж, посадки, смазка, диагностика, и т.д.)
+├── instrumenty-i-spravochniki/                # 🛠 Калькуляторы и справочники
+│   ├── FAQ.md
+│   ├── Кросс_ссылки_производителей.md
+│   ├── Словарь_терминов.md
+│   ├── Суффиксы_префиксы.md                   #   Расшифровка суффиксов и префиксов
+│   ├── Таблицы_соответствий.md
+│   └── README.md
+├── karty-znany-i-navigatsiya/                 # 🗺 Карты знаний и навигационные схемы
+├── images/                                    # 🖼 Изображения, фотографии, чертежи, схемы
+├── gost/                                      # Материалы по ГОСТ
+├── iso/                                       # Материалы по ISO
+├── en/                                        # Англоязычные материалы (en/bearings/)
+├── analogs/                                   # Аналоги (текстовая часть)
+├── brands/                                    # Бренды (текстовая часть)
+├── appendices/                                # Приложения (90_Приложения_таблицы_БД, legacy-appendix)
+├── supplementary/                             # Дополнительные материалы (Каталоги, Номенклатура)
+├── technical/                                 # Технические материалы по разделам:
+│   ├── 00_ВСПОМОГАТЕЛЬНЫЕ/00_DATA/
+│   ├── 01_basics/, 02_standards_marking/, 03_types_components/, 04_parameters_calculations/
+│   ├── 05_operation_maintenance/, 06_failures_diagnostics/, 07_brands_manufacturers/, 08_special_reference/
+│   ├── 02_Термины_и_основы/, 03_ГОСТ_подшипники_и_нормативка/
+│   ├── 04_ISO_и_международные_обозначения/, 05_Маркировка_суффиксы_серии/
+│   ├── 06_Аналоги_и_взаимозаменяемость/, 07_Бренды_и_каталоги/
+│   ├── 08_Автомобильные_комплекты/, 09_Линейные_системы_и_передачи/
+│   ├── 10_Ремни_шкивы_цепи/, 11_РТИ_рукава_уплотнения/, 12_Прочее_сопутствующее/
+├── extracted/                                 # Текст, извлечённый из источников (PDF и т. д.)
+├── examples/                                  # Примеры
+├── it-infrastructure/                         # IT-инфраструктура (it-infrastructure/IT/)
+├── archive/                                   # Архивные документы (trash_review/)
+├── meta/                                      # Метаданные документации
+│
+├── AGENT.md                                   # Инструкции для AI-агентов
+├── ARTICLE_CREATION_GUIDE.md                  # Гайд по созданию статей
+├── DEMO.md                                    # Демонстрация
+├── EXTRACTED_KNOWLEDGE_INDEX.md               # Индекс извлечённых знаний
+├── KNOWLEDGE_BASE_BUILDER.md                  # Сборка базы знаний
+├── NAVIGATION_GUIDE.md                        # Гайд по навигации
+├── QUICK_REFERENCE.md                         # Краткая справка
+├── QUICK_START.md                             # Быстрый старт
+├── REPOSITORY_STRUCTURE.md                    # Структура репозитория
+├── automation.md / automation_ru.md           # Автоматизация
+```
 
-### 📁 `data/` — Данные, таблицы и базы
+### 📁 `data/` — Данные, таблицы, базы
 
-Структурированные данные: каталоги, размерные таблицы, обозначения, аналоги, схемы БД.
+Структурированные данные: каталоги производителей, размерные таблицы, **таблицы обозначений и аналогов**, схемы БД.
 
-- **`data/katalogi/`** — **Каталоги производителей** в формате Markdown (более сотни файлов): SKF, FAG, NSK, NTN, IKO, EPK, ROLLON, MARKES, MEGADYNE, NBS, FYH, AKE, APB, CRAFT, CX, DAS LAGER, EMS, FBJ, FKL, Fersa, GAMET, HARP, IBB, IBC, IBU, 10-ГПЗ и др. Подкаталог `catalog-legacy/` содержит устаревшие версии.
-- **`data/gost/`** — Таблицы по ГОСТ в формате CSV: `bearings.csv`, `dimensions.csv`, `series.csv`, `tolerances.csv`.
-- **`data/iso/`** — Таблицы по ISO: `bearings.csv`, `dimensions.csv`, `prefixes.csv`, `suffixes.csv` (префиксы и **суффиксы обозначений**).
-- **`data/brands/`** — Справочники брендов: `brands.csv`, `brand_comparison.csv`, `manufacturers_asia.csv`, `manufacturers_china.csv`, `manufacturers_cis.csv`, `manufacturers_europe.csv`.
-- **`data/dimensions/`** — Размерные таблицы: `bearing_dimensions.csv` (d, D, B и др.).
-- **`data/nomenclature/`** — Номенклатура по производителям (по одному файлу `.md` на бренд: AAA, ABC, ADR, AKE, APB, BARDEN, BBC, CRAFT, DKF, EER, FAG, FERSA, FLT, GMN, GPL, GRW, HCH, HYA, INA, 10-ГПЗ и др.).
-- **`data/analogs/`** — **Таблицы аналогов**: `gost_iso.csv`, `gost_to_iso.csv`, `iso_to_gost.csv`, `additional_designations.csv`, `import_analogs.csv`, `housings.csv`, `units.csv`.
-- **`data/csv/`** — Сводные CSV-таблицы: `master_catalog.csv`, `bearing_units.csv`, `tn_ved_codes.csv` (коды ТН ВЭД), `tolerance_classes.csv`, плюс подпапки `analogs/`, `brands/`, `gost/`, `iso/`.
-- **`data/database/`** — База данных: `schema.sql` (схема), `README.md`.
-- **`data/schema/`** — SQL-схемы: `bearings_db_schema.sql`, `d1_schema.sql`.
-- **`data/schemas/`** — YAML-схемы валидации: `analogs.yaml`, `brand_descriptions.yaml`, `brands.yaml`, `gost.yaml`, `iso.yaml`, `nomenclature.yaml`.
-- **`data/sql/`** — SQL-скрипты: `init_catalog.sql`.
-- **`data/tables/`** — Таблицы (Markdown).
-- **`data/raw/`** — Сырые данные.
-- **`data/inbox/`** — Входящие файлы для обработки.
-- **`data/reports/`** — Отчёты (например, `2025-12-30_source.json`).
-- **`data/assets/`** — Ассеты для данных.
-- **`data/sources-legacy/`** — Устаревшие источники: `EXTRACTION_STATUS.md`, `PDF_EXTRACTION_METHODOLOGY.md`, `RAW_INDEX.md`, `VERSION_CONTROL.md`, JSON-файлы с размерами по сериям 6000/6200/6300/angular_contact и т. д.
-- **Корневые файлы `data/`:** `articles.xlsx`, `bearing_directory.xlsx` (Excel-справочники), `articles_list.csv`, `brands.csv`, `nomenclature.csv`.
+```
+data/
+├── katalogi/                                  # 🏭 Каталоги производителей (97 файлов .md)
+│   ├── Каталог_подшипников_SKF.md             #   SKF (общий, высокотемпературные, и др.)
+│   ├── Каталог_подшипников_FAG.md             #   FAG / INA / Schaeffler
+│   ├── Каталог_подшипников_NSK.md             #   NSK
+│   ├── Каталог_подшипников_NTN.md             #   NTN, NTN ULTAGE (высокопрецизионные)
+│   ├── Каталог_подшипников_KOYO.md, IKO.md    #   KOYO, IKO (игольчатые)
+│   ├── Каталог_подшипников_AKE.md, APB.md     #   Высокоточные, для станкостроения
+│   ├── Каталог_подшипников_CRAFT.md, CX.md    #   CRAFT, CX, DAS_LAGER, EMS, FBJ, FKL, и др.
+│   ├── Каталог_подшипников_Fersa.md           #   Fersa (легковые автомобили)
+│   ├── Каталог_подшипников_GAMET_BEARINGS.md  #   GAMET, HARP, IBB, IBC, IBU, …
+│   ├── Каталог_подшипников_HCH/HRB/HYA/INA/…  #   Китайские/европейские бренды
+│   ├── Каталог_десятого_подшипникового_завода.md  # 10-ГПЗ
+│   ├── Генеральный_каталог_EPK.md             #   ЕПК (Европейская подшипниковая корпорация)
+│   ├── Каталог_корпусных_подшипников_FYH.md   #   FYH (корпусные)
+│   ├── Каталог_игольчатых_подшипников_NBS.md  #   NBS
+│   ├── Каталог_обгонных_муфт_CTS.md           #   Обгонные муфты
+│   ├── Каталог_MARKES_Ролики_конвейерные.md   #   Конвейерные ролики
+│   ├── Каталог_MEGADYNE.md                    #   Ремни MEGADYNE
+│   ├── Ассортимент_продукции_ROLLON.md        #   Линейные направляющие ROLLON
+│   ├── catalog-legacy/CAT-6205.md             #   Устаревшие версии каталогов
+│   └── README.md
+│
+├── gost/                                      # 📋 Таблицы по ГОСТ (CSV)
+│   ├── bearings.csv                           #   Подшипники по ГОСТ
+│   ├── dimensions.csv                         #   Размеры
+│   ├── series.csv                             #   Серии
+│   └── tolerances.csv                         #   Допуски
+│
+├── iso/                                       # 📋 Таблицы по ISO (CSV)
+│   ├── bearings.csv
+│   ├── dimensions.csv
+│   ├── prefixes.csv                           #   Префиксы обозначений
+│   └── suffixes.csv                           #   Суффиксы обозначений
+│
+├── brands/                                    # 🏷 Справочники брендов (CSV)
+│   ├── brands.csv                             #   Все бренды
+│   ├── brand_comparison.csv                   #   Сравнение брендов
+│   ├── manufacturers_asia.csv                 #   Азия
+│   ├── manufacturers_china.csv                #   Китай
+│   ├── manufacturers_cis.csv                  #   СНГ
+│   └── manufacturers_europe.csv               #   Европа
+│
+├── dimensions/                                # 📏 Размерные таблицы
+│   └── bearing_dimensions.csv                 #   d, D, B, r, масса
+│
+├── nomenclature/                              # 📜 Номенклатура (86 файлов .md по брендам)
+│   ├── 10-ГПЗ.md, AAA.md, ABC.md, ADR.md,
+│   ├── AKE.md, APB.md, BARDEN.md, BBC.md,
+│   ├── CRAFT.md, DKF.md, EER.md, FAG.md,
+│   ├── FERSA.md, FLT.md, GMN.md, GPL.md,
+│   ├── GRW.md, HCH.md, HYA.md, INA.md, …      #   и т. д. (по одному на бренд)
+│
+├── analogs/                                   # 🔁 Таблицы аналогов
+│   ├── gost_iso.csv                           #   ГОСТ ↔ ISO
+│   ├── gost_to_iso.csv                        #   ГОСТ → ISO
+│   ├── iso_to_gost.csv                        #   ISO → ГОСТ
+│   ├── additional_designations.csv            #   Дополнительные обозначения
+│   ├── import_analogs.csv                     #   Импортные аналоги
+│   ├── housings.csv                           #   Корпуса
+│   └── units.csv                              #   Узлы
+│
+├── csv/                                       # 📊 Сводные CSV-таблицы
+│   ├── master_catalog.csv                     #   Главный сводный каталог
+│   ├── bearing_units.csv                      #   Подшипниковые узлы
+│   ├── tn_ved_codes.csv                       #   Коды ТН ВЭД ЕАЭС
+│   ├── tolerance_classes.csv                  #   Классы точности
+│   ├── analogs/, brands/, gost/, iso/         #   Подпапки по доменам
+│
+├── database/                                  # 🗄 База данных
+│   ├── schema.sql                             #   Схема БД
+│   └── README.md
+├── schema/                                    # 🗃 SQL-схемы
+│   ├── bearings_db_schema.sql                 #   Основная схема
+│   └── d1_schema.sql                          #   Схема для Cloudflare D1
+├── schemas/                                   # 📐 YAML-схемы валидации
+│   ├── analogs.yaml, brand_descriptions.yaml,
+│   ├── brands.yaml, gost.yaml, iso.yaml,
+│   ├── nomenclature.yaml
+│   └── README.md
+├── sql/                                       # 💾 SQL-скрипты
+│   └── init_catalog.sql                       #   Инициализация каталога
+│
+├── tables/                                    # Таблицы (Markdown)
+├── raw/                                       # Сырые данные
+├── inbox/                                     # Входящие файлы для обработки (inbox/inbox/)
+├── reports/                                   # Отчёты (например, 2025-12-30_source.json)
+├── assets/                                    # Ассеты для данных
+├── sources-legacy/                            # Устаревшие источники
+│   ├── EXTRACTION_STATUS.md                   #   Статус извлечения
+│   ├── PDF_EXTRACTION_METHODOLOGY.md          #   Методология извлечения из PDF
+│   ├── RAW_INDEX.md, VERSION_CONTROL.md
+│   ├── analogs/, brands/, catalogs/, gost/,
+│   ├── iso/, skf/, vendor_catalogs/
+│   └── bearing_dimensions_*.json              #   Серии 6000/6200/6300/angular_contact
+│
+├── articles.xlsx                              # 📊 Excel: список статей
+├── bearing_directory.xlsx                     # 📊 Excel: справочник подшипников
+├── articles_list.csv                          # CSV: список статей
+├── brands.csv                                 # CSV: бренды (корневой)
+├── nomenclature.csv                           # CSV: номенклатура (корневая)
+└── README.md
+```
 
 ### 📁 `src/` — Исходный код Python
 
 Логика парсинга, обработки и API.
 
-- `__init__.py`, `__main__.py` — точки входа пакета.
-- `cli.py` — интерфейс командной строки.
-- `catalog.py` — работа с каталогом подшипников.
-- `config.py` — загрузка конфигурации.
-- `logger.py` — логирование.
-- `parser.py` — парсер обозначений.
-- `processor.py` — обработка данных.
-- `registry.py` — реестр.
-- `utils.py` — утилиты.
-- `watcher.py` — отслеживание изменений.
-- **`src/api/`** — REST API (FastAPI/Flask): `main.py`, `app/`, `examples/`, `scripts/`, `sql/`, `tests/`, `mar_Dockerfile`, `mar_requirements.txt`, `README.md`.
-- **`src/sources/`** — Извлечение из источников: `pdf_text_extractor.py`, `table_scraper.py`, `brands_json_to_csv.py`.
+```
+src/
+├── __init__.py                                # Инициализация пакета
+├── __main__.py                                # Точка входа `python -m src`
+├── cli.py                                     # CLI-интерфейс
+├── catalog.py                                 # Работа с каталогом подшипников
+├── config.py                                  # Загрузка конфигурации
+├── logger.py                                  # Логирование
+├── parser.py                                  # Парсер обозначений
+├── processor.py                               # Обработка данных
+├── registry.py                                # Реестр
+├── utils.py                                   # Утилиты
+├── watcher.py                                 # Отслеживание изменений
+│
+├── api/                                       # 🌐 REST API
+│   ├── main.py                                #   Точка входа API
+│   ├── app/                                   #   Приложение (роуты, модели)
+│   ├── examples/                              #   Примеры запросов
+│   ├── scripts/                               #   Скрипты сопровождения
+│   ├── sql/                                   #   SQL-запросы API
+│   ├── tests/                                 #   Тесты API
+│   ├── mar_Dockerfile, mar_requirements.txt
+│   └── README.md
+│
+└── sources/                                   # 📥 Извлечение из источников
+    ├── pdf_text_extractor.py                  #   Извлечение текста из PDF
+    ├── table_scraper.py                       #   Скрапинг таблиц
+    └── brands_json_to_csv.py                  #   Конвертация JSON → CSV брендов
+```
 
 ### 📁 `tools/` — Утилиты, скрипты, автоматизация
 
-- **`tools/scripts/`** — Большое количество Python-скриптов сборки и обработки: `build_knowledge_base.py`, `build_complete_knowledge_base.py`, `build_enhanced_knowledge_base.py`, `build_ultra_comprehensive_kb.py`, `build_search_index.py`, `build_autocomplete_dict.py`, `build_bearings_seed.py`, `check_data_sources.py`, `deduplicate_nomenclature.py`, `generate_sources_table.py`, `import_bearings_to_db.py`, `pdf_extractor_optimized.py`, `move_all_to_inbox.py`, `fix_articles_structure.py`, `mar_manage.py` и др.
-- **`tools/bin/`** — Бинарные/исполняемые утилиты.
-- Подпапки `extract/`, `examples/`, `run/`.
-- `README.md` — описание инструментов.
+```
+tools/
+├── scripts/                                   # 🐍 Python-скрипты сборки и обработки
+│   ├── build_knowledge_base.py                #   Сборка базы знаний
+│   ├── build_complete_knowledge_base.py       #   Полная сборка БЗ
+│   ├── build_enhanced_knowledge_base.py       #   Расширенная сборка БЗ
+│   ├── build_ultra_comprehensive_kb.py        #   Максимально полная БЗ
+│   ├── build_search_index.py                  #   Сборка поискового индекса
+│   ├── build_autocomplete_dict.py             #   Словарь автодополнения
+│   ├── build_bearings_seed.py                 #   Сидирование подшипников
+│   ├── check_data_sources.py                  #   Проверка источников данных
+│   ├── deduplicate_nomenclature.py            #   Дедупликация номенклатуры
+│   ├── generate_sources_table.py              #   Генерация таблицы источников
+│   ├── import_bearings_to_db.py               #   Импорт в БД
+│   ├── pdf_extractor_optimized.py             #   Оптимизированный PDF-экстрактор
+│   ├── move_all_to_inbox.py                   #   Перемещение в inbox
+│   ├── fix_articles_structure.py              #   Исправление структуры статей
+│   ├── mar_manage.py                          #   Управление MAR-подпроектом
+│   ├── extract/                               #   Скрипты извлечения
+│   ├── validate/                              #   Скрипты валидации
+│   └── examples/                              #   Примеры использования
+├── bin/                                       # Бинарные/исполняемые утилиты
+└── README.md
+```
 
 ### 📁 `config/` — Конфигурационные файлы
 
-- `app.yaml` — конфигурация приложения.
-- `brand_aliases.json` — синонимы и алиасы брендов.
-- `parsing_rules.json` — правила парсинга обозначений.
-- `mar_Dockerfile`, `mar_docker-compose.yml`, `mar_Makefile`, `mar_pyproject.toml`, `mar_requirements.txt` — конфиги под подпроект MAR.
-
-### 📁 `sources/` — Источники данных
-
-Исходные источники (PDF, документы, ссылки) — описание в `README.md`.
-
-### 📁 `archive/` — Архив
-
-- **`archive/zip/`** — Архивы (`book.zip`, `book.z01.zip`, `book.z02.zip`, `bearing_handbook_pkg.rar`).
-- **`archive/docs-legacy/`** — Устаревшая документация: `01_basics/`, `03_types_components/`, `04_parameters_calculations/`, `README/`, плюс `README-api.md`, `README-baza.md`, `README-mar.md`.
+```
+config/
+├── app.yaml                                   # Основная конфигурация приложения
+├── brand_aliases.json                         # Синонимы и алиасы брендов
+├── parsing_rules.json                         # Правила парсинга обозначений
+├── mar_Dockerfile                             # Dockerfile подпроекта MAR
+├── mar_docker-compose.yml                     # docker-compose MAR
+├── mar_Makefile                               # Makefile MAR
+├── mar_pyproject.toml                         # pyproject MAR
+└── mar_requirements.txt                       # Зависимости MAR
+```
 
 ### 📁 `tests/` — Тесты (pytest)
 
-`conftest.py` и тестовые модули: `test_automation_pipeline.py`, `test_code_normalization.py`, `test_dedup.py`, `test_deduplication.py`, `test_dimensions.py`, `test_knowledge_base_builder.py`, `test_processor.py`, `test_schema_validation.py`, `test_schemas.py`, `test_suffixes.py`, `test_table_scraper.py`, `test_validators.py`.
+```
+tests/
+├── conftest.py                                # Общие фикстуры pytest
+├── test_automation_pipeline.py                # Автоматизационный пайплайн
+├── test_code_normalization.py                 # Нормализация кодов
+├── test_dedup.py / test_deduplication.py      # Дедупликация
+├── test_dimensions.py                         # Размеры
+├── test_knowledge_base_builder.py             # Сборщик БЗ
+├── test_processor.py                          # Процессор
+├── test_schema_validation.py / test_schemas.py# Валидация схем
+├── test_suffixes.py                           # Суффиксы обозначений
+├── test_table_scraper.py                      # Скрапинг таблиц
+└── test_validators.py                         # Валидаторы
+```
+
+### 📁 `archive/` — Архив
+
+```
+archive/
+├── zip/                                       # Zip-архивы исходников
+│   ├── book.zip, book.z01.zip, book.z02.zip   #   Многотомный архив
+│   ├── bearing_handbook_pkg.rar               #   RAR справочник
+│   ├── 01_basics/                             #   Основы (распакованное)
+│   ├── 03_types_components/                   #   Типы и компоненты
+│   └── 04_parameters_calculations/            #   Параметры и расчёты
+└── docs-legacy/                               # Устаревшая документация
+    ├── README-api.md                          #   Старое README API
+    ├── README-baza.md                         #   Старое README базы
+    └── README-mar.md                          #   Старое README MAR
+```
+
+### 📁 `sources/` — Источники данных
+
+Исходные источники (PDF, документы, ссылки) — описание в `sources/README.md`.
 
 ### 📁 `Подшипники/` — Исходные русскоязычные материалы
 
-Папки с тематическими подшипниковыми материалами (например, `4.16. Большие подшипники` и т. д.) — оригинальные исходники на русском.
+Оригинальные русскоязычные исходные материалы:
+```
+Подшипники/
+└── 4.16. Большие подшипники/                  # Тематические подшипниковые материалы
+```
+
+### 📁 `.github/` — Конфигурация GitHub
+
+GitHub Actions workflows, шаблоны issue/PR, конфигурация Dependabot и CodeQL.
+
+### 📁 `.vscode/` — Настройки редактора
+
+Настройки VS Code для проекта.
 
 ### 📄 Файлы в корне репозитория
 
-- **`README.md`** — этот файл (главная страница проекта и навигация).
-- **`AGENT.md`** — инструкции для AI-агентов, работающих с репозиторием.
-- **`CONTRIBUTING.md`** — правила контрибьюции.
-- **`SECURITY.md`** — политика безопасности.
-- **`CODEOWNERS`** — владельцы кода.
-- **`LICENSE`** — лицензия MIT.
-- **`QA_AUDIT_REPORT.md`** — отчёт по качеству репозитория.
-- **`Makefile`** — задачи сборки/линтинга/тестов.
-- **`manage.py`** — управляющий скрипт проекта.
-- **`Dockerfile`**, **`docker-compose.yml`** — контейнеризация.
-- **`pyproject.toml`** — конфигурация Python-проекта.
-- **`requirements.txt`**, **`requirements-dev.txt`** — зависимости (runtime и dev).
-- **`.editorconfig`**, **`.gitignore`**, **`.pre-commit-config.yaml`** — настройки разработки.
-- **`.github/`** — workflow GitHub Actions, шаблоны issue/PR.
-- **`.vscode/`** — настройки VS Code.
+| Файл | Назначение |
+| --- | --- |
+| `README.md` | Главная страница проекта и навигация (этот файл) |
+| `AGENT.md` | Инструкции для AI-агентов, работающих с репозиторием |
+| `CONTRIBUTING.md` | Правила контрибьюции |
+| `SECURITY.md` | Политика безопасности |
+| `CODEOWNERS` | Владельцы кода (review) |
+| `LICENSE` | Лицензия MIT |
+| `QA_AUDIT_REPORT.md` | Отчёт по качеству репозитория |
+| `Makefile` | Задачи сборки/линтинга/тестов |
+| `manage.py` | Управляющий скрипт проекта |
+| `Dockerfile` | Контейнеризация приложения |
+| `docker-compose.yml` | Compose-конфигурация |
+| `pyproject.toml` | Конфигурация Python-проекта (зависимости, инструменты) |
+| `requirements.txt` | Runtime-зависимости |
+| `requirements-dev.txt` | Dev-зависимости |
+| `.editorconfig` | Стиль кода для редакторов |
+| `.gitignore` | Игнорируемые файлы Git |
+| `.pre-commit-config.yaml` | Конфигурация pre-commit хуков |
 
 ---
 

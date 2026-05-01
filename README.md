@@ -49,6 +49,139 @@ BearingsInfo/
 
 ---
 
+## 📂 Что где лежит — подробное описание каталогов и файлов
+
+Ниже подробно расписано, что находится в каждой папке репозитория и какие там файлы (каталоги производителей, таблицы обозначений, справочники, схемы БД, исходный код и т. д.).
+
+### 📁 `docs/` — Документация и контент справочника
+
+Главный каталог с текстовым контентом (Markdown) — энциклопедия, учебники, статьи, руководства.
+
+- **`docs/encyclopedia/`** — Основная энциклопедия по подшипникам, разбитая на 9 тематических разделов:
+  - `01-podshipniki-obshaya-informatsiya/` — общая информация, термины, классификация, алгоритм выбора
+  - `02-standarty-i-markirovka/` — **система обозначений** (ГОСТ, ISO, DIN, ANSI), маркировка, расшифровка кодов, классы точности, аналоги
+  - `03-tipy-i-elementy/` — типы подшипников (шариковые, роликовые, игольчатые), сепараторы, тела качения, узлы
+  - `04-raschet-i-parametry/` — нагрузки, ресурс, зазоры, преднатяг, комплекты DF/DB/DT
+  - `05-ekspluatatsiya-i-obsluzhivanie/` — смазка, посадки, монтаж, хранение
+  - `06-otkazy-i-diagnostika/` — дефекты, причины повреждений, диагностика
+  - `07-brendy-i-proizvoditeli/` — производители (СКФ, FAG, NSK, NTN, ГПЗ, китайские бренды и т. д.)
+  - `08-spetsialnye-ispolneniya-i-spravka/` — миниатюрные, керамические, высокотемпературные подшипники
+  - `09-soputstvuyushchie-izdeliya/` — крепёж, втулки, уплотнения, передачи
+- **`docs/kb/`** — База знаний и обучающие материалы:
+  - `knowledge-base/` — структурированная база знаний
+  - `uchebnik/`, `uchebnik-akademichesky/` — учебники (практический и академический)
+  - `vvodny-kurs-dlya-novichkov/` — вводный курс
+  - `testy/` — тесты для проверки знаний
+- **`docs/podshipniki/`** — Тематические разделы (обозначения, классы точности, зазоры, моменты трения, типы, смазка, примеры обозначений).
+- **`docs/articles/`** — Статьи по сопутствующим изделиям (ШС, ремни, сальники, цепи, шкивы, РТИ, РВД, кольца и т. д.).
+- **`docs/bearings/`** — Расширенный справочник: `MASTER_INDEX.md`, `glossary.md`, `gost_comprehensive_guide.md`, подкаталоги `analogues/`, `brands/`, `catalog/`, `classification/`, `designations/`, `faq/`.
+- **`docs/wiki/`** — Wiki-формат: основы, терминология, стандарты, маркировка, `Home.md`.
+- **`docs/prakticheskie-rukovodstva/`** — Практические руководства, кейсы, чек-листы.
+- **`docs/instrumenty-i-spravochniki/`** — Калькуляторы, конвертеры, справочники.
+- **`docs/karty-znany-i-navigatsiya/`** — Карты знаний и навигационные схемы.
+- **`docs/images/`** — Изображения, фотографии, чертежи и схемы.
+- **`docs/gost/`, `docs/iso/`, `docs/en/`** — Материалы по стандартам ГОСТ, ISO и англоязычные материалы.
+- **`docs/analogs/`, `docs/brands/`** — Аналоги и бренды (текстовая часть).
+- **`docs/appendices/`, `docs/supplementary/`, `docs/technical/`** — Приложения, дополнительные и технические материалы.
+- **`docs/extracted/`** — Текст, извлечённый из источников (PDF и т. д.).
+- **`docs/examples/`** — Примеры.
+- **`docs/it-infrastructure/`** — Документация по IT-инфраструктуре проекта.
+- **`docs/archive/`** — Архивные документы.
+- **`docs/meta/`** — Метаданные документации.
+- **Корневые `.md` файлы в `docs/`:** `QUICK_START.md`, `QUICK_REFERENCE.md`, `NAVIGATION_GUIDE.md`, `REPOSITORY_STRUCTURE.md`, `DEMO.md`, `ARTICLE_CREATION_GUIDE.md`, `KNOWLEDGE_BASE_BUILDER.md`, `EXTRACTED_KNOWLEDGE_INDEX.md`, `automation.md`, `automation_ru.md`, `AGENT.md`.
+
+### 📁 `data/` — Данные, таблицы и базы
+
+Структурированные данные: каталоги, размерные таблицы, обозначения, аналоги, схемы БД.
+
+- **`data/katalogi/`** — **Каталоги производителей** в формате Markdown (более сотни файлов): SKF, FAG, NSK, NTN, IKO, EPK, ROLLON, MARKES, MEGADYNE, NBS, FYH, AKE, APB, CRAFT, CX, DAS LAGER, EMS, FBJ, FKL, Fersa, GAMET, HARP, IBB, IBC, IBU, 10-ГПЗ и др. Подкаталог `catalog-legacy/` содержит устаревшие версии.
+- **`data/gost/`** — Таблицы по ГОСТ в формате CSV: `bearings.csv`, `dimensions.csv`, `series.csv`, `tolerances.csv`.
+- **`data/iso/`** — Таблицы по ISO: `bearings.csv`, `dimensions.csv`, `prefixes.csv`, `suffixes.csv` (префиксы и **суффиксы обозначений**).
+- **`data/brands/`** — Справочники брендов: `brands.csv`, `brand_comparison.csv`, `manufacturers_asia.csv`, `manufacturers_china.csv`, `manufacturers_cis.csv`, `manufacturers_europe.csv`.
+- **`data/dimensions/`** — Размерные таблицы: `bearing_dimensions.csv` (d, D, B и др.).
+- **`data/nomenclature/`** — Номенклатура по производителям (по одному файлу `.md` на бренд: AAA, ABC, ADR, AKE, APB, BARDEN, BBC, CRAFT, DKF, EER, FAG, FERSA, FLT, GMN, GPL, GRW, HCH, HYA, INA, 10-ГПЗ и др.).
+- **`data/analogs/`** — **Таблицы аналогов**: `gost_iso.csv`, `gost_to_iso.csv`, `iso_to_gost.csv`, `additional_designations.csv`, `import_analogs.csv`, `housings.csv`, `units.csv`.
+- **`data/csv/`** — Сводные CSV-таблицы: `master_catalog.csv`, `bearing_units.csv`, `tn_ved_codes.csv` (коды ТН ВЭД), `tolerance_classes.csv`, плюс подпапки `analogs/`, `brands/`, `gost/`, `iso/`.
+- **`data/database/`** — База данных: `schema.sql` (схема), `README.md`.
+- **`data/schema/`** — SQL-схемы: `bearings_db_schema.sql`, `d1_schema.sql`.
+- **`data/schemas/`** — YAML-схемы валидации: `analogs.yaml`, `brand_descriptions.yaml`, `brands.yaml`, `gost.yaml`, `iso.yaml`, `nomenclature.yaml`.
+- **`data/sql/`** — SQL-скрипты: `init_catalog.sql`.
+- **`data/tables/`** — Таблицы (Markdown).
+- **`data/raw/`** — Сырые данные.
+- **`data/inbox/`** — Входящие файлы для обработки.
+- **`data/reports/`** — Отчёты (например, `2025-12-30_source.json`).
+- **`data/assets/`** — Ассеты для данных.
+- **`data/sources-legacy/`** — Устаревшие источники: `EXTRACTION_STATUS.md`, `PDF_EXTRACTION_METHODOLOGY.md`, `RAW_INDEX.md`, `VERSION_CONTROL.md`, JSON-файлы с размерами по сериям 6000/6200/6300/angular_contact и т. д.
+- **Корневые файлы `data/`:** `articles.xlsx`, `bearing_directory.xlsx` (Excel-справочники), `articles_list.csv`, `brands.csv`, `nomenclature.csv`.
+
+### 📁 `src/` — Исходный код Python
+
+Логика парсинга, обработки и API.
+
+- `__init__.py`, `__main__.py` — точки входа пакета.
+- `cli.py` — интерфейс командной строки.
+- `catalog.py` — работа с каталогом подшипников.
+- `config.py` — загрузка конфигурации.
+- `logger.py` — логирование.
+- `parser.py` — парсер обозначений.
+- `processor.py` — обработка данных.
+- `registry.py` — реестр.
+- `utils.py` — утилиты.
+- `watcher.py` — отслеживание изменений.
+- **`src/api/`** — REST API (FastAPI/Flask): `main.py`, `app/`, `examples/`, `scripts/`, `sql/`, `tests/`, `mar_Dockerfile`, `mar_requirements.txt`, `README.md`.
+- **`src/sources/`** — Извлечение из источников: `pdf_text_extractor.py`, `table_scraper.py`, `brands_json_to_csv.py`.
+
+### 📁 `tools/` — Утилиты, скрипты, автоматизация
+
+- **`tools/scripts/`** — Большое количество Python-скриптов сборки и обработки: `build_knowledge_base.py`, `build_complete_knowledge_base.py`, `build_enhanced_knowledge_base.py`, `build_ultra_comprehensive_kb.py`, `build_search_index.py`, `build_autocomplete_dict.py`, `build_bearings_seed.py`, `check_data_sources.py`, `deduplicate_nomenclature.py`, `generate_sources_table.py`, `import_bearings_to_db.py`, `pdf_extractor_optimized.py`, `move_all_to_inbox.py`, `fix_articles_structure.py`, `mar_manage.py` и др.
+- **`tools/bin/`** — Бинарные/исполняемые утилиты.
+- Подпапки `extract/`, `examples/`, `run/`.
+- `README.md` — описание инструментов.
+
+### 📁 `config/` — Конфигурационные файлы
+
+- `app.yaml` — конфигурация приложения.
+- `brand_aliases.json` — синонимы и алиасы брендов.
+- `parsing_rules.json` — правила парсинга обозначений.
+- `mar_Dockerfile`, `mar_docker-compose.yml`, `mar_Makefile`, `mar_pyproject.toml`, `mar_requirements.txt` — конфиги под подпроект MAR.
+
+### 📁 `sources/` — Источники данных
+
+Исходные источники (PDF, документы, ссылки) — описание в `README.md`.
+
+### 📁 `archive/` — Архив
+
+- **`archive/zip/`** — Архивы (`book.zip`, `book.z01.zip`, `book.z02.zip`, `bearing_handbook_pkg.rar`).
+- **`archive/docs-legacy/`** — Устаревшая документация: `01_basics/`, `03_types_components/`, `04_parameters_calculations/`, `README/`, плюс `README-api.md`, `README-baza.md`, `README-mar.md`.
+
+### 📁 `tests/` — Тесты (pytest)
+
+`conftest.py` и тестовые модули: `test_automation_pipeline.py`, `test_code_normalization.py`, `test_dedup.py`, `test_deduplication.py`, `test_dimensions.py`, `test_knowledge_base_builder.py`, `test_processor.py`, `test_schema_validation.py`, `test_schemas.py`, `test_suffixes.py`, `test_table_scraper.py`, `test_validators.py`.
+
+### 📁 `Подшипники/` — Исходные русскоязычные материалы
+
+Папки с тематическими подшипниковыми материалами (например, `4.16. Большие подшипники` и т. д.) — оригинальные исходники на русском.
+
+### 📄 Файлы в корне репозитория
+
+- **`README.md`** — этот файл (главная страница проекта и навигация).
+- **`AGENT.md`** — инструкции для AI-агентов, работающих с репозиторием.
+- **`CONTRIBUTING.md`** — правила контрибьюции.
+- **`SECURITY.md`** — политика безопасности.
+- **`CODEOWNERS`** — владельцы кода.
+- **`LICENSE`** — лицензия MIT.
+- **`QA_AUDIT_REPORT.md`** — отчёт по качеству репозитория.
+- **`Makefile`** — задачи сборки/линтинга/тестов.
+- **`manage.py`** — управляющий скрипт проекта.
+- **`Dockerfile`**, **`docker-compose.yml`** — контейнеризация.
+- **`pyproject.toml`** — конфигурация Python-проекта.
+- **`requirements.txt`**, **`requirements-dev.txt`** — зависимости (runtime и dev).
+- **`.editorconfig`**, **`.gitignore`**, **`.pre-commit-config.yaml`** — настройки разработки.
+- **`.github/`** — workflow GitHub Actions, шаблоны issue/PR.
+- **`.vscode/`** — настройки VS Code.
+
+---
+
 ## Навигация по репозиторию
 
 ### Основные разделы

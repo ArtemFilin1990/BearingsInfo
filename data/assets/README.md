@@ -8,9 +8,6 @@ Purpose: Images and diagrams referenced by documentation.
 - Charts used in documentation
 - Naming conventions for assets
 
-## Index (WIP)
-- [ ] TODO: Add asset index
-- [ ] TODO: Add diagram list
-- [ ] TODO: Add chart list
+## Содержимое
 
-Content will be migrated in batches to keep diffs small.
+Ассеты добавляются по мере миграции из исходных материалов.

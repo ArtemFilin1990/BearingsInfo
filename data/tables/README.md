@@ -9,9 +9,6 @@ Purpose: Structured CSV/Markdown tables used across the repository.
 - Manufacturer summary tables
 - Validation or lookup tables
 
-## Index (WIP)
-- [ ] TODO: Add table index
-- [ ] TODO: Add mapping table list
-- [ ] TODO: Add size table list
+## Содержимое
 
-Content will be migrated in batches to keep diffs small.
+Таблицы добавляются по мере миграции из исходных материалов.

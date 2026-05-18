@@ -6,10 +6,9 @@
 
 import os
 import shutil
-import zipfile
 import tarfile
 import tempfile
-from pathlib import Path
+import zipfile
 
 
 def extract_archive(archive_path, extract_to):
@@ -116,7 +115,7 @@ def move_to_inbox(repo_root):
                 if not os.listdir(root):
                     os.rmdir(root)
                     print(f"Удалена пустая директория: {root}")
-            except Exception as e:
+            except Exception:
                 pass
 
     print(f"\nВсего перемещено файлов: {moved_count}")

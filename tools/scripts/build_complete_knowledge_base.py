@@ -8,10 +8,9 @@
 
 import os
 import re
-from pathlib import Path
-from datetime import datetime
-from typing import Dict, List, Tuple, Set
 from collections import defaultdict
+from datetime import datetime
+from pathlib import Path
 
 
 class ComprehensiveKnowledgeBaseBuilder:
@@ -31,10 +30,10 @@ class ComprehensiveKnowledgeBaseBuilder:
         self.file_count = 0
         self.total_lines = 0
 
-    def extract_from_markdown(self, file_path: Path) -> Dict:
+    def extract_from_markdown(self, file_path: Path) -> dict:
         """Извлечение информации из markdown файла"""
         try:
-            with open(file_path, "r", encoding="utf-8") as f:
+            with open(file_path, encoding="utf-8") as f:
                 content = f.read()
 
             relative_path = file_path.relative_to(self.root_dir)
@@ -59,7 +58,7 @@ class ComprehensiveKnowledgeBaseBuilder:
             print(f"Error processing {file_path}: {e}")
             return None
 
-    def extract_headers(self, content: str) -> List[Tuple[int, str]]:
+    def extract_headers(self, content: str) -> list[tuple[int, str]]:
         """Извлечение всех заголовков"""
         headers = []
         for match in re.finditer(r"^(#{1,6})\s+(.+)$", content, re.MULTILINE):
@@ -68,7 +67,7 @@ class ComprehensiveKnowledgeBaseBuilder:
             headers.append((level, text))
         return headers
 
-    def extract_tables(self, content: str) -> List[str]:
+    def extract_tables(self, content: str) -> list[str]:
         """Извлечение всех таблиц"""
         tables = []
         lines = content.split("\n")
@@ -90,7 +89,7 @@ class ComprehensiveKnowledgeBaseBuilder:
 
         return tables
 
-    def extract_lists(self, content: str) -> List[str]:
+    def extract_lists(self, content: str) -> list[str]:
         """Извлечение всех списков"""
         lists = []
         lines = content.split("\n")
@@ -108,11 +107,11 @@ class ComprehensiveKnowledgeBaseBuilder:
 
         return lists
 
-    def extract_code_blocks(self, content: str) -> List[str]:
+    def extract_code_blocks(self, content: str) -> list[str]:
         """Извлечение блоков кода"""
         return re.findall(r"```[\s\S]*?```", content)
 
-    def extract_links(self, content: str) -> List[Tuple[str, str]]:
+    def extract_links(self, content: str) -> list[tuple[str, str]]:
         """Извлечение ссылок"""
         links = []
         # Markdown links [text](url)
@@ -120,7 +119,7 @@ class ComprehensiveKnowledgeBaseBuilder:
             links.append((match.group(1), match.group(2)))
         return links
 
-    def extract_terms(self, content: str) -> List[str]:
+    def extract_terms(self, content: str) -> list[str]:
         """Извлечение терминов (слова с заглавной буквы, технические термины)"""
         terms = set()
 
@@ -134,7 +133,7 @@ class ComprehensiveKnowledgeBaseBuilder:
 
         return list(terms)
 
-    def extract_numbers(self, content: str) -> List[str]:
+    def extract_numbers(self, content: str) -> list[str]:
         """Извлечение числовых данных (размеры, параметры)"""
         numbers = []
 
@@ -148,7 +147,7 @@ class ComprehensiveKnowledgeBaseBuilder:
 
         return numbers
 
-    def extract_standards(self, content: str) -> List[str]:
+    def extract_standards(self, content: str) -> list[str]:
         """Извлечение стандартов"""
         standards = set()
 
@@ -170,7 +169,7 @@ class ComprehensiveKnowledgeBaseBuilder:
 
         return list(standards)
 
-    def categorize_content(self, data: Dict, file_path: Path):
+    def categorize_content(self, data: dict, file_path: Path):
         """Категоризация контента по разделам"""
         path_str = str(file_path)
         source = data["path"]
@@ -332,7 +331,7 @@ class ComprehensiveKnowledgeBaseBuilder:
         content.append("7. **Производители и бренды** - каталоги, аналоги, взаимозаменяемость")
         content.append("8. **Сопутствующие изделия** - уплотнения, смазки, инструмент\n")
 
-        content.append(f"#### Статистика репозитория")
+        content.append("#### Статистика репозитория")
         content.append(f"- Обработано файлов: {self.file_count}")
         content.append(f"- Общее количество строк: {self.total_lines:,}")
         content.append(f"- Извлечено терминов: {sum(len(v) for v in self.sections['terms'].values())}")

@@ -3,7 +3,6 @@
 import csv
 
 import pytest
-
 from scripts.deduplicate_nomenclature import deduplicate_nomenclature
 
 

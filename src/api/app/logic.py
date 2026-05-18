@@ -216,25 +216,26 @@ class SearchHistory:
     """Управление историей поиска (заглушка для работы без БД)"""
 
     def __init__(self):
-        # Keyed by user_id for O(1) per-user access; _all_queries for global stats
+        # Per-user lists for O(1) reads; flat _all list for O(1) global analytics
         self._by_user: defaultdict[str, list[dict]] = defaultdict(list)
+        self._all: list[dict] = []
 
     @property
     def history(self) -> list[dict]:
-        """Flat list of all entries (used by analytics endpoint)."""
-        return [entry for entries in self._by_user.values() for entry in entries]
+        """Flat list of all entries; O(1) — backed by a maintained list."""
+        return self._all
 
     def add_search(self, user_id: str, query: str, results_count: int, session_id: str = None):
         """Добавить запись в историю поиска"""
-        self._by_user[user_id].append(
-            {
-                "user_id": user_id,
-                "query": query,
-                "results_count": results_count,
-                "session_id": session_id,
-                "timestamp": datetime.now().isoformat(),
-            }
-        )
+        entry = {
+            "user_id": user_id,
+            "query": query,
+            "results_count": results_count,
+            "session_id": session_id,
+            "timestamp": datetime.now().isoformat(),
+        }
+        self._by_user[user_id].append(entry)
+        self._all.append(entry)
 
     def get_user_history(self, user_id: str, limit: int = 50) -> list[dict]:
         """Получить историю поиска пользователя"""
@@ -243,9 +244,10 @@ class SearchHistory:
 
     def clear_user_history(self, user_id: str):
         """Очистить историю поиска пользователя"""
-        self._by_user.pop(user_id, None)
+        if user_id in self._by_user:
+            removed_ids = {id(e) for e in self._by_user.pop(user_id)}
+            self._all = [e for e in self._all if id(e) not in removed_ids]
 
     def get_popular_queries(self, limit: int = 10) -> list[dict]:
         """Получить популярные поисковые запросы"""
-        queries = [entry["query"] for entries in self._by_user.values() for entry in entries]
-        return [{"query": q, "count": c} for q, c in Counter(queries).most_common(limit)]
+        return [{"query": q, "count": c} for q, c in Counter(h["query"] for h in self._all).most_common(limit)]

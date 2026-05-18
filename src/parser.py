@@ -21,6 +21,11 @@ class DataParser:
         self.parsing_rules = parsing_rules
         self.normalization_config = normalization_config
         self.column_mappings = parsing_rules.get('column_mappings', {})
+        # Precompute once; column_mappings is constant for the lifetime of this instance
+        self._lower_variations: dict[str, list[str]] = {
+            target: [v.lower() for v in vars_]
+            for target, vars_ in self.column_mappings.items()
+        }
     
     def parse_file(self, file_path: Path, file_type: str) -> pd.DataFrame:
         """Parse file based on type.
@@ -192,12 +197,6 @@ class DataParser:
         column_map = {}
         used_columns = set()
 
-        # Precompute lowercase variation sets once per target column
-        lower_variations: dict[str, list[str]] = {
-            target: [v.lower() for v in vars_]
-            for target, vars_ in self.column_mappings.items()
-        }
-
         # First pass: exact matches (case-sensitive)
         for target_col, variations in self.column_mappings.items():
             for actual_col in df.columns:
@@ -210,7 +209,7 @@ class DataParser:
 
         # Second pass: case-insensitive matches for remaining columns
         for target_col in self.column_mappings:
-            lv = lower_variations[target_col]
+            lv = self._lower_variations[target_col]
             for actual_col in df.columns:
                 if actual_col in used_columns:
                     continue

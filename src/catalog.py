@@ -40,9 +40,10 @@ class CatalogManager:
         
         # Create output directory
         self.catalog_csv.parent.mkdir(parents=True, exist_ok=True)
-        
-        # Load existing catalog
+
+        # Load existing catalog and build the dedup index from it once
         self.catalog = self._load_catalog()
+        self._dedup_index: dict[tuple, list[tuple]] = self._build_dedup_index(self.catalog)
     
     def _load_catalog(self) -> pd.DataFrame:
         """Load existing catalog or create empty one.
@@ -63,6 +64,22 @@ class CatalogManager:
         
         # Create empty catalog with target schema
         return pd.DataFrame(columns=self.TARGET_COLUMNS)
+
+    @staticmethod
+    def _build_dedup_index(df: pd.DataFrame) -> dict[tuple, list[tuple]]:
+        """Build a dedup index from a catalog DataFrame.
+
+        Structure: {(article, brand | None): [(D, d, H), ...]}
+        """
+        index: dict[tuple, list[tuple]] = {}
+        for row in df.itertuples(index=False):
+            art = row.Артикул
+            if pd.isna(art) or art == '':
+                continue
+            brd = row.Бренд if pd.notna(row.Бренд) and row.Бренд != '' else None
+            key = (art, brd)
+            index.setdefault(key, []).append((row.D, row.d, row.H))
+        return index
     
     def normalize_data(self, df: pd.DataFrame) -> pd.DataFrame:
         """Normalize data to target schema.
@@ -134,32 +151,20 @@ class CatalogManager:
         n_skipped = 0
         n_conflicts = 0
         conflicts = []
-        new_rows: List[pd.Series] = []
+        # Collect dicts for accepted rows; pd.DataFrame(list[dict]) is clean and fast
+        new_rows: List[Dict[str, Any]] = []
 
-        # Build a lightweight dedup index from the existing catalog so we can
-        # detect intra-file conflicts without O(n²) DataFrame copies.
-        # Structure: {(article, brand | None): [(D, d, H), ...]}
-        dedup_index: dict[tuple, list[tuple]] = {}
-        for _, existing in self.catalog.iterrows():
-            art = existing['Артикул']
-            if pd.isna(art) or art == '':
-                continue
-            brd = existing['Бренд'] if pd.notna(existing['Бренд']) and existing['Бренд'] != '' else None
-            key = (art, brd)
-            dims = (existing['D'], existing['d'], existing['H'])
-            dedup_index.setdefault(key, []).append(dims)
-
-        for _, row in normalized.iterrows():
-            art = row['Артикул']
+        for row in normalized.itertuples(index=False):
+            art = row.Артикул
             if pd.isna(art) or art == '':
                 n_skipped += 1
                 continue
 
-            brd = row['Бренд'] if pd.notna(row['Бренд']) and row['Бренд'] != '' else None
+            brd = row.Бренд if pd.notna(row.Бренд) and row.Бренд != '' else None
             key = (art, brd)
-            dims = (row['D'], row['d'], row['H'])
+            dims = (row.D, row.d, row.H)
 
-            existing_dims_list = dedup_index.get(key, [])
+            existing_dims_list = self._dedup_index.get(key, [])
 
             if dims in existing_dims_list:
                 n_skipped += 1
@@ -170,7 +175,7 @@ class CatalogManager:
                 conflict_info: Dict[str, Any] = {
                     'артикул': art,
                     'бренд': brd or '',
-                    'new_dimensions': {'D': row['D'], 'd': row['d'], 'H': row['H']},
+                    'new_dimensions': {'D': row.D, 'd': row.d, 'H': row.H},
                     'existing_dimensions': [
                         {'D': d[0], 'd': d[1], 'H': d[2]} for d in existing_dims_list
                     ],
@@ -178,9 +183,9 @@ class CatalogManager:
                 n_conflicts += 1
                 conflicts.append(conflict_info)
 
-            # Accept this row and update the index for subsequent rows in the same file
-            dedup_index.setdefault(key, []).append(dims)
-            new_rows.append(row)
+            # Accept row; update the persistent index so later rows in this file see it
+            self._dedup_index.setdefault(key, []).append(dims)
+            new_rows.append(row._asdict())
             n_added += 1
 
         if new_rows:
@@ -224,8 +229,9 @@ class CatalogManager:
         Returns:
             Tuple of (n_files_processed, n_records_added)
         """
-        # Clear current catalog
+        # Clear current catalog and its dedup index
         self.catalog = pd.DataFrame(columns=self.TARGET_COLUMNS)
+        self._dedup_index = {}
         
         n_files = 0
         n_records = 0

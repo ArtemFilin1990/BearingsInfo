@@ -236,10 +236,11 @@ async def get_search_analytics(period: str = Query("7d", pattern="^(1d|7d|30d)$"
     # Заглушка для аналитики
     # В реальной системе здесь должна быть работа с БД
 
+    all_history = search_history.history
     return {
         "period": period,
-        "total_searches": len(search_history.history),
-        "unique_queries": len(set(h["query"] for h in search_history.history)),
+        "total_searches": len(all_history),
+        "unique_queries": len({h["query"] for h in all_history}),
         "top_queries": search_history.get_popular_queries(limit=10),
         "zero_results_queries": [],
         "avg_results_per_query": 0,

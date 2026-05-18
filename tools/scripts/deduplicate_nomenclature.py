@@ -8,7 +8,7 @@ import tempfile
 from collections import OrderedDict
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 NOMENCLATURE_FILE = REPO_ROOT / "data" / "nomenclature.csv"
 
 

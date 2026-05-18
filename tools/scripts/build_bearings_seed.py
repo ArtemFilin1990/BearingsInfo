@@ -14,18 +14,18 @@ SQL-файлы для wrangler d1 execute. Совместим с SQLite-диал
 
 import csv
 import json
-import sys
 import textwrap
+from datetime import UTC, datetime
 from pathlib import Path
-from datetime import datetime, timezone
 
 # ── Пути ────────────────────────────────────────────────────────────────────
-REPO_ROOT    = Path(__file__).parent
-DATA_DIR     = REPO_ROOT / "data"
-OUTPUT_DIR   = REPO_ROOT / "seed"
-SCHEMA_FILE  = REPO_ROOT / "data" / "schema" / "d1_schema.sql"
+REPO_ROOT = Path(__file__).parent
+DATA_DIR = REPO_ROOT / "data"
+OUTPUT_DIR = REPO_ROOT / "seed"
+SCHEMA_FILE = REPO_ROOT / "data" / "schema" / "d1_schema.sql"
 
 OUTPUT_DIR.mkdir(exist_ok=True)
+
 
 # ── Утилиты ──────────────────────────────────────────────────────────────────
 def esc(value: str) -> str:
@@ -36,6 +36,7 @@ def esc(value: str) -> str:
     if s == "" or s.lower() in ("none", "nan", "null", "#n/a", "n/a"):
         return "NULL"
     return "'" + s.replace("'", "''") + "'"
+
 
 def num(value: str) -> str:
     """Возвращает число или NULL."""
@@ -49,6 +50,7 @@ def num(value: str) -> str:
         return s
     except ValueError:
         return "NULL"
+
 
 def write_sql_file(name: str, statements: list[str], batch_size: int = 500) -> list[Path]:
     """
@@ -64,6 +66,7 @@ def write_sql_file(name: str, statements: list[str], batch_size: int = 500) -> l
         files.append(out)
         print(f"  ✓ {out.name}  ({len(chunk)} строк)")
     return files
+
 
 # ── Схема D1 (SQLite) ────────────────────────────────────────────────────────
 D1_SCHEMA = textwrap.dedent("""\
@@ -175,6 +178,7 @@ CREATE INDEX IF NOT EXISTS idx_search_session ON search_history(session_id);
 
 # ── Генераторы INSERT ────────────────────────────────────────────────────────
 
+
 def build_manufacturers(csv_path: Path) -> list[str]:
     """data/brands/brands.csv → INSERT INTO manufacturers"""
     if not csv_path.exists():
@@ -185,14 +189,14 @@ def build_manufacturers(csv_path: Path) -> list[str]:
     with csv_path.open(encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            brand   = esc(row.get("brand") or row.get("Brand") or "")
+            brand = esc(row.get("brand") or row.get("Brand") or "")
             country = esc(row.get("country") or row.get("Country") or "")
             company = esc(row.get("company_name") or row.get("Company") or row.get("brand") or "")
-            mtype   = esc(row.get("manufacturer_type") or row.get("type") or "")
+            mtype = esc(row.get("manufacturer_type") or row.get("type") or "")
             quality = esc(row.get("quality_level") or row.get("segment") or "")
-            spec    = esc(row.get("specialization") or row.get("categories") or "")
-            web     = esc(row.get("website") or row.get("url") or "")
-            notes   = esc(row.get("notes") or row.get("Notes") or "")
+            spec = esc(row.get("specialization") or row.get("categories") or "")
+            web = esc(row.get("website") or row.get("url") or "")
+            notes = esc(row.get("notes") or row.get("Notes") or "")
 
             if brand == "NULL":
                 continue
@@ -218,17 +222,16 @@ def build_analogs(csv_path: Path) -> list[str]:
     stmts = []
     with csv_path.open(encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
-        headers = reader.fieldnames or []
         for row in reader:
             # Поддерживаем разные форматы колонок
-            src_std  = esc(row.get("source_standard") or row.get("standard") or "GOST")
-            src_des  = esc(row.get("source_designation") or row.get("gost") or row.get("from") or "")
-            tgt_std  = esc(row.get("target_standard") or row.get("iso_standard") or "ISO")
-            tgt_des  = esc(row.get("target_designation") or row.get("iso") or row.get("to") or "")
-            btype    = esc(row.get("bearing_type") or row.get("type") or "")
-            direct   = "1" if str(row.get("is_direct_analog", "1")).lower() in ("1", "true", "yes", "да") else "0"
-            notes    = esc(row.get("notes") or "")
-            src_ref  = esc(row.get("source_reference") or row.get("source") or "")
+            src_std = esc(row.get("source_standard") or row.get("standard") or "GOST")
+            src_des = esc(row.get("source_designation") or row.get("gost") or row.get("from") or "")
+            tgt_std = esc(row.get("target_standard") or row.get("iso_standard") or "ISO")
+            tgt_des = esc(row.get("target_designation") or row.get("iso") or row.get("to") or "")
+            btype = esc(row.get("bearing_type") or row.get("type") or "")
+            direct = "1" if str(row.get("is_direct_analog", "1")).lower() in ("1", "true", "yes", "да") else "0"
+            notes = esc(row.get("notes") or "")
+            src_ref = esc(row.get("source_reference") or row.get("source") or "")
 
             if src_des == "NULL" or tgt_des == "NULL":
                 continue
@@ -254,25 +257,26 @@ def build_nomenclature(csv_path: Path) -> list[str]:
     with csv_path.open(encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            brand   = esc(row.get("Brand") or row.get("brand") or row.get("Бренд") or "")
+            brand = esc(row.get("Brand") or row.get("brand") or row.get("Бренд") or "")
             product = esc(row.get("Product Name") or row.get("product") or row.get("продукция") or "")
-            cat     = esc(row.get("Category") or row.get("категория") or "")
-            prefix  = esc(row.get("prefix") or row.get("префикс") or "")
-            number  = esc(row.get("number") or row.get("номер") or "")
-            suffix  = esc(row.get("suffix") or row.get("суффикс") or "")
-            analog  = esc(row.get("Аналог") or row.get("analog") or "")
-            d_mm    = num(row.get("d_mm") or row.get("d") or "")
-            D_mm    = num(row.get("D_mm") or row.get("D") or "")
-            B_mm    = num(row.get("B_mm") or row.get("B") or "")
-            source  = esc(row.get("source") or row.get("источник") or "")
+            cat = esc(row.get("Category") or row.get("категория") or "")
+            prefix = esc(row.get("prefix") or row.get("префикс") or "")
+            number = esc(row.get("number") or row.get("номер") or "")
+            suffix = esc(row.get("suffix") or row.get("суффикс") or "")
+            analog = esc(row.get("Аналог") or row.get("analog") or "")
+            d_mm = num(row.get("d_mm") or row.get("d") or "")
+            d_outer_mm = num(row.get("D_mm") or row.get("D") or "")
+            b_mm = num(row.get("B_mm") or row.get("B") or "")
+            source = esc(row.get("source") or row.get("источник") or "")
 
             if brand == "NULL" and product == "NULL":
                 continue
 
+            vals = f"{brand},{product},{cat},{prefix},{number},{suffix},{analog},{d_mm},{d_outer_mm},{b_mm},{source}"
             stmts.append(
                 f"INSERT INTO nomenclature "
                 f"(brand,product,category,prefix,number,suffix,analog,d_mm,D_mm,B_mm,source) "
-                f"VALUES ({brand},{product},{cat},{prefix},{number},{suffix},{analog},{d_mm},{D_mm},{B_mm},{source});"
+                f"VALUES ({vals});"
             )
     print(f"  nomenclature: {len(stmts)} строк")
     return stmts
@@ -289,24 +293,25 @@ def build_bearings_from_master(csv_path: Path) -> list[str]:
         reader = csv.DictReader(f)
         for row in reader:
             gost = esc(row.get("gost_designation") or row.get("gost") or "")
-            iso  = esc(row.get("iso_designation")  or row.get("iso")  or
-                       row.get("designation") or row.get("part_number") or "")
-            skf  = esc(row.get("skf_designation")  or "")
-            fag  = esc(row.get("fag_designation")  or "")
-            nsk  = esc(row.get("nsk_designation")  or "")
-            ntn  = esc(row.get("ntn_designation")  or "")
+            iso = esc(
+                row.get("iso_designation") or row.get("iso") or row.get("designation") or row.get("part_number") or ""
+            )
+            skf = esc(row.get("skf_designation") or "")
+            fag = esc(row.get("fag_designation") or "")
+            nsk = esc(row.get("nsk_designation") or "")
+            ntn = esc(row.get("ntn_designation") or "")
             koyo = esc(row.get("koyo_designation") or "")
             btype = esc(row.get("bearing_type") or row.get("type") or "Unknown")
-            d    = num(row.get("bore_diameter_d") or row.get("d_mm") or row.get("d") or "0")
-            D    = num(row.get("outer_diameter_D") or row.get("D_mm") or row.get("D") or "0")
-            B    = num(row.get("width_B") or row.get("B_mm") or row.get("B") or "0")
-            r    = num(row.get("chamfer_r_min") or "")
-            w    = num(row.get("weight_kg") or "")
-            C    = num(row.get("dynamic_load_C_kN") or "")
-            C0   = num(row.get("static_load_C0_kN") or "")
-            sp   = num(row.get("limiting_speed_rpm") or "")
-            rsp  = num(row.get("reference_speed_rpm") or "")
-            cat  = esc(row.get("category") or "")
+            d = num(row.get("bore_diameter_d") or row.get("d_mm") or row.get("d") or "0")
+            d_outer = num(row.get("outer_diameter_D") or row.get("D_mm") or row.get("D") or "0")
+            b = num(row.get("width_B") or row.get("B_mm") or row.get("B") or "0")
+            r = num(row.get("chamfer_r_min") or "")
+            w = num(row.get("weight_kg") or "")
+            c_dyn = num(row.get("dynamic_load_C_kN") or "")
+            c_stat = num(row.get("static_load_C0_kN") or "")
+            sp = num(row.get("limiting_speed_rpm") or "")
+            rsp = num(row.get("reference_speed_rpm") or "")
+            cat = esc(row.get("category") or "")
             stat = esc(row.get("status") or "active")
 
             if iso == "NULL" or d == "NULL":
@@ -320,7 +325,7 @@ def build_bearings_from_master(csv_path: Path) -> list[str]:
                 f"dynamic_load_C_kN,static_load_C0_kN,limiting_speed_rpm,reference_speed_rpm,"
                 f"category,status) "
                 f"VALUES ({gost},{iso},{skf},{fag},{nsk},{ntn},{koyo},{btype},"
-                f"{d},{D},{B},{r},{w},{C},{C0},{sp},{rsp},{cat},{stat});"
+                f"{d},{d_outer},{b},{r},{w},{c_dyn},{c_stat},{sp},{rsp},{cat},{stat});"
             )
     print(f"  bearings: {len(stmts)} строк")
     return stmts
@@ -329,7 +334,7 @@ def build_bearings_from_master(csv_path: Path) -> list[str]:
 # ── Точка входа ──────────────────────────────────────────────────────────────
 def main():
     print("=" * 60)
-    print(f"build_bearings_seed.py  —  {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"build_bearings_seed.py  —  {datetime.now(UTC).strftime('%Y-%m-%d %H:%M UTC')}")
     print("=" * 60)
 
     # 1. Схема D1
@@ -363,14 +368,14 @@ def main():
 
     # 6. Манифест
     manifest = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "files": [str(p.name) for p in sorted(OUTPUT_DIR.glob("*.sql"))],
         "counts": {
             "manufacturers": len(mfr_stmts),
-            "analogs":       len(ana_stmts),
-            "nomenclature":  len(nom_stmts),
-            "bearings":      len(brg_stmts),
-        }
+            "analogs": len(ana_stmts),
+            "nomenclature": len(nom_stmts),
+            "bearings": len(brg_stmts),
+        },
     }
     manifest_out = OUTPUT_DIR / "manifest.json"
     manifest_out.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")

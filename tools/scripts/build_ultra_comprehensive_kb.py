@@ -6,10 +6,9 @@
 
 import os
 import re
-from pathlib import Path
-from datetime import datetime
-from typing import Dict, List
 from collections import defaultdict
+from datetime import datetime
+from pathlib import Path
 
 
 class UltraComprehensiveKB:
@@ -45,7 +44,7 @@ class UltraComprehensiveKB:
                 print(f"📁 Загрузка: {dir_name}")
                 for md_file in dir_path.rglob("*.md"):
                     try:
-                        with open(md_file, "r", encoding="utf-8") as f:
+                        with open(md_file, encoding="utf-8") as f:
                             content = f.read()
 
                         rel_path = str(md_file.relative_to(self.root_dir))
@@ -59,7 +58,7 @@ class UltraComprehensiveKB:
         print(f"\n✅ Загружено файлов: {self.stats['files']}")
         print(f"✅ Всего строк: {self.stats['lines']:,}\n")
 
-    def extract_all_terms(self) -> List[Dict]:
+    def extract_all_terms(self) -> list[dict]:
         """Извлечение ВСЕХ терминов из всех файлов"""
         all_terms = []
 
@@ -80,7 +79,7 @@ class UltraComprehensiveKB:
         self.stats["terms"] = len(all_terms)
         return all_terms
 
-    def extract_all_tables(self) -> List[Dict]:
+    def extract_all_tables(self) -> list[dict]:
         """Извлечение ВСЕХ таблиц"""
         all_tables = []
 
@@ -113,7 +112,7 @@ class UltraComprehensiveKB:
         self.stats["tables"] = len(all_tables)
         return all_tables
 
-    def extract_all_standards(self) -> List[Dict]:
+    def extract_all_standards(self) -> list[dict]:
         """Извлечение ВСЕХ упоминаний стандартов"""
         all_standards = []
 
@@ -205,7 +204,7 @@ class UltraComprehensiveKB:
                 file_count = len(list(dir_path.rglob("*.md")))
                 lines.append(f"- **{dir_name}** ({file_count} файлов) - {description}")
 
-        lines.append(f"\n### 1.4. Статистика")
+        lines.append("\n### 1.4. Статистика")
         lines.append(f"- Обработано файлов: **{self.stats['files']}**")
         lines.append(f"- Строк кода/текста: **{self.stats['lines']:,}**")
         lines.append(f"- Извлечено терминов: **{self.stats['terms']:,}**")
@@ -214,7 +213,7 @@ class UltraComprehensiveKB:
 
         return "\n".join(lines)
 
-    def build_section_2_terms(self, all_terms: List[Dict]) -> str:
+    def build_section_2_terms(self, all_terms: list[dict]) -> str:
         """Раздел 2: ПОЛНЫЙ глоссарий"""
         lines = []
         lines.append("### 2.1. Основные термины и определения\n")
@@ -279,7 +278,7 @@ class UltraComprehensiveKB:
 
         return "\n".join(lines)
 
-    def build_section_4_rules(self, all_standards: List[Dict]) -> str:
+    def build_section_4_rules(self, all_standards: list[dict]) -> str:
         """Раздел 4: ПОЛНЫЕ правила и стандарты"""
         lines = []
         lines.append("### 4.1. Стандарты и нормативная документация\n")
@@ -319,7 +318,7 @@ class UltraComprehensiveKB:
 
         return "\n".join(lines)
 
-    def build_section_5_data_structures(self, all_tables: List[Dict]) -> str:
+    def build_section_5_data_structures(self, all_tables: list[dict]) -> str:
         """Раздел 5: ВСЕ структуры данных"""
         lines = []
         lines.append("### 5.1. Таблицы размеров и характеристик\n")
@@ -646,9 +645,9 @@ class UltraComprehensiveKB:
         kb = []
         kb.append("# ПОЛНАЯ БАЗА ЗНАНИЙ: BearingsInfo")
         kb.append(f"\n**Дата создания:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        kb.append(f"**Версия:** 2.0 ULTRA COMPREHENSIVE")
-        kb.append(f"\n**РЕЖИМ: МАКСИМАЛЬНЫЙ КОНТЕКСТ**")
-        kb.append(f"Извлечение 100% информации без сокращений и оптимизаций\n")
+        kb.append("**Версия:** 2.0 ULTRA COMPREHENSIVE")
+        kb.append("\n**РЕЖИМ: МАКСИМАЛЬНЫЙ КОНТЕКСТ**")
+        kb.append("Извлечение 100% информации без сокращений и оптимизаций\n")
 
         kb.append("## Статистика обработки")
         kb.append(f"- Обработано файлов: **{self.stats['files']}**")
@@ -677,52 +676,52 @@ class UltraComprehensiveKB:
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 1: Общее описание домена")
-        kb.append(f"\n## 1. Общее описание домена\n")
+        kb.append("\n## 1. Общее описание домена\n")
         kb.append(self.build_section_1_domain())
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 2: Термины и глоссарий")
-        kb.append(f"\n## 2. Термины и глоссарий\n")
+        kb.append("\n## 2. Термины и глоссарий\n")
         kb.append(self.build_section_2_terms(all_terms))
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 3: Процессы и алгоритмы")
-        kb.append(f"\n## 3. Процессы и алгоритмы\n")
+        kb.append("\n## 3. Процессы и алгоритмы\n")
         kb.append(self.build_section_3_processes())
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 4: Правила и ограничения")
-        kb.append(f"\n## 4. Правила и ограничения\n")
+        kb.append("\n## 4. Правила и ограничения\n")
         kb.append(self.build_section_4_rules(all_standards))
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 5: Структуры данных и форматы")
-        kb.append(f"\n## 5. Структуры данных и форматы\n")
+        kb.append("\n## 5. Структуры данных и форматы\n")
         kb.append(self.build_section_5_data_structures(all_tables))
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 6: Роли и ответственности")
-        kb.append(f"\n## 6. Роли и ответственности\n")
+        kb.append("\n## 6. Роли и ответственности\n")
         kb.append(self.build_section_6_roles())
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 7: Инструкции и сценарии использования")
-        kb.append(f"\n## 7. Инструкции и сценарии использования\n")
+        kb.append("\n## 7. Инструкции и сценарии использования\n")
         kb.append(self.build_section_7_usage())
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 8: Ошибки, исключения, крайние случаи")
-        kb.append(f"\n## 8. Ошибки, исключения, крайние случаи\n")
+        kb.append("\n## 8. Ошибки, исключения, крайние случаи\n")
         kb.append(self.build_section_8_errors())
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 9: Связи и зависимости")
-        kb.append(f"\n## 9. Связи и зависимости между сущностями\n")
+        kb.append("\n## 9. Связи и зависимости между сущностями\n")
         kb.append(self.build_section_9_relationships())
         kb.append("\n" + "=" * 80 + "\n")
 
         print("  Раздел 10: Источники и трассировка")
-        kb.append(f"\n## 10. Источники и трассировка\n")
+        kb.append("\n## 10. Источники и трассировка\n")
         kb.append(self.build_section_10_sources())
 
         return "\n".join(kb)

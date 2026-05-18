@@ -13,8 +13,7 @@ from scripts.validate.csv_validator import validate_all  # noqa: E402
 
 
 def main() -> int:
-    repo_root = Path(__file__).resolve().parents[2]
-    schema_dir = repo_root / "schemas"
+    schema_dir = Path(__file__).resolve().parents[3] / "data" / "schemas"
     errors = validate_all(schema_dir)
     if errors:
         for message in errors:

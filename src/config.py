@@ -148,22 +148,22 @@ class Config:
     def _validate_app_config(cls, config: Dict[str, Any], path: Path) -> None:
         paths = cls._require_dict(config, "paths", path)
         for key in ("inbox", "processed", "error", "out"):
-            cls._require_str(paths, f"paths.{key}", path, allow_empty=False)
+            cls._require_str(paths, key, path, allow_empty=False)
         if "logs" in paths:
-            cls._require_str(paths, "paths.logs", path, allow_empty=False)
+            cls._require_str(paths, "logs", path, allow_empty=False)
 
         limits = cls._require_dict(config, "limits", path)
         cls._require_number(
             limits,
-            "limits.max_file_size_mb",
+            "max_file_size_mb",
             path,
             min_value=0.0,
             allow_zero=False,
         )
-        cls._require_int(limits, "limits.max_rows", path, min_value=1)
+        cls._require_int(limits, "max_rows", path, min_value=1)
 
         normalization = cls._require_dict(config, "normalization", path)
-        cls._require_str(normalization, "normalization.brand_format", path)
+        cls._require_str(normalization, "brand_format", path)
         brand_format = normalization.get("brand_format")
         if brand_format not in {"title", "upper"}:
             raise ConfigValidationError(
@@ -172,7 +172,7 @@ class Config:
             )
         if "dimension_replacements" in normalization:
             replacements = cls._require_dict(
-                normalization, "normalization.dimension_replacements", path
+                normalization, "dimension_replacements", path
             )
             for key, value in replacements.items():
                 if not isinstance(key, str) or not isinstance(value, str):
@@ -180,11 +180,11 @@ class Config:
                         f"normalization.dimension_replacements must map strings to "
                         f"strings in {path}."
                     )
-        cls._require_str(normalization, "normalization.decimal_separator", path)
+        cls._require_str(normalization, "decimal_separator", path)
 
         if "watcher" in config:
             watcher = cls._require_dict(config, "watcher", path)
-            cls._require_str(watcher, "watcher.mode", path)
+            cls._require_str(watcher, "mode", path)
             mode = watcher.get("mode")
             if mode not in {"poll", "watch"}:
                 raise ConfigValidationError(
@@ -193,28 +193,28 @@ class Config:
                 )
             if mode == "poll":
                 cls._require_int(
-                    watcher, "watcher.poll_interval", path, min_value=1
+                    watcher, "poll_interval", path, min_value=1
                 )
             if "process_on_start" in watcher:
-                cls._require_bool(watcher, "watcher.process_on_start", path)
+                cls._require_bool(watcher, "process_on_start", path)
 
         if "output" in config:
             output = cls._require_dict(config, "output", path)
-            cls._require_str(output, "output.csv_encoding", path)
-            cls._require_str(output, "output.csv_delimiter", path)
-            cls._require_int(output, "output.json_indent", path, min_value=0)
+            cls._require_str(output, "csv_encoding", path)
+            cls._require_str(output, "csv_delimiter", path)
+            cls._require_int(output, "json_indent", path, min_value=0)
             if "csv_bom" in output:
-                cls._require_bool(output, "output.csv_bom", path)
+                cls._require_bool(output, "csv_bom", path)
 
         if "logging" in config:
             logging_cfg = cls._require_dict(config, "logging", path)
-            cls._require_str(logging_cfg, "logging.level", path)
+            cls._require_str(logging_cfg, "level", path)
             level = logging_cfg.get("level")
             if level not in {"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"}:
                 raise ConfigValidationError(
                     f"Invalid value for logging.level in {path}: {level!r}."
                 )
-            cls._require_str(logging_cfg, "logging.format", path)
+            cls._require_str(logging_cfg, "format", path)
             log_format = logging_cfg.get("format")
             if log_format not in {"json", "text"}:
                 raise ConfigValidationError(
@@ -222,19 +222,19 @@ class Config:
                 )
             cls._require_number(
                 logging_cfg,
-                "logging.max_size_mb",
+                "max_size_mb",
                 path,
                 min_value=0.0,
                 allow_zero=False,
             )
-            cls._require_int(logging_cfg, "logging.backup_count", path, min_value=0)
+            cls._require_int(logging_cfg, "backup_count", path, min_value=0)
 
         if "registry" in config:
             registry = cls._require_dict(config, "registry", path)
-            cls._require_str(registry, "registry.file", path, allow_empty=False)
+            cls._require_str(registry, "file", path, allow_empty=False)
             if "allow_reprocess_errors" in registry:
                 cls._require_bool(
-                    registry, "registry.allow_reprocess_errors", path
+                    registry, "allow_reprocess_errors", path
                 )
 
     @classmethod

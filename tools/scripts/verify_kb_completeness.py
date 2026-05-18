@@ -5,7 +5,7 @@ import re
 
 
 def verify_knowledge_base(filename="KNOWLEDGE_BASE_COMPLETE.md"):
-    with open(filename, "r", encoding="utf-8") as f:
+    with open(filename, encoding="utf-8") as f:
         content = f.read()
 
     print("=" * 80)

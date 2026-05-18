@@ -64,6 +64,8 @@ normalization:
 logging:
   level: INFO
   format: json
+  max_size_mb: 10
+  backup_count: 5
 
 registry:
   file: out/processed_registry.json
@@ -87,6 +89,17 @@ registry:
             "m": ["m", "weight"],
         },
         "required_fields": {"any_of": ["Артикул", "Наименование"]},
+        "dimension_patterns": [
+            {
+                "regex": r"(?P<d>\d+(?:\.\d+)?)\s*[x×/]\s*(?P<D>\d+(?:\.\d+)?)\s*[x×/]\s*(?P<H>\d+(?:\.\d+)?)",
+                "groups": ["d", "D", "H"],
+            }
+        ],
+        "text_normalization": {
+            "trim": True,
+            "collapse_spaces": True,
+            "remove_control_chars": True,
+        },
     }
     (config_dir / "parsing_rules.json").write_text(json.dumps(parsing_rules))
 

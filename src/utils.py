@@ -7,6 +7,18 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+# Matches control characters except \t (0x09), \n (0x0a), \r (0x0d)
+_CONTROL_CHAR_RE = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f]')
+
+_EXT_TO_TYPE: Dict[str, str] = {
+    '.csv': 'csv',
+    '.xlsx': 'xlsx',
+    '.xls': 'xlsx',
+    '.json': 'json',
+    '.txt': 'txt',
+    '.md': 'txt',
+}
+
 
 def compute_file_hash(file_path: Path) -> str:
     """Compute SHA256 hash of a file.
@@ -19,7 +31,7 @@ def compute_file_hash(file_path: Path) -> str:
     """
     sha256_hash = hashlib.sha256()
     with open(file_path, "rb") as f:
-        for byte_block in iter(lambda: f.read(4096), b""):
+        for byte_block in iter(lambda: f.read(65536), b""):
             sha256_hash.update(byte_block)
     return sha256_hash.hexdigest()
 
@@ -126,9 +138,9 @@ def normalize_text(text: str, config: Optional[Dict[str, Any]] = None) -> str:
     
     # Collapse multiple spaces
     result = re.sub(r'\s+', ' ', result)
-    
-    # Remove control characters
-    result = ''.join(char for char in result if ord(char) >= 32 or char in '\n\r\t')
+
+    # Remove control characters (keep \t, \n, \r)
+    result = _CONTROL_CHAR_RE.sub('', result)
     
     # Apply dimension replacements if provided
     if config and 'dimension_replacements' in config:
@@ -202,25 +214,14 @@ def normalize_brand(brand: str, aliases: Dict[str, str], format_type: str = 'upp
 
 def detect_file_type(file_path: Path) -> str:
     """Detect file type based on extension.
-    
+
     Args:
         file_path: Path to file
-        
+
     Returns:
         File type: 'csv', 'xlsx', 'json', 'txt', or 'unknown'
     """
-    ext = file_path.suffix.lower()
-    
-    if ext == '.csv':
-        return 'csv'
-    elif ext in ['.xlsx', '.xls']:
-        return 'xlsx'
-    elif ext == '.json':
-        return 'json'
-    elif ext in ['.txt', '.md']:
-        return 'txt'
-    else:
-        return 'unknown'
+    return _EXT_TO_TYPE.get(file_path.suffix.lower(), 'unknown')
 
 
 def ensure_directory(path: Path) -> None:

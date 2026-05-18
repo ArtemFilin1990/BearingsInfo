@@ -10,6 +10,8 @@
 
 import json
 import os
+from collections import Counter, defaultdict
+from datetime import datetime
 
 
 class AutocompleteEngine:
@@ -20,6 +22,7 @@ class AutocompleteEngine:
         self.terms = []
         self.index = {}
         self.metadata = {}
+        self._terms_by_value: dict[str, dict] = {}
         self.load_dictionary(dict_path)
 
     def load_dictionary(self, dict_path: str):
@@ -34,6 +37,7 @@ class AutocompleteEngine:
                 self.terms = data.get("terms", [])
                 self.index = data.get("index", {})
                 self.metadata = data.get("metadata", {})
+                self._terms_by_value = {t["value"]: t for t in self.terms}
         except Exception as e:
             print(f"Ошибка при загрузке словаря: {e}")
 
@@ -67,8 +71,7 @@ class AutocompleteEngine:
         # Получаем полную информацию о кандидатах
         suggestions = []
         for candidate in candidates[: limit * 2]:  # Берем больше для фильтрации
-            # Ищем в списке терминов
-            term_info = next((t for t in self.terms if t["value"] == candidate), None)
+            term_info = self._terms_by_value.get(candidate)
             if term_info:
                 # Фильтр по типу
                 if types and term_info["type"] not in types:
@@ -213,13 +216,17 @@ class SearchHistory:
     """Управление историей поиска (заглушка для работы без БД)"""
 
     def __init__(self):
-        self.history = []
+        # Keyed by user_id for O(1) per-user access; _all_queries for global stats
+        self._by_user: defaultdict[str, list[dict]] = defaultdict(list)
+
+    @property
+    def history(self) -> list[dict]:
+        """Flat list of all entries (used by analytics endpoint)."""
+        return [entry for entries in self._by_user.values() for entry in entries]
 
     def add_search(self, user_id: str, query: str, results_count: int, session_id: str = None):
         """Добавить запись в историю поиска"""
-        from datetime import datetime
-
-        self.history.append(
+        self._by_user[user_id].append(
             {
                 "user_id": user_id,
                 "query": query,
@@ -231,23 +238,14 @@ class SearchHistory:
 
     def get_user_history(self, user_id: str, limit: int = 50) -> list[dict]:
         """Получить историю поиска пользователя"""
-        user_searches = [h for h in self.history if h["user_id"] == user_id]
-        user_searches.sort(key=lambda x: x["timestamp"], reverse=True)
-        return user_searches[:limit]
+        entries = sorted(self._by_user[user_id], key=lambda x: x["timestamp"], reverse=True)
+        return entries[:limit]
 
     def clear_user_history(self, user_id: str):
         """Очистить историю поиска пользователя"""
-        self.history = [h for h in self.history if h["user_id"] != user_id]
+        self._by_user.pop(user_id, None)
 
     def get_popular_queries(self, limit: int = 10) -> list[dict]:
         """Получить популярные поисковые запросы"""
-        from collections import Counter
-
-        queries = [h["query"] for h in self.history]
-        counter = Counter(queries)
-
-        popular = []
-        for query, count in counter.most_common(limit):
-            popular.append({"query": query, "count": count})
-
-        return popular
+        queries = [entry["query"] for entries in self._by_user.values() for entry in entries]
+        return [{"query": q, "count": c} for q, c in Counter(queries).most_common(limit)]

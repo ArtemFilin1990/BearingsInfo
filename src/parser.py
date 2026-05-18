@@ -191,25 +191,30 @@ class DataParser:
         # Create mapping from actual columns to target columns
         column_map = {}
         used_columns = set()
-        
+
+        # Precompute lowercase variation sets once per target column
+        lower_variations: dict[str, list[str]] = {
+            target: [v.lower() for v in vars_]
+            for target, vars_ in self.column_mappings.items()
+        }
+
         # First pass: exact matches (case-sensitive)
         for target_col, variations in self.column_mappings.items():
             for actual_col in df.columns:
                 if actual_col in used_columns:
                     continue
-                # Exact match (case-sensitive)
                 if actual_col in variations:
                     column_map[actual_col] = target_col
                     used_columns.add(actual_col)
                     break
-        
+
         # Second pass: case-insensitive matches for remaining columns
-        for target_col, variations in self.column_mappings.items():
+        for target_col in self.column_mappings:
+            lv = lower_variations[target_col]
             for actual_col in df.columns:
                 if actual_col in used_columns:
                     continue
-                # Case-insensitive match
-                if actual_col.lower().strip() in [v.lower() for v in variations]:
+                if actual_col.lower().strip() in lv:
                     column_map[actual_col] = target_col
                     used_columns.add(actual_col)
                     break
@@ -235,7 +240,7 @@ class DataParser:
             return df
         
         # Keep rows that have at least one of the required fields
-        mask = pd.Series([False] * len(df))
+        mask = pd.Series(False, index=df.index)
         for field in any_of:
             if field in df.columns:
                 mask |= df[field].notna() & (df[field] != '')

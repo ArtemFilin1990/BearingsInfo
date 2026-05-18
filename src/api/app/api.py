@@ -9,9 +9,12 @@ API endpoints для работы с подшипниками.
 """
 
 import io
+import logging
 import json
 import re
 from datetime import datetime
+
+_log = logging.getLogger(__name__)
 
 from fastapi import APIRouter, FastAPI, HTTPException, Query
 from fastapi.responses import JSONResponse, StreamingResponse
@@ -266,8 +269,7 @@ async def export_search_results(
     safe_query = _sanitize_filename(q, max_length=20)
 
     if export_format == "json":
-        json_data = SearchResultsExporter.to_json(results, pretty=True)
-        return JSONResponse(content=json.loads(json_data))
+        return JSONResponse(content=results)
 
     elif export_format == "csv":
         csv_data = SearchResultsExporter.to_csv(results)
@@ -384,9 +386,7 @@ async def global_exception_handler(request, exc):
     Global exception handler that logs errors server-side and returns
     a generic error message to avoid leaking sensitive information.
     """
-    # In production, log the full exception details server-side
-    # import logging
-    # logging.error(f"Unhandled exception: {exc}", exc_info=True)
+    _log.error("Unhandled exception for %s %s", request.method, request.url, exc_info=exc)
 
     return JSONResponse(
         status_code=500,

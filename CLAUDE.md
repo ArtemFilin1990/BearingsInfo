@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 BearingsInfo is a Russian-language bearing (подшипник) knowledge base and data pipeline. It has two distinct parts:
 
-1. **Data layer** — structured CSVs in `data/` (nomenclature, brands, analogs) validated against YAML schemas in `data/schemas/`.
+1. **Data layer** — structured CSVs in `data/` (nomenclature, brands, analogs) validated against YAML schemas in `data/schemas/` (JSON content in `.yaml` files).
 2. **Processing pipeline** — Python code in `src/` that watches an inbox directory, parses incoming CSV/XLSX files, normalises bearing records, deduplicates them, and writes an output catalog. A FastAPI search API is layered on top in `src/api/`.
 
 ## Common Commands
@@ -119,7 +119,7 @@ All three files are validated at startup by `Config._validate_*` methods — inv
 
 ## Data Conventions
 
-- `data/nomenclature.csv` is the primary dataset. Unique key is `(Brand, Product Name)`. Always run `python tools/scripts/deduplicate_nomenclature.py` after editing it — the pre-commit hook enforces this automatically.
+- `data/nomenclature.csv` is the primary dataset. Its unique key is `(Brand, Product Name)`. Always run `python tools/scripts/deduplicate_nomenclature.py` after editing it — the pre-commit hook enforces this automatically. Note: the pipeline's output catalog (`out/catalog_target.csv`) uses a different dedup key based on `(Артикул, Бренд)` — these are separate datasets.
 - All CSV files use UTF-8 encoding, comma delimiter, no BOM.
 - Brand names should match the canonical forms in `config/brand_aliases.json`.
 - Technical data must cite a source standard (ГОСТ, ISO, DIN) per `AGENT.md`.
@@ -132,7 +132,7 @@ All three files are validated at startup by `Config._validate_*` methods — inv
 - Linters: `ruff` (E, F, I, N, W, UP rules) + `mypy` + `black`. Run `make lint` before committing.
 - `__init__.py` F401 (unused import) is suppressed by ruff config.
 - Tests live in `tests/`, follow `test_*.py` / `Test*` / `test_*` naming. `conftest.py` provides `repo_root`, `data_dir`, and `schemas_dir` fixtures.
-- Coverage is tracked for `tools/scripts` and `src/sources`.
+- Coverage is tracked for `tools/scripts` and `src/sources` (per `pyproject.toml`). Note: core pipeline modules in `src/` are not currently included in coverage reporting.
 
 ## CI
 

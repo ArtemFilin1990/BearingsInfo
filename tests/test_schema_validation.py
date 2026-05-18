@@ -20,7 +20,7 @@ class TestSchemas(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         self.repo_root = Path(__file__).parent.parent
-        self.schemas_dir = self.repo_root / "schemas"
+        self.schemas_dir = self.repo_root / "data" / "schemas"
         self.data_dir = self.repo_root / "data"
 
     def test_schemas_directory_exists(self):
@@ -99,12 +99,12 @@ class TestSchemas(unittest.TestCase):
         """Test that major CSV files have corresponding schema definitions."""
         # Expected CSV files and their schemas
         expected_mappings = {
-            "data/gost/bearings.csv": "schemas/gost.yaml",
-            "data/gost/dimensions.csv": "schemas/gost.yaml",
-            "data/iso/bearings.csv": "schemas/iso.yaml",
-            "data/iso/suffixes.csv": "schemas/iso.yaml",
-            "data/brands/brands.csv": "schemas/brands.yaml",
-            "data/analogs/gost_iso.csv": "schemas/analogs.yaml",
+            "data/gost/bearings.csv": "data/schemas/gost.yaml",
+            "data/gost/dimensions.csv": "data/schemas/gost.yaml",
+            "data/iso/bearings.csv": "data/schemas/iso.yaml",
+            "data/iso/suffixes.csv": "data/schemas/iso.yaml",
+            "data/brands/brands.csv": "data/schemas/brands.yaml",
+            "data/analogs/gost_iso.csv": "data/schemas/analogs.yaml",
         }
 
         for csv_path, schema_path in expected_mappings.items():
@@ -163,7 +163,7 @@ class TestSchemaRequiredFields(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         self.repo_root = Path(__file__).parent.parent
-        self.schemas_dir = self.repo_root / "schemas"
+        self.schemas_dir = self.repo_root / "data" / "schemas"
 
     def test_schemas_have_descriptions(self):
         """Test that table definitions have descriptions."""

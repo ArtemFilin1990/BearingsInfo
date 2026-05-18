@@ -1,8 +1,14 @@
 """Shared pytest fixtures for all tests."""
 
+import sys
 from pathlib import Path
 
 import pytest
+
+# Allow tests to import from tools/scripts/ as `scripts.*`
+_tools_dir = str(Path(__file__).resolve().parents[1] / "tools")
+if _tools_dir not in sys.path:
+    sys.path.insert(0, _tools_dir)
 
 
 @pytest.fixture
@@ -20,4 +26,4 @@ def data_dir(repo_root):
 @pytest.fixture
 def schemas_dir(repo_root):
     """Return the schemas directory."""
-    return repo_root / "schemas"
+    return repo_root / "data" / "schemas"

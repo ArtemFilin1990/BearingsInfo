@@ -20,4 +20,4 @@ jobs:
           python-version: "3.11"
 
       - name: Validate articles structure
-        run: python scripts/validate_articles_structure.py
+        run: python tools/scripts/validate_articles_structure.py

@@ -20,7 +20,7 @@ from pathlib import Path
 def _import_table_scraper():
     """Import table_scraper module with proper path handling."""
     # Add sources directory to path if not already there
-    sources_path = str(Path(__file__).parent.parent / "sources")
+    sources_path = str(Path(__file__).parent.parent / "src" / "sources")
     if sources_path not in sys.path:
         sys.path.insert(0, sources_path)
 

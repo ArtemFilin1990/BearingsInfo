@@ -14,18 +14,15 @@ from __future__ import annotations
 
 import csv
 import importlib.util
-import os
-import sys
 from pathlib import Path
-from typing import Any
 
 # ---------------------------------------------------------------------------
 # ReportLab imports
 # ---------------------------------------------------------------------------
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import cm, mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -41,7 +38,6 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
-from reportlab.platypus.tableofcontents import TableOfContents
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 OUT_DIR = REPO_ROOT / "out"
@@ -54,6 +50,7 @@ PDF_PATH = OUT_DIR / "encyclopedia_bearings.pdf"
 FONT_NAME = "Helvetica"
 FONT_BOLD = "Helvetica-Bold"
 FONT_ITALIC = "Helvetica-Oblique"
+
 
 def _register_fonts() -> None:
     global FONT_NAME, FONT_BOLD, FONT_ITALIC
@@ -81,7 +78,9 @@ def _register_fonts() -> None:
                 pass
     print("  Font: Helvetica (Cyrillic may not render — DejaVu not found)")
 
+
 _register_fonts()
+
 
 # ---------------------------------------------------------------------------
 # Styles

@@ -1,12 +1,15 @@
 """Catalog management module."""
 
 import json
+import logging
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 
 from .utils import atomic_write, normalize_brand, normalize_number, normalize_text
+
+_log = logging.getLogger(__name__)
 
 
 class CatalogManager:
@@ -37,9 +40,10 @@ class CatalogManager:
         
         # Create output directory
         self.catalog_csv.parent.mkdir(parents=True, exist_ok=True)
-        
-        # Load existing catalog
+
+        # Load existing catalog and build the dedup index from it once
         self.catalog = self._load_catalog()
+        self._dedup_index: dict[tuple, list[tuple]] = self._build_dedup_index(self.catalog)
     
     def _load_catalog(self) -> pd.DataFrame:
         """Load existing catalog or create empty one.
@@ -56,10 +60,26 @@ class CatalogManager:
                         df[col] = None
                 return df[self.TARGET_COLUMNS]
             except Exception:
-                pass
+                _log.warning("Failed to load catalog from %s — starting empty", self.catalog_csv, exc_info=True)
         
         # Create empty catalog with target schema
         return pd.DataFrame(columns=self.TARGET_COLUMNS)
+
+    @staticmethod
+    def _build_dedup_index(df: pd.DataFrame) -> dict[tuple, list[tuple]]:
+        """Build a dedup index from a catalog DataFrame.
+
+        Structure: {(article, brand | None): [(D, d, H), ...]}
+        """
+        index: dict[tuple, list[tuple]] = {}
+        for row in df.itertuples(index=False):
+            art = row.Артикул
+            if pd.isna(art) or art == '':
+                continue
+            brd = row.Бренд if pd.notna(row.Бренд) and row.Бренд != '' else None
+            key = (art, brd)
+            index.setdefault(key, []).append((row.D, row.d, row.H))
+        return index
     
     def normalize_data(self, df: pd.DataFrame) -> pd.DataFrame:
         """Normalize data to target schema.
@@ -123,103 +143,57 @@ class CatalogManager:
         """
         if len(new_data) == 0:
             return 0, 0, 0, []
-        
+
         # Normalize new data
         normalized = self.normalize_data(new_data)
-        
+
         n_added = 0
         n_skipped = 0
         n_conflicts = 0
         conflicts = []
-        
-        for idx, row in normalized.iterrows():
-            # Check if should be added
-            should_add, conflict_info = self._should_add_record(row)
-            
-            if should_add:
-                # Append to catalog
-                self.catalog = pd.concat([self.catalog, row.to_frame().T], ignore_index=True)
-                n_added += 1
-                
-                if conflict_info:
-                    n_conflicts += 1
-                    conflicts.append(conflict_info)
-            else:
+        # Collect dicts for accepted rows; pd.DataFrame(list[dict]) is clean and fast
+        new_rows: List[Dict[str, Any]] = []
+
+        for row in normalized.itertuples(index=False):
+            art = row.Артикул
+            if pd.isna(art) or art == '':
                 n_skipped += 1
-        
-        return n_added, n_skipped, n_conflicts, conflicts
-    
-    def _should_add_record(self, row: pd.Series) -> Tuple[bool, Optional[Dict[str, Any]]]:
-        """Determine if record should be added.
-        
-        Deduplication logic:
-        - If Бренд is filled: check (Артикул, Бренд, D, d, H)
-        - If Бренд is empty: check (Артикул, D, d, H)
-        - If dimensions conflict for same Артикул/Бренд: add separately but log conflict
-        
-        Args:
-            row: Data row
-            
-        Returns:
-            Tuple of (should_add, conflict_info)
-        """
-        if len(self.catalog) == 0:
-            return True, None
-        
-        # Required field check
-        if pd.isna(row['Артикул']) or row['Артикул'] == '':
-            return False, None
-        
-        # Build dedup key
-        article = row['Артикул']
-        brand = row['Бренд'] if pd.notna(row['Бренд']) and row['Бренд'] != '' else None
-        
-        # Find potential duplicates
-        if brand:
-            mask = (self.catalog['Артикул'] == article) & (self.catalog['Бренд'] == brand)
-        else:
-            mask = (self.catalog['Артикул'] == article) & (
-                (self.catalog['Бренд'].isna()) | (self.catalog['Бренд'] == '')
-            )
-        
-        potential_dupes = self.catalog[mask]
-        
-        if len(potential_dupes) == 0:
-            # No duplicates, add
-            return True, None
-        
-        # Check dimensions
-        dims_to_check = ['D', 'd', 'H']
-        row_dims = tuple(row[dim] for dim in dims_to_check)
-        
-        for _, existing_row in potential_dupes.iterrows():
-            existing_dims = tuple(existing_row[dim] for dim in dims_to_check)
-            
-            # Compare dimensions
-            if row_dims == existing_dims:
-                # Exact duplicate, skip
-                return False, None
-        
-        # Dimensions differ - this is a conflict, add as separate entry
-        conflict_info = {
-            'артикул': article,
-            'бренд': brand or '',
-            'new_dimensions': {
-                'D': row['D'],
-                'd': row['d'],
-                'H': row['H']
-            },
-            'existing_dimensions': [
-                {
-                    'D': existing_row['D'],
-                    'd': existing_row['d'],
-                    'H': existing_row['H']
+                continue
+
+            brd = row.Бренд if pd.notna(row.Бренд) and row.Бренд != '' else None
+            key = (art, brd)
+            dims = (row.D, row.d, row.H)
+
+            existing_dims_list = self._dedup_index.get(key, [])
+
+            if dims in existing_dims_list:
+                n_skipped += 1
+                continue
+
+            if existing_dims_list:
+                # Dimensions differ for same (article, brand) — conflict
+                conflict_info: Dict[str, Any] = {
+                    'артикул': art,
+                    'бренд': brd or '',
+                    'new_dimensions': {'D': row.D, 'd': row.d, 'H': row.H},
+                    'existing_dimensions': [
+                        {'D': d[0], 'd': d[1], 'H': d[2]} for d in existing_dims_list
+                    ],
                 }
-                for _, existing_row in potential_dupes.iterrows()
-            ]
-        }
-        
-        return True, conflict_info
+                n_conflicts += 1
+                conflicts.append(conflict_info)
+
+            # Accept row; update the persistent index so later rows in this file see it
+            self._dedup_index.setdefault(key, []).append(dims)
+            new_rows.append(row._asdict())
+            n_added += 1
+
+        if new_rows:
+            self.catalog = pd.concat(
+                [self.catalog, pd.DataFrame(new_rows)], ignore_index=True
+            )
+
+        return n_added, n_skipped, n_conflicts, conflicts
     
     def save(self) -> None:
         """Save catalog to CSV and JSON files atomically."""
@@ -255,8 +229,9 @@ class CatalogManager:
         Returns:
             Tuple of (n_files_processed, n_records_added)
         """
-        # Clear current catalog
+        # Clear current catalog and its dedup index
         self.catalog = pd.DataFrame(columns=self.TARGET_COLUMNS)
+        self._dedup_index = {}
         
         n_files = 0
         n_records = 0

@@ -4,7 +4,6 @@ import logging
 import shutil
 import time
 from pathlib import Path
-from typing import Tuple
 
 from .catalog import CatalogManager
 from .config import Config
@@ -64,7 +63,7 @@ class FileProcessor:
         # Get max file size limit
         self.max_file_size = config.get('limits.max_file_size_mb', 50) * 1024 * 1024
     
-    def process_file(self, file_path: Path) -> Tuple[str, int]:
+    def process_file(self, file_path: Path) -> tuple[str, int]:
         """Process a single file.
         
         Args:
@@ -75,9 +74,10 @@ class FileProcessor:
         """
         start_time = time.time()
         filename = file_path.name
-        
+        file_hash: str | None = None
+
         self.logger.info(f"Processing file: {filename}")
-        
+
         try:
             # Check file size
             file_size = file_path.stat().st_size
@@ -231,12 +231,13 @@ class FileProcessor:
             error_msg = str(e)
             self.logger.error(f"Error processing {filename}: {error_msg}", exc_info=True)
             error_code = 'PARSE_ERROR'
-            
-            # Move to error directory
-            try:
-                file_hash = compute_file_hash(file_path)
-            except Exception:
-                file_hash = 'unknown'
+
+            # Reuse hash if already computed; only re-read the file when necessary
+            if file_hash is None:
+                try:
+                    file_hash = compute_file_hash(file_path)
+                except Exception:
+                    file_hash = 'unknown'
             
             error_name = generate_processed_filename(
                 original_name=filename,
@@ -280,7 +281,7 @@ class FileProcessor:
             
             return 'error', 0
     
-    def process_inbox(self) -> Tuple[int, int, int]:
+    def process_inbox(self) -> tuple[int, int, int]:
         """Process all files in inbox.
         
         Returns:
@@ -308,7 +309,7 @@ class FileProcessor:
         
         return n_processed, n_success, n_errors
     
-    def rebuild_catalog(self) -> Tuple[int, int]:
+    def rebuild_catalog(self) -> tuple[int, int]:
         """Rebuild catalog from processed files.
         
         Returns:

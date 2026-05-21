@@ -2,7 +2,9 @@
 
 import json
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
+
+from .utils import atomic_write
 
 
 class Registry:
@@ -16,7 +18,7 @@ class Registry:
         """
         self.registry_file = registry_file
         self.registry_file.parent.mkdir(parents=True, exist_ok=True)
-        self._data: Dict[str, Dict] = {}
+        self._data: Dict[str, Dict[str, Any]] = {}
         self._load()
     
     def _load(self) -> None:
@@ -32,16 +34,7 @@ class Registry:
     
     def _save(self) -> None:
         """Save registry to file atomically."""
-        temp_file = self.registry_file.with_suffix('.tmp')
-        
-        try:
-            with open(temp_file, 'w', encoding='utf-8') as f:
-                json.dump(self._data, f, indent=2, ensure_ascii=False)
-            temp_file.replace(self.registry_file)
-        except Exception:
-            if temp_file.exists():
-                temp_file.unlink()
-            raise
+        atomic_write(json.dumps(self._data, indent=2, ensure_ascii=False), self.registry_file)
     
     def is_processed(self, file_hash: str) -> bool:
         """Check if file has been processed.
@@ -88,7 +81,7 @@ class Registry:
         self._data[file_hash] = entry
         self._save()
     
-    def get_entry(self, file_hash: str) -> Optional[Dict]:
+    def get_entry(self, file_hash: str) -> Optional[Dict[str, Any]]:
         """Get registry entry for a file.
         
         Args:
@@ -99,7 +92,7 @@ class Registry:
         """
         return self._data.get(file_hash)
     
-    def get_all_entries(self) -> Dict[str, Dict]:
+    def get_all_entries(self) -> Dict[str, Dict[str, Any]]:
         """Get all registry entries.
         
         Returns:

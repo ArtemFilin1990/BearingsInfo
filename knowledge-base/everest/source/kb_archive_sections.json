@@ -1,0 +1,124 @@
+{
+  "title": "Технический справочник: подшипники и промышленная продукция",
+  "groups": [
+    {
+      "title": "1. Маркировка подшипников",
+      "pages": [
+        {"code": "p11-oboznacheniya-gost-sistema", "title": "Система обозначений по ГОСТ"},
+        {"code": "p11-klass-tochnosti-gost-iso-abec", "title": "Классы точности ГОСТ / ISO / ABEC"},
+        {"code": "p11-radialnyy-osevoy-zazor", "title": "Радиальные и осевые зазоры"},
+        {"code": "p11-uplotneniya-shchitki-kanavki", "title": "Уплотнения ZZ / 2RS"},
+        {"code": "p11-primery-oboznacheniya", "title": "Примеры расшифровки"}
+      ]
+    },
+    {
+      "title": "2. ГОСТ / ISO / ЕТУ / Аналоги",
+      "pages": [
+        {"code": "p12-analogi-gost-iso", "title": "Аналоги ГОСТ → ISO"},
+        {"code": "p12-analogi-iso-gost", "title": "Аналоги ISO → ГОСТ"},
+        {"code": "p12-gost-iso-razlichiya", "title": "Основные различия ГОСТ / ISO"},
+        {"code": "p12-tn-ved-kody", "title": "Коды ТН ВЭД"}
+      ]
+    },
+    {
+      "title": "3. Конструкция и теория",
+      "pages": [
+        {"code": "p13-chto-takoe-podshipnik", "title": "Что такое подшипник"},
+        {"code": "p13-klassifikatsiya-podshipnikov", "title": "Классификация"},
+        {"code": "p13-tipy-nagruzok", "title": "Типы нагрузок"},
+        {"code": "p13-posadki-podshipnikov", "title": "Посадки подшипников"}
+      ]
+    },
+    {
+      "title": "4. Типы подшипников",
+      "pages": [
+        {"code": "p14-sharikovye-radialny", "title": "Шариковые радиальные"},
+        {"code": "p14-rolikovye-tsilindricheskie", "title": "Цилиндрические NU/NJ/N"},
+        {"code": "p14-rolikovye-konicheskie", "title": "Конические роликовые"},
+        {"code": "p14-rolikovye-sfericheskie", "title": "Сферические роликовые"},
+        {"code": "p14-igolchatye-podshipniki", "title": "Игольчатые"}
+      ]
+    },
+    {
+      "title": "5. Специальные серии",
+      "pages": [
+        {"code": "p15-sfericheskie-rolikovye", "title": "Сферические 22xx / 23xx"},
+        {"code": "p15-uzly-ucf-ucfl-ucp-uct", "title": "Корпусные UCF / UCP / UCFL"},
+        {"code": "p15-sharnirnye-sh-shl-shs", "title": "Шарнирные ШС / GE"},
+        {"code": "p15-skf-y-type-yel-yet-yar", "title": "SKF Y-тип"}
+      ]
+    },
+    {
+      "title": "6. Подбор и взаимозаменяемость",
+      "pages": [
+        {"code": "p16-kak-vybrat-podshipnik", "title": "Как выбрать подшипник"},
+        {"code": "p16-kak-podobrat-analog", "title": "Как подобрать аналог"},
+        {"code": "p16-posadki-podshipnikov", "title": "Посадки"},
+        {"code": "p16-podbor-po-nagruzke", "title": "Подбор по нагрузке C/C₀"}
+      ]
+    },
+    {
+      "title": "7. Комплектующие",
+      "pages": [
+        {"code": "p17-separatory-tipy", "title": "Типы сепараторов"},
+        {"code": "p17-zakreplitelnye-vtulki", "title": "Закрепительные втулки"},
+        {"code": "p17-stopornye-koltsa", "title": "Стопорные кольца"}
+      ]
+    },
+    {
+      "title": "8. Монтаж и смазка",
+      "pages": [
+        {"code": "p18-montazh-podshipnikov", "title": "Монтаж подшипников"},
+        {"code": "p18-smazka-podshipnikov", "title": "Смазка"},
+        {"code": "p18-khranenie-podshipnikov", "title": "Хранение на складе"},
+        {"code": "p18-reviziya-podshipnikov", "title": "Ревизия"}
+      ]
+    },
+    {
+      "title": "9. Повреждения",
+      "pages": [
+        {"code": "p19-prichiny-povrezhdeniy", "title": "Причины повреждений"},
+        {"code": "p19-iznos-dorozhek", "title": "Питтинг и бринеллинг"},
+        {"code": "p19-korroziya-podshipnikov", "title": "Коррозия"},
+        {"code": "p19-otkazy-elektrodvigateli", "title": "Отказы в эл. двигателях"}
+      ]
+    },
+    {
+      "title": "10. Производители",
+      "pages": [
+        {"code": "p110-oboznacheniya-skf", "title": "SKF"},
+        {"code": "p110-oboznacheniya-fag", "title": "FAG"},
+        {"code": "p110-oboznacheniya-nsk", "title": "NSK"},
+        {"code": "p110-zavody-sng", "title": "Заводы СНГ / ЕПК"},
+        {"code": "p110-priznaki-kontrafakta", "title": "Признаки контрафакта"}
+      ]
+    },
+    {
+      "title": "11. Автомобильные",
+      "pages": [
+        {"code": "p111-stupichnye-podshipniki", "title": "Ступичные подшипники"},
+        {"code": "p111-kak-vybrat-stupichnyy", "title": "Как выбрать ступичный"},
+        {"code": "p111-simptomy-neispravnosti-stupitsy", "title": "Симптомы неисправности"}
+      ]
+    },
+    {
+      "title": "12. Линейные системы",
+      "pages": [
+        {"code": "p112-lineynye-napravlyayushchie-kach", "title": "Линейные направляющие"},
+        {"code": "p112-shvp-sharikovaya", "title": "ШВП"},
+        {"code": "p112-pretsizionnye-valy", "title": "Прецизионные валы"}
+      ]
+    },
+    {
+      "title": "Сопутствующая продукция",
+      "pages": [
+        {"code": "soput-s-rti-salniki", "title": "Сальники и манжеты"},
+        {"code": "soput-s-remni-obshchee", "title": "Приводные ремни"},
+        {"code": "soput-s-tsepi-obshchee", "title": "Цепи и звёздочки"},
+        {"code": "soput-s-rvd", "title": "Рукава высокого давления"},
+        {"code": "soput-s-nasosy-nsh", "title": "Насосы НШ"},
+        {"code": "soput-s-vtulki-taper-bush", "title": "Втулки Taper Bush"}
+      ]
+    }
+  ]
+}

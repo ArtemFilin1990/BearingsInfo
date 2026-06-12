@@ -21,6 +21,7 @@ import argparse
 import html
 import json
 import os
+import sys
 import zipfile
 from pathlib import Path
 from typing import Any
@@ -78,8 +79,14 @@ def apply_metadata(export: dict[str, Any], name: str, description: str, theme: d
     export["type"] = "knowledge"
     export["name"] = name
     export["description"] = description
-    fields = export.setdefault("fields", {})
-    additional_fields = fields.setdefault("ADDITIONAL_FIELDS", {})
+    fields = export.get("fields")
+    if not isinstance(fields, dict):
+        fields = {}
+        export["fields"] = fields
+    additional_fields = fields.get("ADDITIONAL_FIELDS")
+    if not isinstance(additional_fields, dict):
+        additional_fields = {}
+        fields["ADDITIONAL_FIELDS"] = additional_fields
     additional_fields.update(theme)
 
 
@@ -87,7 +94,9 @@ def fix_internal_links(export: dict[str, Any], base_url: str) -> dict[str, Any]:
     if not base_url:
         return export
     serialized = json.dumps(export, ensure_ascii=False)
-    serialized = serialized.replace(base_url, "/")
+    base_url_stripped = base_url.rstrip("/")
+    serialized = serialized.replace(base_url_stripped + "/", "/")
+    serialized = serialized.replace(base_url_stripped, "/")
     return json.loads(serialized)
 
 
@@ -108,6 +117,8 @@ def page_titles(sections: dict[str, Any]) -> dict[str, str]:
 def fill_empty_pages(export: dict[str, Any], sections: dict[str, Any]) -> None:
     titles = page_titles(sections)
     for page_code, page in export.get("items", {}).items():
+        if not isinstance(page, dict):
+            continue
         if page.get("items"):
             continue
         title = titles.get(page_code, page.get("name", page_code))
@@ -130,9 +141,10 @@ def fill_empty_pages(export: dict[str, Any], sections: dict[str, Any]) -> None:
 
 
 def build_index_page(export: dict[str, Any], sections: dict[str, Any]) -> None:
-    index_code = export.get("fields", {}).get("LANDING_ID_INDEX")
+    fields = export.get("fields")
+    index_code = fields.get("LANDING_ID_INDEX") if isinstance(fields, dict) else None
     page = export.get("items", {}).get(index_code) if index_code else None
-    if page is None:
+    if not isinstance(page, dict):
         return
 
     toc_parts = []
@@ -159,8 +171,18 @@ def build_index_page(export: dict[str, Any], sections: dict[str, Any]) -> None:
 def add_navigation(export: dict[str, Any], sections: dict[str, Any]) -> None:
     section_titles = page_section_titles(sections)
     for page_code, page in export.get("items", {}).items():
-        blocks = page.get("items", {})
-        text_blocks = [block for block in blocks.values() if ".landing-block-node-text" in block.get("nodes", {})]
+        if not isinstance(page, dict):
+            continue
+        blocks = page.get("items")
+        if not isinstance(blocks, dict):
+            continue
+        text_blocks = [
+            block
+            for block in blocks.values()
+            if isinstance(block, dict)
+            and isinstance(block.get("nodes"), dict)
+            and isinstance(block["nodes"].get(".landing-block-node-text"), list)
+        ]
         if not text_blocks:
             continue
         section_title = section_titles.get(page_code)
@@ -199,7 +221,11 @@ def main() -> int:
     elif args.execute:
         if args.site_id is None:
             parser.error("--execute requires --site-id")
-        export = fetch_export(args.site_id, args.scope, args.timeout)
+        try:
+            export = fetch_export(args.site_id, args.scope, args.timeout)
+        except Exception as exc:
+            print(f"Error fetching export from Bitrix24: {exc}", file=sys.stderr)
+            return 1
     else:
         parser.error(
             "Specify --input <file> for offline mode, or --execute --site-id <id> with "

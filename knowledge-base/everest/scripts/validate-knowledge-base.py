@@ -140,6 +140,8 @@ def validate() -> tuple[list[str], list[str]]:
     source_article_numbers = set(article_numbers)
     for article in articles:
         related_articles = article.get("related_articles", [])
+        if len(related_articles) != 3:
+            add(errors, f"Article {article['number']} must contain exactly 3 related articles")
         if len(related_articles) != len(set(related_articles)):
             add(errors, f"Article {article['number']} contains duplicate related articles")
         for related in related_articles:

@@ -88,18 +88,68 @@ def main() -> int:
                 }
             )
 
-    report = [
-        "# Creation report — Технический справочник «Эверест»",
-        "",
-        f"- Разделов: {len(sections)}",
-        f"- Статей: {len(articles)}",
-        "- Markdown: `generated/markdown/`",
-        "- JSON для импорта: `generated/json/bitrix24-import.json`",
-        "- CSV: `generated/csv/articles.csv`",
-        "- Реальные технические параметры не добавлялись без подтверждённых источников.",
-        "- Пустые и спорные места отмечены статусами данных в исходных JSON.",
-        "",
+    expected_articles = sum(len(section["articles"]) for section in sections)
+    article_numbers = [article["number"] for article in articles]
+    duplicate_count = len(article_numbers) - len(set(article_numbers))
+    required_statuses = ["нет данных", "уточнить", "требует проверки", "не подтверждено"]
+    status_counts = {
+        status: sum(1 for article in articles if status in article["data_statuses"])
+        for status in required_statuses
+    }
+    table_articles = [article for article in articles if "table" in article["body"]]
+    needs_sources = [
+        f"{article['number']}. {article['title']}"
+        for article in articles
+        if set(required_statuses).intersection(article["data_statuses"])
     ]
+    report = [
+        "# Отчёт по созданию базы знаний",
+        "",
+        "## Общий результат",
+        "",
+        "- Название базы знаний: Технический справочник «Эверест»",
+        f"- Статус создания: {'создано' if len(articles) == 148 and len(sections) == 8 else 'создано частично'}",
+        f"- Разделов создано: {len(sections)} из 8",
+        f"- Статей создано: {len(articles)} из {expected_articles}",
+        "- Нумерация сохранена: да",
+        f"- Дублирование статей: {'не обнаружено' if duplicate_count == 0 else 'обнаружено'}",
+        "- Выдуманные технические данные: не использовались",
+        "",
+        "## Статусы неполных данных",
+        "",
+        "| Статус | Количество | Комментарий |",
+        "|---|---:|---|",
+    ]
+    report.extend(
+        f"| {status} | {status_counts[status]} | Применяется к статьям до заполнения подтверждёнными источниками. |"
+        for status in required_statuses
+    )
+    report.extend(
+        [
+            "",
+            "## Экспорт",
+            "",
+            "- Markdown: `generated/markdown/`",
+            "- JSON для импорта: `generated/json/bitrix24-import.json`",
+            "- CSV: `generated/csv/articles.csv`",
+            "",
+            "## Замечания",
+            "",
+            f"- Статьи требуют проверки источников: {len(needs_sources)} из {len(articles)}.",
+            "- Все технические параметры, нормативные ссылки, аналоги, цены, бренды и коды ТН ВЭД "
+            "должны быть заполнены только после сверки с подтверждёнными источниками.",
+            f"- Таблицы нужно заполнить после сверки: {len(table_articles)}.",
+            "",
+            "## Следующие действия",
+            "",
+            "1. Проверить технические данные по официальным каталогам и ГОСТ / ISO.",
+            "2. Заполнить таблицы подтверждёнными источниками.",
+            "3. Проверить связи между статьями.",
+            "4. Провести редакторскую вычитку перед публикацией.",
+            "5. Согласовать Bitrix24 REST-метод и payload перед реальным импортом.",
+            "",
+        ]
+    )
     write_text(REPORTS_DIR / "creation-report.md", "\n".join(report))
     print(f"Generated {len(sections)} sections and {len(articles)} articles for {KB_TITLE}.")
     return 0

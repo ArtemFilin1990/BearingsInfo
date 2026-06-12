@@ -41,7 +41,17 @@ python knowledge-base/everest/scripts/validate-knowledge-base.py
 
 При критических ошибках команда завершается с ненулевым кодом и обновляет `reports/validation-report.md`.
 
-## Dry-run импорт в Bitrix24
+## Создание иерархии Базы знаний 2.0 (dry-run)
+
+```bash
+python knowledge-base/everest/scripts/bitrix24-create-hierarchy.py
+```
+
+По умолчанию работает только в dry-run режиме: Bitrix24 API не вызывается, секреты не нужны, в консоль выводится
+план вызовов `landing.*` для создания сайта Базы знаний, 8 разделов-папок и 148 страниц-заготовок с правильной
+нумерацией.
+
+## Dry-run импорт содержимого в Bitrix24
 
 ```bash
 python knowledge-base/everest/scripts/bitrix24-import.py
@@ -49,9 +59,19 @@ python knowledge-base/everest/scripts/bitrix24-import.py
 
 По умолчанию импорт работает только в dry-run режиме: Bitrix24 API не вызывается, секреты не нужны, в консоль выводится количество разделов и статей.
 
-## Реальный импорт через REST webhook
+## Реальный запуск через REST webhook
 
-Реальный HTTP-импорт заблокирован без явного флага и переменных окружения.
+Реальные HTTP-вызовы заблокированы без явного флага и переменных окружения.
+
+Сначала создаётся иерархия (сайт, разделы, заготовки статей):
+
+```bash
+export BITRIX24_WEBHOOK_URL
+BITRIX24_IMPORT_CONFIRM=true \
+python knowledge-base/everest/scripts/bitrix24-create-hierarchy.py --execute
+```
+
+Затем заполняется содержимое статей:
 
 ```bash
 export BITRIX24_WEBHOOK_URL
@@ -63,8 +83,11 @@ python knowledge-base/everest/scripts/bitrix24-import.py --execute
 Переменные окружения:
 
 - `BITRIX24_WEBHOOK_URL` — HTTPS base URL входящего REST webhook Bitrix24. Не хранить в репозитории.
-- `BITRIX24_KB_IMPORT_METHOD` — REST-метод или путь метода, выбранный администратором Bitrix24 для целевого сценария импорта.
-- `BITRIX24_IMPORT_CONFIRM=true` — обязательное подтверждение реального импорта.
+- `BITRIX24_KB_IMPORT_METHOD` — REST-метод или путь метода, выбранный администратором Bitrix24 для целевого сценария импорта содержимого (используется только `bitrix24-import.py`).
+- `BITRIX24_IMPORT_CONFIRM=true` — обязательное подтверждение реального запуска.
+
+`bitrix24-create-hierarchy.py` сохраняет идентификаторы созданных сайта, разделов и страниц в
+`generated/json/bitrix24-hierarchy-ids.json`, поэтому повторный запуск не создаёт дубликаты.
 
 ## Ограничения по техническим данным
 

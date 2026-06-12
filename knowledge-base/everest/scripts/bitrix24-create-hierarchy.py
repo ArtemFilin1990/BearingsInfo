@@ -62,6 +62,13 @@ def call(webhook_url: str, method: str, payload: dict, timeout: float) -> dict:
 def checked_call(webhook_url: str, method: str, payload: dict, timeout: float, context: str) -> dict:
     try:
         response = call(webhook_url, method, payload, timeout)
+    except urllib.error.HTTPError as exc:
+        try:
+            error_data = json.loads(exc.read().decode("utf-8"))
+            error_description = error_data.get("error_description", error_data.get("error", str(exc)))
+            raise RuntimeError(f"{method} returned error for {context}: {error_description}") from exc
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            raise RuntimeError(f"{method} failed for {context}: {exc}") from exc
     except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
         raise RuntimeError(f"{method} failed for {context}: {exc}") from exc
     if "error" in response:
@@ -110,7 +117,7 @@ def print_plan(sections: list[dict], by_section: dict[str, list[dict]]) -> None:
 
 def ensure_site(webhook_url: str, state: dict, timeout: float) -> int:
     if state.get("site_id"):
-        return state["site_id"]
+        return int(state["site_id"])
     response = checked_call(
         webhook_url,
         "landing.site.getList",
@@ -136,7 +143,7 @@ def ensure_site(webhook_url: str, state: dict, timeout: float) -> int:
             timeout,
             "create knowledge base site",
         )
-        site_id = response["result"]
+        site_id = int(response["result"])
     state["site_id"] = site_id
     save_state(state)
     return site_id
@@ -144,7 +151,7 @@ def ensure_site(webhook_url: str, state: dict, timeout: float) -> int:
 
 def ensure_folder(webhook_url: str, site_id: int, section: dict, section_state: dict, timeout: float) -> int:
     if section_state.get("folder_id"):
-        return section_state["folder_id"]
+        return int(section_state["folder_id"])
     response = checked_call(
         webhook_url,
         "landing.site.addFolder",
@@ -156,7 +163,7 @@ def ensure_folder(webhook_url: str, site_id: int, section: dict, section_state: 
         timeout,
         f"create folder for section {section['number']}",
     )
-    folder_id = response["result"]
+    folder_id = int(response["result"])
     section_state["folder_id"] = folder_id
     return folder_id
 
@@ -166,7 +173,7 @@ def ensure_article_page(
 ) -> int:
     existing = section_state["articles"].get(article["number"])
     if existing:
-        return existing
+        return int(existing)
     response = checked_call(
         webhook_url,
         "landing.landing.add",
@@ -183,7 +190,7 @@ def ensure_article_page(
         timeout,
         f"create page for article {article['number']}",
     )
-    page_id = response["result"]
+    page_id = int(response["result"])
     section_state["articles"][article["number"]] = page_id
     return page_id
 

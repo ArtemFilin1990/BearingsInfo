@@ -43,4 +43,4 @@ jobs:
       - name: Verify Python gate and OEM bridge
         run: |
           python -m pip install pytest
-          PYTHONPATH=. python -m pytest -q tests/test_engineering_core.py tests/test_verified_dictionary.py tests/test_oem_evidence_bridge.py
+          PYTHONPATH=. python -m pytest -q tests/test_engineering_core.py tests/test_verified_dictionary.py tests/test_oem_evidence_bridge.py tests/test_bearing_dimension_roles.py

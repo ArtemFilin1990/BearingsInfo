@@ -177,8 +177,8 @@ def evaluate_autoreplace(
         issues.append('SOURCE_PASSPORT_SNAPSHOT_STALE')
     if not decision.candidate_snapshot_digest or decision.candidate_snapshot_digest != candidate.snapshot_digest():
         issues.append('CANDIDATE_PASSPORT_SNAPSHOT_STALE')
-    if not required:
-        issues.append('NO_REQUIRED_ATTRIBUTES')
+    if not RADIAL_BALL_CRITICAL.issubset(required):
+        issues.append('REQUIRED_PROFILE_DOWNGRADED')
     for key in sorted(required):
         left = source.attributes.get(key)
         right = candidate.attributes.get(key)

@@ -22,3 +22,7 @@ Verified public landing pages:
 - https://www.bearingworks.com/bearing-sizes/
 
 Batch proof: 4,583 source rows; 874 matching dictionary brand tokens; 141 fully recognized suffix sequences; 4,583 auto-replacements denied because documented scoped approvals were absent. Locally validated with 42 pytest tests; no approval of product pairs.
+
+## Обнаруженный конфликт данных (не импортировать автоматически)
+
+`6208`: BearingWorks показывает B=15 мм в таблице серии 6200, тогда как официальная карточка NSK `6208` указывает B=18 мм при d=40 мм, D=80 мм. Вторичный источник — https://www.bearingworks.com/bearing-sizes/ ; первичный — https://www.nsk.com/engineering/products/bearings/ball-bearings/deep-groove-ball-bearings/single-row-deep-groove-ball-bearings/6208-apn.html . Занести в реестр ошибок источников, не копировать размеры из противоречащей таблицы.

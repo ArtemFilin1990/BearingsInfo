@@ -1,0 +1,6 @@
+"brand_token","canonical_brand","company","official_site","notes"
+"SKF","SKF","SKF Group","https://www.skf.com/","Подшипниковый бренд; не определяет исполнение без кода"
+"NSK","NSK","NSK Ltd.","https://www.nsk.com/","Суффиксы NSK не применяются автоматически к другим маркам"
+"NTN","NTN","NTN Corporation","https://www.ntnglobal.com/","Суффиксы NTN не применяются автоматически к другим маркам"
+"FAG","FAG","Schaeffler","https://www.schaeffler.com/","Бренд FAG; коды FAG не наследуются автоматически INA"
+"INA","INA","Schaeffler","https://www.schaeffler.com/","Бренд распознаётся, но официальные суффиксы INA пока не внесены"

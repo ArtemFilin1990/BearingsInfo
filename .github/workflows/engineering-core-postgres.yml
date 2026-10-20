@@ -1,0 +1,46 @@
+name: EVEREST engineering core Postgres integration
+on:
+  push:
+    branches:
+      - 'feature/everest-stage3-oem-engineering-20261021'
+  pull_request:
+    paths:
+      - 'sql/engineering_core/**'
+      - 'src/oem_evidence_bridge.py'
+      - 'src/engineering_core.py'
+      - 'src/verified_designation_dictionary.py'
+permissions:
+  contents: read
+jobs:
+  test-postgres-migration:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: tester
+          POSTGRES_PASSWORD: ci_password
+          POSTGRES_DB: everest_bearings_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U tester -d everest_bearings_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      PGUSER: tester
+      PGPASSWORD: ci_password
+      PGDATABASE: everest_bearings_ci
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply engineering schema to ephemeral PostgreSQL
+        run: psql -X -v ON_ERROR_STOP=1 -f sql/engineering_core/001_engineering_core_postgres.sql
+      - name: Run rollback-only SQL assertions
+        run: psql -X -v ON_ERROR_STOP=1 -f sql/engineering_core/tests/smoke.sql
+      - name: Verify Python gate and OEM bridge
+        run: |
+          python -m pip install pytest
+          PYTHONPATH=. python -m pytest -q tests/test_engineering_core.py tests/test_verified_dictionary.py tests/test_oem_evidence_bridge.py

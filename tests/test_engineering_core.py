@@ -173,3 +173,10 @@ def test_no_auto_if_lacking_authoritative_source_or_signature():
 def test_same_numeric_dimension_float_rejected():
     with pytest.raises(TypeError):
         make('a',attr={**facts(), 'd_mm':AttributeFact(25.0,'EXPLICIT','s','v1')}).snapshot_digest()
+
+
+def test_caller_cannot_bypass_critical_profile():
+    a,b=make('a'),make('b')
+    result = evaluate_autoreplace(a,b,approval(a,b),ApplicationContext(TODAY,None), required=frozenset({'clearance'}))
+    assert not result.allow_autoreplace
+    assert 'REQUIRED_PROFILE_DOWNGRADED' in result.reasons

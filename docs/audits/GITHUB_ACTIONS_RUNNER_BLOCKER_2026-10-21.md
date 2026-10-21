@@ -35,3 +35,17 @@ Root Dockerfile also built and deployed `live` previously, deploy `dep-dbc0sge1e
 - https://dashboard.render.com/web/srv-dbc0sfe1egvs7393fji0
 
 **Render verification does not replace successful GitHub Actions required checks and does not authorize merging PR #190/#191.** Production Goodwin, 1C, Bitrix24, Cloudflare D1 unchanged.
+
+## Confirmed root cause, authenticated Checks API — 21 Oct 2026
+
+A separate authenticated GitHub connection successfully retrieved the check-run annotation that was unavailable through the original connector.
+
+- Check-run ID: `118976239519` (minimal diagnostic rerun)
+- Annotation level: `failure`
+- Exact message: **"The job was not started because your account is locked due to a billing issue."**
+- The cause is now *confirmed account billing lock*, **not** a hypothetical CI parser/test failure, and not a current GitHub-wide outage.
+- GitHub documentation: https://docs.github.com/en/billing/how-tos/troubleshooting/locked-account
+- Tracking issue: https://github.com/ArtemFilin1990/BearingsInfo/issues/192
+
+Account owner must inspect `https://github.com/settings/billing` for a failed payment/authorization hold or budget-related lock and, if needed, contact GitHub Support. Do not automatically modify financial settings or increase budgets. After GitHub unlocks the account, rerun diagnostic then native CI on a single commit SHA.
+

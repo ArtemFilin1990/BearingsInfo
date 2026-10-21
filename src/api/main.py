@@ -6,12 +6,13 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 import uvicorn
 import logging
 import os
 
 from app import APP_DESCRIPTION, APP_NAME, APP_VERSION
-from app.api import router as api_router
+from app.api import router as api_router, autocomplete_engine, search_engine
 
 # Настройка логирования
 logging.basicConfig(
@@ -57,6 +58,23 @@ async def root():
 async def health():
     """Health check endpoint"""
     return {"status": "healthy"}
+
+@app.get("/ready")
+async def readiness():
+    """Readiness requires actual search and autocomplete data, unlike liveness."""
+    catalogue_index = bool(search_engine.documents)
+    autocomplete_index = bool(autocomplete_engine.terms)
+    ready = catalogue_index and autocomplete_index
+    return JSONResponse(
+        status_code=200 if ready else 503,
+        content={
+            "status": "ready" if ready else "not_ready",
+            "catalogue_index": catalogue_index,
+            "autocomplete_index": autocomplete_index,
+            "auto_replace_allowed": False,
+        },
+    )
+
 
 app.include_router(api_router)
 

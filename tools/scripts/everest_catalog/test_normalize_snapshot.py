@@ -46,6 +46,9 @@ class TypeFirstTests(unittest.TestCase):
             output, report = root/"snapshot.sqlite",root/"report.json"
             result=build(source,output,report,min_rows=74,min_brands=74)
             self.assertEqual((result["rows"],result["brands"]),(74,74))
+            self.assertEqual(result["bearing_type_hint_counts"],
+                             {"CYLINDRICAL_ROLLER":37,"SPHERICAL_PLAIN":37})
+            self.assertEqual(result["unknown_type_hint_rows"],0)
             db=sqlite3.connect(output)
             self.assertEqual(db.execute("SELECT COUNT(*) FROM stage_designations WHERE semantic_status='UNVERIFIED'").fetchone()[0],74)
             self.assertEqual(db.execute("PRAGMA integrity_check").fetchone()[0],"ok")

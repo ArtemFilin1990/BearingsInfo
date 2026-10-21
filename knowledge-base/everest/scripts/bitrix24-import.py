@@ -11,13 +11,11 @@ import re
 import sys
 import time
 import urllib.error
-import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
 
-from kb_common import GENERATED_DIR, REPORTS_DIR
+from kb_common import GENERATED_DIR, REPORTS_DIR, call_bitrix, mask_url, require_https_webhook
 
 DEFAULT_EXPORT = GENERATED_DIR / "json" / "bitrix24-import.json"
 DEFAULT_DRY_RUN_REPORT = REPORTS_DIR / "bitrix24-import-dry-run.md"
@@ -43,13 +41,6 @@ class ImportAction:
     method: str
     params: dict[str, Any]
     label: str
-
-
-def mask_url(url: str) -> str:
-    parsed = urlparse(url)
-    if not parsed.scheme or not parsed.netloc:
-        return "<invalid-url>"
-    return f"{parsed.scheme}://{parsed.netloc}/***"
 
 
 def load_payload(path: Path) -> dict[str, Any]:
@@ -198,16 +189,6 @@ def markdown_to_html(markdown: str) -> str:
     return "\n".join(line for line in lines if line)
 
 
-def require_https_webhook() -> str:
-    webhook_url = os.environ.get("BITRIX24_WEBHOOK_URL", "").strip()
-    if not webhook_url:
-        raise RuntimeError("Real import is blocked. Required environment: BITRIX24_WEBHOOK_URL")
-    parsed = urlparse(webhook_url)
-    if parsed.scheme != "https" or not parsed.netloc:
-        raise RuntimeError("BITRIX24_WEBHOOK_URL must be a valid HTTPS webhook base URL")
-    return webhook_url.rstrip("/")
-
-
 def require_confirm() -> None:
     confirm = os.environ.get("BITRIX24_IMPORT_CONFIRM", "").strip().lower()
     if confirm != "true":
@@ -231,26 +212,6 @@ def require_landing_env() -> tuple[str, str, str]:
         raise RuntimeError("Real landing import is blocked. Required environment: BITRIX24_KB_SITE_ID")
     scope = os.environ.get("BITRIX24_KB_SCOPE", DEFAULT_SCOPE).strip() or DEFAULT_SCOPE
     return webhook_url, site_id, scope
-
-
-def post_json(url: str, payload: dict[str, Any], timeout: float) -> dict[str, Any]:
-    request = urllib.request.Request(
-        url,
-        data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
-        headers={"Content-Type": "application/json; charset=utf-8"},
-        method="POST",
-    )
-    with urllib.request.urlopen(request, timeout=timeout) as response:  # noqa: S310 - explicit operator-provided webhook URL.
-        return json.loads(response.read().decode("utf-8"))
-
-
-def call_bitrix(webhook_url: str, method: str, params: dict[str, Any], timeout: float) -> dict[str, Any]:
-    endpoint = f"{webhook_url}/{method}.json"
-    response = post_json(endpoint, params, timeout)
-    if "error" in response:
-        error_description = response.get("error_description", response["error"])
-        raise RuntimeError(f"{method}: {error_description}")
-    return response
 
 
 def extract_result_id(response: dict[str, Any]) -> Any:

@@ -1,0 +1,60 @@
+name: EVEREST Type-first nomenclature staging
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 2 * * 1'
+  push:
+    branches:
+      - 'automation/type-first-74-brands-v9-20261021'
+    paths:
+      - 'tools/scripts/everest_catalog/**'
+      - '.github/workflows/everest-type-first.yml'
+  pull_request:
+    paths:
+      - 'tools/scripts/everest_catalog/**'
+      - '.github/workflows/everest-type-first.yml'
+      - 'data/nomenclature.csv'
+permissions:
+  contents: read
+concurrency:
+  group: everest-type-first-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout full CSV from repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build UNVERIFIED staging snapshot
+        run: |
+          python tools/scripts/everest_catalog/normalize_snapshot.py \
+            --input data/nomenclature.csv \
+            --output output/everest_nomenclature_type_first.sqlite \
+            --report output/type_first_report.json \
+            --min-rows 40000 --min-brands 74
+      - name: Check complete and non-promoted data
+        run: |
+          python - <<'PY'
+          import json, sqlite3
+          data = json.load(open('output/type_first_report.json'))
+          c = sqlite3.connect('output/everest_nomenclature_type_first.sqlite')
+          assert data['brands'] >= 74
+          assert data['rows'] >= 40000
+          assert c.execute('PRAGMA integrity_check').fetchone()[0] == 'ok'
+          assert c.execute('SELECT COUNT(*) FROM stage_designations').fetchone()[0] == data['rows']
+          assert c.execute("SELECT COUNT(*) FROM stage_designations WHERE semantic_status != 'UNVERIFIED'").fetchone()[0] == 0
+          print(data['rows'], 'rows of', data['brands'], 'brands validated')
+          PY
+      - name: Upload staging-only artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: everest-type-first-${{ github.sha }}
+          path: output/
+          retention-days: 30

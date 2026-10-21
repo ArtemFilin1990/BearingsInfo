@@ -1,0 +1,20 @@
+# Standalone FastAPI API image. Does not replace the data-management CLI image.
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app/src/api \
+    PORT=10000
+
+WORKDIR /app
+
+COPY deploy/docker/api-requirements.txt /tmp/api-requirements.txt
+RUN python -m pip install --no-cache-dir -r /tmp/api-requirements.txt \
+    && useradd --system --uid 10001 --create-home bearingapi
+
+COPY --chown=bearingapi:bearingapi src/api/ /app/src/api/
+
+USER bearingapi
+EXPOSE 10000
+
+CMD ["sh", "-c", "exec uvicorn main:app --app-dir src/api --host 0.0.0.0 --port ${PORT:-10000} --proxy-headers"]

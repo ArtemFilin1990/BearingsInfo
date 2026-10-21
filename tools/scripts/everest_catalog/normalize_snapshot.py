@@ -10,12 +10,23 @@ import unicodedata
 from collections import Counter
 from pathlib import Path
 
-RULESET = "EVEREST-TYPE-FIRST-3.0"
+RULESET = "EVEREST-TYPE-FIRST-3.1"
 EXPECTED_HEADER = ["Brand","Product Name","Product Link","Analog Name","Analog Link","Factory"]
 JOINT = re.compile(r"^(?:[0-9]|G|Е)?(ШСЛ|ШСП|ШС|Ш)\s*(\d{1,5})(.*)$")
 SERIES = ("UCFL","UCFC","UCPA","UCPH","UCFB","UCP","UCT","UCF","UC","UK",
           "RNAO","RNA","NKI","NKIS","NKS","NK","NAO","NA","AXK","HK","BK",
           "NUP","NU","NJ","NF","QJ","N","LME","LMB","LMK","LM")
+
+def render_prefix_normalized(original, prefix):
+    """Render a safe prefix rewrite without guessing suffix separators."""
+    value = unicodedata.normalize("NFKC", original or "").upper().strip()
+    value = re.sub(r"\s+", " ", value.translate(str.maketrans("–—−‑", "----")))
+    value = value.strip('"')
+    if prefix:
+        parenthesized = re.fullmatch(r"\(" + re.escape(prefix) + r"\)\s*-?\s*(.+)", value)
+        if parenthesized:
+            return f"{prefix}-{parenthesized.group(1)}"
+    return value
 
 def split_designation(original):
     value = unicodedata.normalize("NFKC",original or "").upper().strip()
@@ -81,6 +92,7 @@ def build(source,output,report,min_rows=40000,min_brands=74):
         db.executescript("""
         CREATE TABLE stage_designations (
           source_line INTEGER PRIMARY KEY, brand TEXT NOT NULL, original_designation TEXT NOT NULL,
+          normalized_designation TEXT NOT NULL,
           prefix TEXT NOT NULL, body TEXT NOT NULL, suffix TEXT NOT NULL, bearing_type_hint TEXT NOT NULL,
           family TEXT NOT NULL, parse_status TEXT NOT NULL, issues_json TEXT NOT NULL,
           semantic_status TEXT NOT NULL CHECK(semantic_status='UNVERIFIED'),
@@ -103,9 +115,10 @@ def build(source,output,report,min_rows=40000,min_brands=74):
                 if not brand or not raw:
                     raise ValueError(f"Blank brand/designation at source line {reader.line_num}")
                 prefix,body,suffix,kind,family,status,issues=split_designation(raw)
+                normalized=render_prefix_normalized(raw,prefix)
                 db.execute("""INSERT INTO stage_designations VALUES
-                  (?,?,?,?,?,?,?,?,?,?,'UNVERIFIED',?,?,?,?,?,?,?)""",(
-                  reader.line_num,brand,raw,prefix,body,suffix,kind,family,status,
+                  (?,?,?,?,?,?,?,?,?,?,?,'UNVERIFIED',?,?,?,?,?,?,?)""",(
+                  reader.line_num,brand,raw,normalized,prefix,body,suffix,kind,family,status,
                   json.dumps(issues,ensure_ascii=False),row["Analog Name"],row["Product Link"],
                   row["Analog Link"],row["Factory"],"data/nomenclature.csv",blob,RULESET))
                 brands[brand]+=1

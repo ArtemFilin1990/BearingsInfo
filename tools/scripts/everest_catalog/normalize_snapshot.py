@@ -28,12 +28,19 @@ def split_designation(original):
         value = value.strip('"')
     if re.search("[A-Z]",value) and re.search("[А-ЯЁ]",value):
         issues.append("MIXED_ALPHABETS")
+    prefix = ""
+    # A leading numeric value in parentheses is a prefix, not part of the
+    # bearing body: (70)32134Л -> 70-32134Л.  Other parentheses still need
+    # manual review because they may describe assemblies or options.
+    match = re.fullmatch(r"\((\d{1,4})\)\s*-?\s*(.+)", value)
+    if match:
+        prefix, value = match.groups()
+    else:
+        match = re.fullmatch(r"(\d[\dА-ЯЁA-Z]{0,3})-(.+)", value)
+        if match:
+            prefix, value = match.groups()
     if re.search(r"[+()\[\]]",value):
         issues.append("ASSEMBLY_OR_PARENTHESIS")
-    prefix = ""
-    match = re.fullmatch(r"(\d[\dА-ЯЁA-Z]{0,3})-(.+)",value)
-    if match:
-        prefix,value=match.groups()
     match=JOINT.fullmatch(value)
     if match:
         body=value[:match.end(2)].replace(" ","")

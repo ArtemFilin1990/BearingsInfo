@@ -33,7 +33,7 @@ jobs:
       - name: Run pip-audit
         run: |
           pip-audit --requirement requirements.txt --format json --output pip-audit.json || true
-          pip-audit --requirement requirements.txt || true
+          pip-audit --requirement requirements.txt
 
       - name: Upload pip-audit results
         if: always()

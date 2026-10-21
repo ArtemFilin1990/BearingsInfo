@@ -68,3 +68,31 @@ def test_search_endpoint_available_without_catalogue_seed(monkeypatch):
     r = client.get("/search?q=6205")
     assert r.status_code == 200
     assert "results" in r.json()
+
+
+def test_catalogue_readiness_requires_loaded_indexes(monkeypatch):
+    app = load_api(monkeypatch)
+    api_module = importlib.import_module("main")
+    monkeypatch.setattr(api_module.search_engine, "documents", {})
+    monkeypatch.setattr(api_module.autocomplete_engine, "terms", [])
+    client = TestClient(app)
+    assert client.get("/health").status_code == 200
+    response = client.get("/ready")
+    assert response.status_code == 503
+    assert response.json() == {
+        "status": "not_ready",
+        "catalogue_index": False,
+        "autocomplete_index": False,
+        "auto_replace_allowed": False,
+    }
+
+
+def test_catalogue_ready_only_with_both_indexes(monkeypatch):
+    app = load_api(monkeypatch)
+    api_module = importlib.import_module("main")
+    monkeypatch.setattr(api_module.search_engine, "documents", {"6205": {"title": "6205"}})
+    monkeypatch.setattr(api_module.autocomplete_engine, "terms", [{"value": "6205"}])
+    response = TestClient(app).get("/ready")
+    assert response.status_code == 200
+    assert response.json()["status"] == "ready"
+    assert response.json()["auto_replace_allowed"] is False

@@ -1,0 +1,75 @@
+name: Bearings API Runtime Smoke
+
+on:
+  push:
+    branches:
+      - fix/everest-fastapi-docker-health-20261021
+    paths:
+      - Dockerfile
+      - docker-compose.yml
+      - .dockerignore
+      - src/api/**
+      - deploy/docker/**
+      - tests/test_api_*py
+      - .github/workflows/api-runtime-smoke.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - docker-compose.yml
+      - .dockerignore
+      - src/api/**
+      - deploy/docker/**
+      - tests/test_api_*py
+      - .github/workflows/api-runtime-smoke.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: api-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  http-and-unit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install minimal API test dependencies
+        run: |
+          python -m pip install -r deploy/docker/api-requirements.txt
+          python -m pip install httpx==0.28.1 pytest==9.0.3
+          python -m pip check
+      - name: Test health, CORS, fake-analogue prevention and Docker contract
+        env:
+          PYTHONPATH: src/api
+        run: python -m pytest -q tests/test_api_startup_safety.py tests/test_api_container_contract.py
+
+  docker-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the root Dockerfile
+        run: docker build --pull -t ev-bearings-api:ci .
+      - name: Ensure container is non-root and returns healthy status
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run -d --name ev-bearings-api-ci -p 127.0.0.1:18000:8000 ev-bearings-api:ci
+          trap 'docker logs ev-bearings-api-ci; docker rm -f ev-bearings-api-ci || true' EXIT
+          for i in {1..60}; do
+            if curl --fail --silent http://127.0.0.1:18000/health > /tmp/health.json; then
+              break
+            fi
+            sleep 2
+          done
+          python -c 'import json; assert json.load(open("/tmp/health.json"))["status"] == "healthy"'
+          curl --silent --output /tmp/analogue.json --write-out '%{http_code}' \
+            http://127.0.0.1:18000/analogs/6205/export | grep -qx '503'
+          python -c 'import json; d=json.load(open("/tmp/analogue.json")); assert d["detail"]["auto_replace_allowed"] is False'
+          docker exec ev-bearings-api-ci id -u | grep -qx '1000'

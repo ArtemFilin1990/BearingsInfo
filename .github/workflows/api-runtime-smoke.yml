@@ -13,7 +13,7 @@ on:
       - tests/test_api_*py
       - .github/workflows/api-runtime-smoke.yml
   pull_request:
-    branches: [main]
+    branches: [main, fix/everest-audit-ci-safety-20261021]
     paths:
       - Dockerfile
       - docker-compose.yml

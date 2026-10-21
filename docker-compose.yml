@@ -9,12 +9,13 @@ services:
       - ./data:/app/data
       - ./docs:/app/docs
       - ./sources:/app/sources
-      - ./scripts:/app/scripts
     environment:
       - PYTHONPATH=/app
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
-    command: python manage.py
+    ports:
+      - "8000:8000"
+    # Uses the Dockerfile FastAPI CMD; the CLI remains accessible via docker compose run app python manage.py <command>.
     restart: unless-stopped
     user: "1000:1000"
 

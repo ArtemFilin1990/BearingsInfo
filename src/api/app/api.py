@@ -295,49 +295,23 @@ async def export_search_results(
 @router.get("/analogs/{bearing_code}/export")
 async def export_analogs(
     bearing_code: str,
-    export_format: str = Query("json", pattern="^(json|csv|xlsx)$", description="Формат: json, csv, xlsx"),
+    export_format: str = Query("json", pattern="^(json|csv|xlsx)$"),
 ):
+    """Do not present placeholder cross-references as approved substitutes.
+
+    This endpoint remains unavailable until analogue_decisions with scoped,
+    current approvals and attribute evidence are wired to the API.
     """
-    Экспорт списка аналогов
-
-    Форматы:
-    - JSON: структурированный объект
-    - CSV: таблица с колонками [code, standard, manufacturer, compatibility]
-    - XLSX: Excel файл с форматированием
-    """
-    # Заглушка для аналогов
-    # В реальной системе здесь должна быть работа с БД
-    analogs = [
-        {
-            "code": bearing_code,
-            "standard": "ГОСТ",
-            "manufacturer": "SKF",
-            "compatibility": "100%",
-            "notes": "Прямой аналог",
-        }
-    ]
-
-    # Sanitize bearing_code for filename
-    safe_code = _sanitize_filename(bearing_code)
-
-    if export_format == "json":
-        return JSONResponse(content=analogs)
-
-    elif export_format == "csv":
-        csv_data = AnalogsExporter.to_csv(analogs)
-        return StreamingResponse(
-            io.BytesIO(csv_data.encode("utf-8-sig")),
-            media_type="text/csv; charset=utf-8",
-            headers={"Content-Disposition": f"attachment; filename=analogs_{safe_code}.csv"},
-        )
-
-    elif export_format == "xlsx":
-        excel_data = AnalogsExporter.to_excel(analogs)
-        return StreamingResponse(
-            excel_data,
-            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            headers={"Content-Disposition": f"attachment; filename=analogs_{safe_code}.xlsx"},
-        )
+    raise HTTPException(
+        status_code=503,
+        detail={
+            "code": "ENGINEERING_APPROVAL_BACKEND_NOT_CONNECTED",
+            "bearing_code": bearing_code,
+            "format": export_format,
+            "auto_replace_allowed": False,
+            "message": "No approved analogue data source is connected.",
+        },
+    )
 
 
 @router.post("/export/batch")

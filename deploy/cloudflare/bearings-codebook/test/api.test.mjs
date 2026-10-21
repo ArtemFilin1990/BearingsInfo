@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import api,{decode,lookup,compare} from '../src/index.mjs';
+const req=(p,method='GET',data)=>new Request('https://example.invalid'+p,{method,headers:{'content-type':'application/json'},body:data?JSON.stringify(data):undefined});
+const call=async (r)=>{const x=await api.fetch(r);return [x.status,await x.json()]};
+test('fifty five official codes in source snapshot',async()=>{const [s,r]=await call(req('/health'));assert.equal(s,200);assert.equal(r.code_count,55);assert.equal(r.approved_product_analogues,0)});
+test('manufacturer-specific semantics retained',()=>{assert.equal(lookup('NSK','DDU').contact_type,'contact');assert.equal(lookup('NTN','LLB').contact_type,'noncontact')});
+test('compound suffix decodes',()=>{const r=decode('SKF','-2RSH/C3');assert.deepEqual(r.matched.map(x=>x.code),['2RSH','C3']);assert.equal(r.auto_replace_allowed,false)});
+test('unknown part not silently discarded',()=>{const r=decode('NSK','DDUXYZCM');assert.deepEqual(r.unknown_parts,['XYZCM']);assert.equal(r.status,'REVIEW_UNKNOWN_CODE')});
+test('FAG code not inherited by INA',()=>{assert.equal(lookup('INA','2RSR'),null);assert.equal(decode('INA','2RSR').status,'REVIEW_UNKNOWN_CODE')});
+test('functional similarity never equals product equivalence',()=>{const r=compare({brand:'NSK',suffix:'DDU'},{brand:'NTN',suffix:'LLU'});assert.equal(r.code_relationship,'SAME_FEATURE_NOT_PROVEN_INTERCHANGEABLE');assert.equal(r.auto_replace_allowed,false)});
+test('contact versus noncontact difference is reported',()=>{const r=compare({brand:'NSK',suffix:'VV'},{brand:'NTN',suffix:'LLU'});assert.equal(r.code_relationship,'DIFFERENT_TECHNICAL_FEATURE')});
+test('approval routes rejected',async()=>{const [s,r]=await call(req('/v1/approve','POST',{}));assert.equal(s,403);assert.equal(r.auto_replace_allowed,false)});
+test('overlong suffix rejected',async()=>{const [s]=await call(req('/v1/decode','POST',{brand:'SKF',suffix:'X'.repeat(300)}));assert.equal(s,400)});
+test('lookup route works',async()=>{const [s,r]=await call(req('/v1/lookup?brand=SKF&code=2RSH'));assert.equal(s,200);assert.equal(r.entry.code,'2RSH');assert.equal(r.auto_replace_allowed,false)});

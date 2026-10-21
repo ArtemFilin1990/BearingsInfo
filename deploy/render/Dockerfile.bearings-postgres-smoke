@@ -1,0 +1,22 @@
+# One-shot PostgreSQL migration test in an ephemeral Docker build layer.
+# No database credentials or product data, nothing persists to runtime.
+FROM postgres:16-alpine AS verify
+WORKDIR /opt/everest-smoke
+COPY --chown=postgres:postgres sql/engineering_core/001_engineering_core_postgres.sql ./migration.sql
+COPY --chown=postgres:postgres sql/engineering_core/tests/smoke.sql ./smoke.sql
+USER postgres
+RUN set -eu; \
+  initdb -D /tmp/everest-pg16 --username=postgres --auth-local=trust >/dev/null; \
+  pg_ctl -D /tmp/everest-pg16 -o "-c listen_addresses=''" -w start; \
+  createdb -U postgres everest_bearings_ci; \
+  psql -X -v ON_ERROR_STOP=1 -U postgres -d everest_bearings_ci -f migration.sql; \
+  psql -X -v ON_ERROR_STOP=1 -U postgres -d everest_bearings_ci -f smoke.sql; \
+  pg_ctl -D /tmp/everest-pg16 -m fast -w stop; \
+  mkdir -p /tmp/everest-smoke-status; \
+  printf '%s\n' 'EVEREST PostgreSQL 16 migration smoke: PASSED' > /tmp/everest-smoke-status/index.html; \
+  rm -rf /tmp/everest-pg16
+FROM python:3.13-alpine
+COPY --from=verify /tmp/everest-smoke-status /status
+USER 10001
+EXPOSE 10000
+CMD ["python", "-m", "http.server", "10000", "--bind", "0.0.0.0", "--directory", "/status"]

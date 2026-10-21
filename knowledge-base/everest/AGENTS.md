@@ -69,3 +69,10 @@
    - `python knowledge-base/everest/scripts/bitrix24-import.py`
 4. Реальный импорт разрешён только с `--execute`, `BITRIX24_IMPORT_CONFIRM=true`, HTTPS `BITRIX24_WEBHOOK_URL` и подтверждённым `BITRIX24_KB_IMPORT_METHOD`.
 5. В конце проверь отчёты `reports/creation-report.md` и `reports/validation-report.md`.
+
+## Создание структуры базы знаний Bitrix24 (отдельная операция)
+
+- Скрипт `scripts/bitrix24-create-hierarchy.py` формирует иерархию сайта, разделов и статей. Запуск без флага `--execute` — только локальный dry-run.
+- Реальные вызовы Bitrix24 требуют одновременно `--execute`, HTTPS `BITRIX24_WEBHOOK_URL` и `BITRIX24_IMPORT_CONFIRM=true`; никогда не хранить вебхук в Git.
+- Перед реальным запуском сверять `source/sections.json` и `source/articles.json`; восстановление после перерыва использует `generated/json/bitrix24-hierarchy-ids.json`.
+- Создание структуры не является загрузкой содержимого: его добавляет отдельный `bitrix24-import.py`.

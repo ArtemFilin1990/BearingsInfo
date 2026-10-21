@@ -1,24 +1,27 @@
-# Standalone FastAPI API image. Does not replace the data-management CLI image.
-FROM python:3.11-slim
+# Staging-only standalone ASGI container.
+# The test stage gates the final image: build fails if HTTP/security regressions fail.
+FROM python:3.11-slim AS api-base
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app/src/api \
     PORT=10000
-
 WORKDIR /app
-
 COPY deploy/docker/api-requirements.txt /tmp/api-requirements.txt
 RUN python -m pip install --no-cache-dir -r /tmp/api-requirements.txt \
     && useradd --system --uid 10001 --create-home bearingapi
-
 COPY --chown=bearingapi:bearingapi src/api/ /app/src/api/
 
+FROM api-base AS verify-api
+RUN python -m pip install --no-cache-dir pytest==9.0.2 httpx==0.28.1
+COPY tests/test_api_startup_safety.py /app/tests/test_api_startup_safety.py
+RUN python -m pytest -q /app/tests/test_api_startup_safety.py \
+    && printf 'PASS: FastAPI HTTP/CORS/analogue safeguards\n' > /tmp/api-verified.txt
+
+FROM api-base AS runtime
+COPY --from=verify-api /tmp/api-verified.txt /tmp/api-verified.txt
 USER bearingapi
 EXPOSE 10000
-
-# The Docker daemon probes the actual API health route using stdlib only.
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
     CMD python -c "import os; from urllib.request import urlopen; urlopen('http://127.0.0.1:'+os.getenv('PORT','10000')+'/health',timeout=3).close()" || exit 1
-
 CMD ["sh", "-c", "exec uvicorn main:app --app-dir src/api --host 0.0.0.0 --port ${PORT:-10000} --proxy-headers"]

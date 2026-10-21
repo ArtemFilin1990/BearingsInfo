@@ -1,0 +1,28 @@
+# Independent staging-only lookup service. No GitHub Actions or external DB.
+# The full CSV is processed and tested during the Docker build.
+FROM python:3.11-slim AS verify-catalog
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+WORKDIR /app
+COPY data/nomenclature.csv /app/data/nomenclature.csv
+COPY tools/scripts/everest_catalog/ /app/tools/scripts/everest_catalog/
+RUN python -m unittest discover -s tools/scripts/everest_catalog -p 'test_*.py' -v
+RUN python tools/scripts/everest_catalog/normalize_snapshot.py \
+      --input data/nomenclature.csv \
+      --output /app/output/catalog.sqlite \
+      --report /app/output/report.json \
+      --min-rows 42585 --min-brands 74
+RUN python -c "import json; r=json.load(open('/app/output/report.json')); assert r['duplicate_source_rows']==0 and r['semantic_status']=='ALL_UNVERIFIED'"
+
+FROM python:3.11-slim AS runtime
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PORT=10000 \
+    CATALOG_SNAPSHOT_PATH=/app/data/catalog.sqlite
+WORKDIR /app
+RUN useradd --system --uid 10001 --create-home catalog
+COPY --from=verify-catalog --chown=catalog:catalog /app/output/catalog.sqlite /app/data/catalog.sqlite
+COPY --from=verify-catalog --chown=catalog:catalog /app/output/report.json /app/data/report.json
+COPY --from=verify-catalog --chown=catalog:catalog /app/tools/scripts/everest_catalog/catalog_read_api.py /app/catalog_read_api.py
+USER catalog
+EXPOSE 10000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+  CMD python -c "from urllib.request import urlopen; import os; urlopen('http://127.0.0.1:'+os.getenv('PORT','10000')+'/health',timeout=3).close()" || exit 1
+CMD ["python", "/app/catalog_read_api.py"]

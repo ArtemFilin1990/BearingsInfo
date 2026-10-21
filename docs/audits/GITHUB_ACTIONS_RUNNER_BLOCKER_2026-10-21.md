@@ -12,8 +12,8 @@ Diagnostic workflow: `.github/workflows/runner-diagnostic.yml`. One ubuntu-24.04
 - Result: `failure` within seconds, `steps=null`, `logs_url=null`; rerun also fails before starting.
 - Job log fetch resulted in 404 `BlobNotFound`; there is no evidence that a Python step executed.
 - Many unrelated jobs (Articles validation, JSON lint, Python matrix, and this minimal diagnostic) fail within a few seconds with empty steps at the same time.
-- This **does not prove billing is the cause**. Public repositories should have free standard GitHub-hosted runner minutes; account-level controls, policy/abuse restrictions or provisioning faults remain possible.
-- GitHub App lacks access to the required settings endpoints and run annotations. The exact account-side denial message remains unknown.
+- **Update:** Authentication through a separate GitHub Checks API connection subsequently confirmed an account-level billing lock (exact annotation below). Free standard-hosted runner minutes for public repositories do not override an account billing lock.
+- GitHub App lacks access to the required settings endpoints and run annotations. The denial message was subsequently obtained through the authenticated Checks API; see confirmed diagnosis below.
 
 ## Required manual account-side verification (no payment changes without owner consent)
 

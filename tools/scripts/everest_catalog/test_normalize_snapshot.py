@@ -13,6 +13,9 @@ class TypeFirstTests(unittest.TestCase):
             "2ШС 20": ("","2ШС20","","SPHERICAL_PLAIN"),
             "ШСЛ90К1": ("","ШСЛ90","К1","SPHERICAL_PLAIN"),
             "6-180205": ("6","180205","","UNKNOWN"),
+            "(70)32134Л": ("70","32134","Л","UNKNOWN"),
+            "(70) 32134Л": ("70","32134","Л","UNKNOWN"),
+            "(70)-32134Л": ("70","32134","Л","UNKNOWN"),
             "NU 205 ECP/C3": ("","NU205","ECP/C3","CYLINDRICAL_ROLLER"),
             "HK1616": ("","HK1616","","NEEDLE"),
             "UCP205": ("","UCP205","","MOUNTED_UNIT_OR_INSERT"),
@@ -21,6 +24,15 @@ class TypeFirstTests(unittest.TestCase):
         for designation, expected in examples.items():
             with self.subTest(designation=designation):
                 self.assertEqual(split_designation(designation)[:4],expected)
+
+    def test_parenthesized_numeric_prefix_is_safe_but_assembly_is_not(self):
+        prefix, body, suffix, _, _, status, issues = split_designation("(70)32134Л")
+        self.assertEqual(f"{prefix}-{body}{suffix}", "70-32134Л")
+        self.assertEqual((status, issues), ("PARSED", []))
+
+        *_, status, issues = split_designation("(70)32134Л (комплект)")
+        self.assertEqual(status, "REVIEW")
+        self.assertIn("ASSEMBLY_OR_PARENTHESIS", issues)
 
     def test_all_74_brands_staged_only(self):
         with tempfile.TemporaryDirectory() as folder:

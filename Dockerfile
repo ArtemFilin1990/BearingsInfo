@@ -36,5 +36,11 @@ ENV PYTHONPATH=/app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Default command
-CMD ["python", "manage.py"]
+# FastAPI is the default service; management tasks remain available via
+# docker run --rm <image> python manage.py validate
+EXPOSE 8000
+ENV PORT=8000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+    CMD python -c "from urllib.request import urlopen; urlopen('http://127.0.0.1:8000/health', timeout=3).close()" || exit 1
+
+CMD ["sh", "-c", "exec uvicorn main:app --app-dir src/api --host 0.0.0.0 --port ${PORT:-8000} --proxy-headers"]

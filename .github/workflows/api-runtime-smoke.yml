@@ -42,7 +42,7 @@ jobs:
       - name: Install minimal API test dependencies
         run: |
           python -m pip install -r deploy/docker/api-requirements.txt
-          python -m pip install httpx==0.28.1 pytest==9.0.3
+          python -m pip install httpx==0.28.1 pytest==9.0.2
           python -m pip check
       - name: Test health, CORS, fake-analogue prevention and Docker contract
         env:

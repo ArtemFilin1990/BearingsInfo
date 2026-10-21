@@ -1,0 +1,24 @@
+# Local credentials and VCS metadata must never enter container images
+.git/
+.github/
+.env
+.env.*
+!.env.example
+**/*.pem
+**/*.key
+.venv/
+venv/
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage_html/
+node_modules/
+dist/
+build/
+extracted_archives/
+*.log
+*.tmp

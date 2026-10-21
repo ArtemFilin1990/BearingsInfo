@@ -8,6 +8,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import logging
+import os
 
 from app import APP_DESCRIPTION, APP_NAME, APP_VERSION
 from app.api import router as api_router
@@ -28,13 +29,18 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-# CORS middleware
+# The API is same-origin by default. Cross-origin clients require an explicit allowlist.
+# Never combine wildcard origins with credentialed browser requests.
+allowed_origins = [origin.strip() for origin in os.getenv("BEARINGS_CORS_ORIGINS", "").split(",") if origin.strip()]
+if "*" in allowed_origins:
+    raise RuntimeError("BEARINGS_CORS_ORIGINS must contain concrete origins, not *")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=allowed_origins,
+    allow_credentials=bool(allowed_origins),
+    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
 )
 
 @app.get("/")
@@ -59,6 +65,6 @@ if __name__ == "__main__":
         "main:app",
         host="0.0.0.0",
         port=8000,
-        reload=True,
+        reload=False,
         log_level="info"
     )

@@ -91,6 +91,7 @@ def build(source,output,report,min_rows=40000,min_brands=74):
         """)
         brands=Counter()
         statuses=Counter()
+        type_hints=Counter()
         unique=set()
         with source.open(encoding="utf-8-sig",newline="") as stream:
             reader=csv.DictReader(stream)
@@ -109,6 +110,7 @@ def build(source,output,report,min_rows=40000,min_brands=74):
                   row["Analog Link"],row["Factory"],"data/nomenclature.csv",blob,RULESET))
                 brands[brand]+=1
                 statuses[status]+=1
+                type_hints[kind]+=1
                 unique.add((brand,raw))
         rows=sum(brands.values())
         if rows<min_rows or len(brands)<min_brands:
@@ -119,6 +121,8 @@ def build(source,output,report,min_rows=40000,min_brands=74):
         assert db.execute("SELECT COUNT(*) FROM stage_designations WHERE semantic_status!='UNVERIFIED'").fetchone()[0]==0
         result={"rows":rows,"brands":len(brands),"unique_brand_designations":len(unique),
                 "duplicate_source_rows":rows-len(unique),"parse_status_counts":dict(statuses),
+                "bearing_type_hint_counts":dict(sorted(type_hints.items())),
+                "unknown_type_hint_rows":type_hints["UNKNOWN"],
                 "brand_row_counts":dict(sorted(brands.items())),"source_blob_sha":blob,
                 "ruleset":RULESET,"semantic_status":"ALL_UNVERIFIED",
                 "production_database_changed":False}

@@ -36,8 +36,18 @@ async function readSmallJSON(req){
   const length=Number(req.headers.get('content-length'));
   if(length>2048)throw Error('PAYLOAD_TOO_LARGE');
   if(!(req.headers.get('content-type')||'').toLowerCase().startsWith('application/json'))throw Error('JSON_ONLY');
-  const body=await req.text();
-  if(body.length>2048)throw Error('PAYLOAD_TOO_LARGE');
+  const reader=req.body?.getReader();
+  if(!reader)throw Error('INVALID_JSON');
+  const chunks=[];let bytesRead=0;
+  while(true){
+    const {done,value}=await reader.read();if(done)break;
+    bytesRead+=value.byteLength;
+    if(bytesRead>2048){await reader.cancel();throw Error('PAYLOAD_TOO_LARGE')}
+    chunks.push(value);
+  }
+  const buffer=new Uint8Array(bytesRead);let pos=0;
+  for(const chunk of chunks){buffer.set(chunk,pos);pos+=chunk.byteLength}
+  const body=new TextDecoder().decode(buffer);
   let obj;try{obj=JSON.parse(body)}catch{throw Error('INVALID_JSON')}
   if(!obj||typeof obj!=='object'||Array.isArray(obj))throw Error('OBJECT_REQUIRED');
   return obj;

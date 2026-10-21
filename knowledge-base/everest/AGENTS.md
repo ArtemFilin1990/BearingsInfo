@@ -66,12 +66,13 @@
 3. После изменений запускай:
    - `python knowledge-base/everest/scripts/generate-knowledge-base.py`
    - `python knowledge-base/everest/scripts/validate-knowledge-base.py`
-   - `python knowledge-base/everest/scripts/bitrix24-create-hierarchy.py`
    - `python knowledge-base/everest/scripts/bitrix24-import.py`
-4. `bitrix24-create-hierarchy.py` создаёт сайт Базы знаний 2.0, 8 разделов-папок и 148 страниц-заготовок
-   (правильная нумерация, без содержимого). `bitrix24-import.py` далее заполняет содержимое статей.
-5. Реальный запуск любого из импортёров разрешён только с `--execute`, `BITRIX24_IMPORT_CONFIRM=true` и HTTPS
-   `BITRIX24_WEBHOOK_URL`. `bitrix24-import.py` дополнительно требует подтверждённый `BITRIX24_KB_IMPORT_METHOD`.
-6. Прогресс `bitrix24-create-hierarchy.py` сохраняется в `generated/json/bitrix24-hierarchy-ids.json` —
-   повторный запуск безопасен и не создаёт дубликаты.
-7. В конце проверь отчёты `reports/creation-report.md` и `reports/validation-report.md`.
+4. Реальный импорт разрешён только с `--execute`, `BITRIX24_IMPORT_CONFIRM=true`, HTTPS `BITRIX24_WEBHOOK_URL` и подтверждённым `BITRIX24_KB_IMPORT_METHOD`.
+5. В конце проверь отчёты `reports/creation-report.md` и `reports/validation-report.md`.
+
+## Создание структуры базы знаний Bitrix24 (отдельная операция)
+
+- Скрипт `scripts/bitrix24-create-hierarchy.py` формирует иерархию сайта, разделов и статей. Запуск без флага `--execute` — только локальный dry-run.
+- Реальные вызовы Bitrix24 требуют одновременно `--execute`, HTTPS `BITRIX24_WEBHOOK_URL` и `BITRIX24_IMPORT_CONFIRM=true`; никогда не хранить вебхук в Git.
+- Перед реальным запуском сверять `source/sections.json` и `source/articles.json`; восстановление после перерыва использует `generated/json/bitrix24-hierarchy-ids.json`.
+- Создание структуры не является загрузкой содержимого: его добавляет отдельный `bitrix24-import.py`.

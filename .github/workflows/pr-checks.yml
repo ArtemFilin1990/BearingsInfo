@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   pr-validation:
@@ -44,11 +43,9 @@ jobs:
       - name: Run mypy type checking
         run: |
           export PYTHONPATH=$PWD
-          mypy tools/scripts/ sources/ tests/ --ignore-missing-imports || true
+          mypy tools/scripts/ sources/ tests/ --ignore-missing-imports
 
-      - name: Deduplicate nomenclature
-        run: python tools/scripts/deduplicate_nomenclature.py
-
+      # Keep the PR checkout unchanged. Validation must inspect original product data.
       - name: Run validations
         run: python tools/scripts/validate/run_validations.py
 
@@ -56,6 +53,9 @@ jobs:
         run: |
           export PYTHONPATH=$PWD
           pytest --cov=tools/scripts --cov=sources --cov-report=xml --cov-report=term
+
+      - name: Verify validations did not change tracked data
+        run: git diff --exit-code -- data/
 
       - name: Upload coverage reports
         uses: codecov/codecov-action@v3
@@ -65,18 +65,3 @@ jobs:
           name: codecov-umbrella
           fail_ci_if_error: false
 
-      - name: Comment PR with results
-        if: always()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            let comment = '## 🔍 PR Check Results\n\n';
-            comment += '✅ All checks completed. See individual job results above.\n';
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });

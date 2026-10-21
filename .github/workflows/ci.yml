@@ -36,12 +36,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
+          python -m pip check
 
-      - name: Deduplicate nomenclature
-        run: python tools/scripts/deduplicate_nomenclature.py
-
-      - name: Normalize datasets
-        run: python tools/scripts/update_repo.py --no-report
+      # CI MUST NOT rewrite input records; duplicate checks below inspect the original source.
 
       - name: Check for duplicate keys in nomenclature
         run: |
@@ -75,6 +72,9 @@ jobs:
         run: |
           export PYTHONPATH=$PWD
           python -m pytest -v
+
+      - name: Ensure test pipeline did not rewrite versioned data
+        run: git diff --exit-code -- data/
 
       - name: Upload test results
         if: always()

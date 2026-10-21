@@ -1,0 +1,3 @@
+# Narrow runtime dependency set. Review versions during dependency audit.
+fastapi==0.128.2
+uvicorn==0.48.0

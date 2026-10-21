@@ -1,0 +1,7 @@
+gost,iso,scope,decision,source,notes
+205,6205,base,CANDIDATE,https://spz4.ru/blog/analog-6205-vzaimozamenyaemost,Открытое исполнение; размеры и конкретного производителя проверять отдельно
+80205,6205-2Z,execution,CANDIDATE,https://spz4.ru/blog/analog-6205-vzaimozamenyaemost,Две защитные шайбы; брендовый суффикс и зазор требуют проверки
+180205,6205-2RS,execution,CANDIDATE,https://spz4.ru/blog/analog-6205-vzaimozamenyaemost,Два контактных уплотнения; конкретный вариант 2RS производителя не подтверждён
+11215,1217K+H217,assembly,CANDIDATE,Технический_справочник_Aprom.docx:1157,Соответствие комплекта; не приравнивать подшипник и втулку к одной детали
+11215,1215K+H215,assembly,REJECTED,Технический_справочник_Aprom.docx:1157,Справочник относит комплект к 11213; не использовать как автоматическую замену 11215
+1000900,61900,base,CANDIDATE,Технический_справочник_Aprom.docx:раздел 2.3,Базовое обозначение; параметры уплотнения и зазора не заданы

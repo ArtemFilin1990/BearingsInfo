@@ -1,0 +1,29 @@
+name: GitHub Runner Diagnostic
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fix/everest-fastapi-docker-health-20261021
+    paths:
+      - ".github/workflows/runner-diagnostic.yml"
+      - "deploy/docker/**"
+      - "src/api/**"
+      - "tests/test_api_startup_safety.py"
+
+permissions:
+  contents: read
+
+jobs:
+  runner-diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Log runner and version without checkout or secrets
+        shell: bash
+        run: |
+          echo "Runner allocated"
+          echo "OS=$RUNNER_OS"
+          python3 --version
+          git --version
+          echo "GITHUB_SHA=$GITHUB_SHA"

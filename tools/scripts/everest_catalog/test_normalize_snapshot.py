@@ -4,7 +4,7 @@ import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
-from normalize_snapshot import split_designation, build
+from normalize_snapshot import split_designation, render_prefix_normalized, build
 
 class TypeFirstTests(unittest.TestCase):
     def test_type_first(self):
@@ -28,11 +28,26 @@ class TypeFirstTests(unittest.TestCase):
     def test_parenthesized_numeric_prefix_is_safe_but_assembly_is_not(self):
         prefix, body, suffix, _, _, status, issues = split_designation("(70)32134Л")
         self.assertEqual(f"{prefix}-{body}{suffix}", "70-32134Л")
+        self.assertEqual(render_prefix_normalized("(70)32134Л",prefix),"70-32134Л")
+        self.assertEqual(render_prefix_normalized("(70) 32134Л",prefix),"70-32134Л")
         self.assertEqual((status, issues), ("PARSED", []))
 
         *_, status, issues = split_designation("(70)32134Л (комплект)")
         self.assertEqual(status, "REVIEW")
         self.assertIn("ASSEMBLY_OR_PARENTHESIS", issues)
+
+    def test_prefix_normalization_is_materialized_in_staging(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            source=root/"source.csv"
+            with source.open("w",encoding="utf-8",newline="") as handle:
+                writer=csv.writer(handle)
+                writer.writerow(["Brand","Product Name","Product Link","Analog Name","Analog Link","Factory"])
+                writer.writerow(["EVEREST","(70)32134Л","","","",""])
+            build(source,root/"snapshot.sqlite",root/"report.json",min_rows=1,min_brands=1)
+            with sqlite3.connect(root/"snapshot.sqlite") as db:
+                row=db.execute("SELECT original_designation,normalized_designation,prefix,body,suffix,semantic_status FROM stage_designations").fetchone()
+            self.assertEqual(row,("(70)32134Л","70-32134Л","70","32134","Л","UNVERIFIED"))
 
     def test_all_74_brands_staged_only(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -46,6 +61,7 @@ class TypeFirstTests(unittest.TestCase):
             output, report = root/"snapshot.sqlite",root/"report.json"
             result=build(source,output,report,min_rows=74,min_brands=74)
             self.assertEqual((result["rows"],result["brands"]),(74,74))
+            self.assertEqual(result["ruleset"],"EVEREST-TYPE-FIRST-3.1")
             self.assertEqual(result["bearing_type_hint_counts"],
                              {"CYLINDRICAL_ROLLER":37,"SPHERICAL_PLAIN":37})
             self.assertEqual(result["unknown_type_hint_rows"],0)

@@ -57,14 +57,14 @@ jobs:
 
       - name: Create data archive
         run: |
-          tar -czf baza-data-${{ steps.tag.outputs.tag }}.tar.gz data/ schemas/
+          tar -czf baza-data-${{ steps.tag.outputs.tag }}.tar.gz data/
 
       - name: Create documentation archive
         run: |
           tar -czf baza-docs-${{ steps.tag.outputs.tag }}.tar.gz docs/
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
           name: Release ${{ steps.tag.outputs.tag }}
